@@ -2,168 +2,208 @@
 """
 Rebuild data/attachments.json from the Forever Winter wiki.
 
-Pulls the "Weapon Attachments (Text Only)" page (a maintained, machine-friendly
-list) via the wiki.gg MediaWiki API and parses it into the weapon<->attachment
-compatibility dataset the app consumes. No dependencies beyond Python 3.
+Reads every page in Category:Weapon attachments (the per-attachment pages, which
+are kept current — unlike the aggregate 'Text Only' list) via the wiki.gg
+MediaWiki API, and parses each page's infobox + the
+`=== Compatible with: ===` section ({{WeaponCompatibility|weapon=..|parts=..}}
+grouped under ==== Class ==== headers) into the weapon<->attachment dataset the
+app consumes. No dependencies beyond Python 3.
 
     python tools/fetch_attachments.py
 """
-import json, re, os, sys, urllib.request
+import json, re, os, sys, urllib.request, urllib.parse
 
 API = "https://theforeverwinter.wiki.gg/api.php"
-PAGE = "Weapon_Attachments_(Text_Only)"
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "attachments.json")
+UA = {"User-Agent": "fw-gunsmith-datafetch/2.0 (github.com/dataterminals/forever-winter-attachments)"}
 
-# tokens that appear as [[links]] but are NOT weapons (slot codes, vendors, etc.)
-NON_WEAPON = {"Aramaki", "Grillo", "Vendors", "BRL", "HDG", "HGD", "UPP", "MZD", "MZL",
-              "FGR", "FLL", "LAM", "OPT", "SCP", "STK", "PGR", "MAG", "GAS", "CHG", "TRG",
-              "weapon level", "weapon part", "weapon parts", "weapon", "enemy",
-              "weapon mod container", "tank", "Picatinny", "attachments"}
+# category code + display, resolved from the infobox image texture prefix
+IMG_CAT = {"ATTMD": "MZD", "PICFGR": "FGR", "PICFLL": "FLL", "PICLAM": "LAM",
+           "PICOPT": "OPT", "PICSCP": "SCP"}
+CATLABEL = {"MZD": "Muzzle Devices", "SMZD": "Suppressed Muzzle Devices", "FGR": "Foregrips",
+            "FLL": "Rail Flashlights", "LAM": "Rail Laser Sights", "OPT": "Optics", "SCP": "Scopes"}
+CAT_ORDER = ["MZD", "SMZD", "FGR", "FLL", "LAM", "OPT", "SCP"]
 
-CATS = [
-    ("Muzzle Devices - MZD", "MZD", "Muzzle Devices"),
-    ("Suppressed Muzzle Devices - SMZD", "SMZD", "Suppressed Muzzle Devices"),
-    ("Foregrips - FGR", "FGR", "Foregrips"),
-    ("Rail Mounted Flashlights - FLL", "FLL", "Rail Flashlights"),
-    ("Rail Mounted Laser Sights - LAM", "LAM", "Rail Laser Sights"),
-    ("Optics - OPT", "OPT", "Optics"),
-    ("Scopes - SCP", "SCP", "Scopes"),
-]
-
-# best-effort weapon -> class map (weapons that take attachments)
-CLASS_MAP = {}
-def _c(cls, *ws):
-    for w in ws: CLASS_MAP[w] = cls
-_c("Pistol", "87 Target", "C96", "G-L 19", "PM-9", "R8", "USP", "Mateo Model J", "PnP-2K")
-_c("SMG", "APC9 Pro", "Kriss Vector 45", "P90", "PP-19 Vityaz", "PPSH-41", "Spectre M4", "WLT MPL", "LMG-P")
-_c("Rifle", "AK", "G36", "M16", "M4A1", "SA58", "SCAR", "TKB-0146", "VH-Ambi 2", "VIK-32L", "47 TYP", "Surplus Rifle", "Viper")
-_c("Marksman & Sniper", "SVD", "R11 RSASS", "VKS VYKHLOP", "VKS Vykhlop", "GM6", "NTW-20", "36M AntiTank")
-_c("LMG / HMG", "M60", "RPD", "RPK", "SAW", "MG34")
-_c("Shotgun", "AA12", "S12", "USAS-12", "VEPR-12", "M79 Sawed-off", "Surplus Shotgun")
-_c("Special / Launcher", "Grenade Launcher", "XM25", "AT-43 MASS", "Railgun", "Painless", "CLAW", "SOG")
-CLASS_ORDER = ["Pistol", "SMG", "Rifle", "Marksman & Sniper", "LMG / HMG", "Shotgun", "Special / Launcher", "Other"]
+# weapon-class headers used on the wiki -> our display label
+CLASS_LABEL = {
+    "pistols": "Pistols", "submachine guns": "Submachine Guns", "rifles": "Rifles",
+    "heavy rifles": "Heavy Rifles", "light machineguns": "Light Machineguns",
+    "heavy machineguns": "Heavy Machineguns", "shotguns": "Shotguns",
+    "grenade launchers": "Grenade Launchers",
+}
+CLASS_ORDER = ["Pistols", "Submachine Guns", "Rifles", "Heavy Rifles",
+               "Light Machineguns", "Heavy Machineguns", "Shotguns", "Grenade Launchers", "Other"]
 
 
-def links(s):
+def api_get(params):
+    params = dict(params); params["format"] = "json"
+    url = API + "?" + urllib.parse.urlencode(params)
+    with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=40) as r:
+        return json.load(r)
+
+def list_attachment_pages():
+    out, cont = [], {}
+    while True:
+        d = api_get({"action": "query", "list": "categorymembers",
+                     "cmtitle": "Category:Weapon attachments", "cmtype": "page", "cmlimit": "500", **cont})
+        out += [m["title"] for m in d["query"]["categorymembers"]]
+        if "continue" in d: cont = d["continue"]
+        else: break
+    skip = {"Weapon Attachments", "Weapon Attachments (Text Only)", "Muzzle Assembly"}
+    return [t for t in out if t not in skip]
+
+def fetch_wikitext_batch(titles):
+    """Return {title: wikitext} for up to 50 titles per request."""
+    res = {}
+    for i in range(0, len(titles), 45):
+        chunk = titles[i:i + 45]
+        d = api_get({"action": "query", "prop": "revisions", "rvslots": "main",
+                     "rvprop": "content", "titles": "|".join(chunk)})
+        norm = {n["from"]: n["to"] for n in d["query"].get("normalized", [])}
+        for p in d["query"]["pages"].values():
+            if "revisions" in p:
+                res[p["title"]] = p["revisions"][0]["slots"]["main"]["*"]
+        # map any normalized titles back
+        for frm, to in norm.items():
+            if to in res: res[frm] = res[to]
+    return res
+
+def ib(wt, key):
+    m = re.search(r'\|\s*' + re.escape(key) + r'\s*=\s*([^\n|]*)', wt)
+    return m.group(1).strip() if m else None
+
+def num(s):
+    try: return float(s)
+    except (TypeError, ValueError): return None
+
+def category_and_subtype(image, suppressed):
+    subtype = None
+    code = None
+    if not image:
+        return None, None
+    m = re.search(r'T_?([A-Z]+)(\d+)', image)
+    if m:
+        pref = m.group(1)
+        if pref.startswith("ATTMD"):
+            subtype = "ATTMD" + pref[5:] if len(pref) > 5 else "ATTMD" + m.group(2)[0]
+        # normalize e.g. ATTMD3 in 'ATTMD3' or 'ATTMD' + number
+        mm = re.search(r'ATTMD(\d)', image)
+        if mm: subtype = "ATTMD" + mm.group(1)
+        base = re.match(r'[A-Z]+', pref).group(0)
+        for k, v in IMG_CAT.items():
+            if image.replace("_", "").upper().startswith("T" + k) or ("_" + k) in ("_" + image.replace("T_", "").upper()):
+                code = v; break
+        # simpler: match known prefixes directly
+        for k, v in IMG_CAT.items():
+            if k in image.upper():
+                code = v; break
+    if code == "MZD" and suppressed:
+        code = "SMZD"
+    return code, subtype
+
+def display_name(title, code):
+    if code in ("OPT",) and title.endswith(" Optic"):
+        return title[:-6].strip()
+    if title.startswith("Rail Mounted Flashlight"):
+        return "Rail Flashlight " + title.split()[-1]
+    if title.startswith("Rail Mounted Laser Sight"):
+        return "Rail Laser Sight " + title.split()[-1]
+    if title.startswith("Suppressed Muzzle Device"):
+        return "Sup. Muzzle Device " + title.split()[-1]
+    return title
+
+def parse_compat(wt):
+    """Return (list of (class_label, weapon, parts_str_or_None))."""
+    seg = wt.split("Compatible with", 1)
+    if len(seg) < 2:
+        return []
+    body = seg[1]
+    # stop at the next top-level section (== X ==) after the compat block
+    body = re.split(r'\n==[^=]', body, 1)[0]
     out = []
-    for m in re.finditer(r'\[\[([^\]|]+)(?:\|[^\]]*)?\]\]', s):
-        t = m.group(1).strip()
-        if t.lower().startswith(("file:", "category:")):
+    cur = "Other"
+    for line in body.splitlines():
+        h = re.match(r'\s*={3,4}\s*(.+?)\s*={3,4}\s*$', line)
+        if h:
+            cur = CLASS_LABEL.get(h.group(1).strip().lower(), h.group(1).strip())
             continue
-        out.append(t)
+        m = re.search(r'\{\{\s*WeaponCompatibility\s*\|([^}]*)\}\}', line)
+        if not m:
+            continue
+        args = m.group(1)
+        wm = re.search(r'weapon\s*=\s*([^|}]+)', args)
+        if not wm:
+            continue
+        weapon = wm.group(1).strip()
+        pm = re.search(r'parts\s*=\s*([^|}]+)', args)
+        parts = pm.group(1).strip() if pm else None
+        out.append((cur, weapon, parts))
     return out
 
-def weapons_only(names):
-    return [n for n in names if n not in NON_WEAPON]
+def main():
+    print("Enumerating Category:Weapon attachments …")
+    titles = list_attachment_pages()
+    print(f"  {len(titles)} attachment pages")
+    pages = fetch_wikitext_batch(titles)
 
-def strip_wiki(s):
-    s = re.sub(r'\[\[File:[^\]]*\]\]', '', s)
-    s = re.sub(r'\[\[([^\]|]+)\|([^\]]*)\]\]', r'\2', s)
-    s = re.sub(r'\[\[([^\]]+)\]\]', r'\1', s)
-    s = re.sub(r'<[^>]+>', '', s)
-    return s.replace("'''", "").replace("''", "").strip()
+    attachments = []
+    weapon_class = {}
+    for title in titles:
+        wt = pages.get(title)
+        if not wt:
+            print("  ! no wikitext:", title, file=sys.stderr); continue
+        image = ib(wt, "image")
+        suppressed = (ib(wt, "suppressed") or "").lower().startswith("t")
+        code, subtype = category_and_subtype(image, suppressed)
+        if not code:
+            print("  ? uncategorized:", title, "image=", image, file=sys.stderr); continue
+        compat = parse_compat(wt)
+        for cls, w, _ in compat:
+            weapon_class.setdefault(w, {})
+            weapon_class[w][cls] = weapon_class[w].get(cls, 0) + 1
+        reqparts = {w: p for (_, w, p) in compat if p}
+        attachments.append({
+            "id": f"{code}:{display_name(title, code)}",
+            "name": display_name(title, code),
+            "category": code, "subtype": subtype,
+            "buy": ib(wt, "base value"), "level": ib(wt, "level"),
+            "weight": ib(wt, "weight"), "volume": ib(wt, "volume"),
+            "accuracy": ib(wt, "accuracy"), "stability": ib(wt, "stability"),
+            "suppressed": suppressed,
+            "compatible": [w for (_, w, _) in compat],
+            "reqParts": reqparts,
+        })
 
-def subtype_from(cell):
-    m = re.search(r'T ATTMD(\d)', cell)
-    if m: return "ATTMD" + m.group(1)
-    m = re.search(r'T PIC([A-Z]+)\d', cell)
-    if m: return "PIC" + m.group(1)
-    return None
+    # resolve each weapon's class (most frequent header it appears under)
+    wclass = {w: max(cc.items(), key=lambda kv: kv[1])[0] for w, cc in weapon_class.items()}
 
-def fetch_wikitext(page):
-    url = f"{API}?action=parse&page={page}&prop=wikitext&format=json"
-    req = urllib.request.Request(url, headers={"User-Agent": "fw-gunsmith-datafetch/1.0"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        d = json.load(r)
-    return d["parse"]["wikitext"]["*"]
-
-def parse(wt):
-    parts = re.split(r'\n==\s*(.+?)\s*==\n', wt)
-    sections = {parts[i].strip(): parts[i + 1] for i in range(1, len(parts), 2)}
-
-    attachments, categories = [], []
-    for header, code, disp in CATS:
-        body = next((sections[k] for k in sections
-                     if k.replace("  ", " ").startswith(header)), None)
-        if body is None:
-            print("  ! missing section:", header, file=sys.stderr); continue
-
-        # section-level compat: weapon list follows the last <br> after "Compatible with"
-        sec_compat, sec_note = [], ""
-        pre = body.split("{|", 1)[0]
-        mm = re.search(r"Compatible with", pre)
-        if mm:
-            block = pre[mm.start():]
-            sec_note = strip_wiki(re.sub(r'\[\[[^\]]*\]\]', '', block.split("<br>")[0]))
-            listpart = block.rsplit("<br>", 1)[1] if "<br>" in block else ""
-            sec_compat = weapons_only(links(listpart))
-
-        tbl = body[body.find("{|"):]
-        hdr_line = next((l for l in tbl.splitlines() if l.strip().startswith("!")), "")
-        cols = [re.sub(r'\s*\(WIP\)', '', c.strip(" !").strip()) for c in re.split(r'!!', hdr_line)]
-
-        def col(*names):
-            for i, c in enumerate(cols):
-                if any(n.lower() in c.lower() for n in names):
-                    return i
-            return None
-        iN, iC, iD = col("Image and title"), col("Compatible with"), col("Default")
-        iS, iZ = col("Suppressed"), col("Zoom")
-        iBuy, iSell, iLoy = col("Buy"), col("Sell"), col("Sold by")
-        iAcc, iStab = col("Accuracy"), col("Stability")
-
-        n = 0
-        for r in tbl.split("|-"):
-            rr = " ".join(l for l in r.strip().splitlines() if not l.strip().startswith("|}")).strip()
-            if not rr.startswith("|") or rr.startswith("|}") or rr.startswith("!"):
-                continue
-            cells = [c.strip() for c in re.split(r'\|\|', rr[1:])]
-            if len(cells) < 3:
-                continue
-            g = lambda i: cells[i] if (i is not None and i < len(cells)) else ""
-            name = strip_wiki(g(iN))
-            if not name or name.lower() == "removed":
-                continue
-            cc = g(iC)
-            compat = list(sec_compat) if ('"' in cc or not weapons_only(links(cc))) else weapons_only(links(cc))
-            attachments.append({
-                "id": f"{code}:{name}", "name": name, "category": code,
-                "subtype": subtype_from(g(iN)),
-                "buy": strip_wiki(g(iBuy)) or None, "sell": strip_wiki(g(iSell)) or None,
-                "loyalty": strip_wiki(g(iLoy)) or None,
-                "accuracy": strip_wiki(g(iAcc)) or None, "stability": strip_wiki(g(iStab)) or None,
-                "zoom": strip_wiki(g(iZ)) or None,
-                "default_on": weapons_only(links(g(iD))) if iD is not None else [],
-                "suppressed": ("yes" in g(iS).lower()) if iS is not None else (code == "SMZD"),
-                "compatible": compat,
-            })
-            n += 1
-        categories.append({"code": code, "name": disp, "note": sec_note,
-                           "section_compatible": sec_compat, "count": n})
-        print(f"  {code:5s} {disp:24s} rows={n}")
-
-    # invert to weapon index
+    # invert -> weapon index
     wset = {}
     for a in attachments:
         for w in a["compatible"]:
-            wset.setdefault(w, {}).setdefault(a["category"], []).append(a["name"])
-    weapons = [{"name": w, "class": CLASS_MAP.get(w, "Other"), "byCategory": wset[w],
-                "total": sum(len(v) for v in wset[w].values())} for w in sorted(wset)]
-    return categories, attachments, weapons
+            wb = wset.setdefault(w, {"byCategory": {}, "needsPart": {}})
+            wb["byCategory"].setdefault(a["category"], []).append(a["name"])
+            if w in a["reqParts"]:
+                wb["needsPart"][a["name"]] = a["reqParts"][w]
+    weapons = [{"name": w, "class": wclass.get(w, "Other"),
+                "byCategory": wb["byCategory"], "needsPart": wb["needsPart"],
+                "total": sum(len(v) for v in wb["byCategory"].values())}
+               for w, wb in sorted(wset.items())]
 
-def main():
-    print("Fetching", PAGE, "…")
-    wt = fetch_wikitext(PAGE)
-    categories, attachments, weapons = parse(wt)
+    cats = [{"code": c, "name": CATLABEL[c],
+             "count": sum(1 for a in attachments if a["category"] == c)} for c in CAT_ORDER]
+
     data = {
-        "source": "theforeverwinter.wiki.gg - Weapon Attachments (Text Only)",
-        "generated_note": "Community wiki data. Muzzle/Suppressed compat is per mount subtype; other categories are section-wide.",
-        "classOrder": CLASS_ORDER,
-        "categories": categories, "attachments": attachments, "weapons": weapons,
+        "source": "theforeverwinter.wiki.gg - per-attachment pages (Category:Weapon attachments)",
+        "generated_note": "Community wiki data. 'needsPart' = a barrel/handguard/upper that must be fitted to unlock that slot on that weapon.",
+        "classOrder": CLASS_ORDER, "categories": cats,
+        "attachments": attachments, "weapons": weapons,
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=1, ensure_ascii=False)
+    for c in cats:
+        print(f"  {c['code']:5s} {c['name']:24s} {c['count']}")
     print(f"\n  {len(weapons)} weapons, {len(attachments)} attachments -> {os.path.relpath(OUT)}")
 
 if __name__ == "__main__":

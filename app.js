@@ -113,23 +113,26 @@ function renderWeapons() {
 
 function weaponDetail(w) {
   const st = idx.weaponSubtype[w.name];
+  const needs = w.needsPart || {};
+  let anyReq = false;
   let html = `<button class="backbtn" data-back>&larr; all weapons</button><div class="card">
     <div class="dhead"><h2>${esc(w.name)}</h2><span class="badge gold">${esc(w.class)}</span>
       <span class="badge">${w.total} attachments</span></div>`;
   if (st) {
-    const s = idx.subtypes[st];
     html += `<div class="callout"><b>Muzzle mount: ${st} &mdash; ${esc(SUBTYPE_LABEL[st] || "")}.</b>
-      Only accepts muzzle devices from this family: ${esc(s.mzd.concat(s.smzd).join(", "))}.</div>`;
+      Only accepts muzzle devices from this family.</div>`;
   }
   CAT_ORDER.forEach((code) => {
     const items = w.byCategory[code]; if (!items || !items.length) return;
     html += `<div class="section"><h3>${esc(CATLABEL[code])} <span class="c">&times;${items.length}</span></h3><div class="chips">`;
-    items.forEach((nm) => { html += `<button class="chip" data-goatt="${esc(code + ":" + nm)}">${esc(nm)}</button>`; });
+    items.forEach((nm) => {
+      const req = needs[nm];
+      if (req) anyReq = true;
+      html += `<button class="chip" data-goatt="${esc(code + ":" + nm)}"${req ? ` title="Needs first: ${esc(req)}"` : ""}>${esc(nm)}${req ? '<sup class="req">*</sup>' : ""}</button>`;
+    });
     html += `</div></div>`;
   });
-  if (!w.byCategory.OPT && (w.class === "Pistol")) {
-    html += `<div class="callout">No rail optics &mdash; in this game pistols mount a sight via a dedicated <b>upper</b> part, not a rail scope.</div>`;
-  }
+  if (anyReq) html += `<p class="legend"><span class="req">*</span> the slot must be unlocked first by fitting a specific barrel / handguard / upper (hover, or open the part, for which one).</p>`;
   if (w.total === 0) html += `<p class="empty">No attachments listed for this weapon.</p>`;
   html += `</div>`;
   return html;
@@ -162,14 +165,13 @@ function attDetail(a) {
       ${a.subtype ? `<span class="badge gold">${esc(a.subtype)} · ${esc(SUBTYPE_LABEL[a.subtype] || "")}</span>` : ""}</div>`;
   // stats
   const stats = [];
-  if (a.buy) stats.push(["Buy (LL3)", a.buy]);
-  if (a.sell) stats.push(["Sell (LL3)", a.sell]);
-  if (a.loyalty) stats.push(["Sold by", a.loyalty]);
-  if (a.zoom) stats.push(["Zoom", a.zoom]);
-  if (a.accuracy) stats.push(["Accuracy", a.accuracy]);
-  if (a.stability) stats.push(["Stability", a.stability]);
+  if (a.buy) stats.push(["Base value", (+a.buy).toLocaleString() + " cr"]);
+  if (a.level && a.level !== "0") stats.push(["Weapon level", a.level]);
+  if (a.accuracy && a.accuracy !== "0.0") stats.push(["Accuracy", a.accuracy]);
+  if (a.stability && a.stability !== "0.0") stats.push(["Stability", a.stability]);
+  if (a.weight) stats.push(["Weight", a.weight + " kg"]);
+  if (a.volume) stats.push(["Volume", a.volume]);
   if (a.suppressed) stats.push(["Suppressed", "Yes"]);
-  if (a.default_on && a.default_on.length) stats.push(["Default on", a.default_on.join(", ")]);
   if (stats.length) {
     html += `<div class="statgrid">`;
     stats.forEach(([k, v]) => (html += `<div class="stat"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`));
@@ -187,9 +189,14 @@ function attDetail(a) {
   order.forEach((cls) => {
     if (!groups[cls]) return;
     html += `<div class="lab" style="color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.6px;margin:8px 0 5px">${esc(cls)}</div><div class="chips">`;
-    groups[cls].sort().forEach((wn) => (html += `<button class="chip" data-goweapon="${esc(wn)}">${esc(wn)}</button>`));
+    groups[cls].sort().forEach((wn) => {
+      const req = a.reqParts && a.reqParts[wn];
+      html += `<button class="chip" data-goweapon="${esc(wn)}"${req ? ` title="On ${esc(wn)}: needs ${esc(req)}"` : ""}>${esc(wn)}${req ? '<sup class="req">*</sup>' : ""}</button>`;
+    });
     html += `</div>`;
   });
+  if (a.reqParts && Object.keys(a.reqParts).length)
+    html += `<p class="legend"><span class="req">*</span> on that weapon, this slot must be unlocked by fitting a specific barrel / handguard / upper first.</p>`;
   if (!a.compatible.length) html += `<p class="empty">No compatible weapons listed.</p>`;
   html += `</div></div>`;
   return html;

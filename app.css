@@ -141,6 +141,9 @@ a { color: var(--gold); }
 .stat .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: .6px; color: var(--dim); }
 .stat .v { font-size: 15px; font-weight: 600; margin-top: 2px; }
 
+.req { color: var(--gold); font-weight: 700; margin-left: 1px; }
+.legend { color: var(--muted); font-size: 12px; margin: 12px 0 0; }
+.legend .req { margin-right: 4px; }
 .empty { color: var(--dim); font-size: 14px; padding: 30px 4px; text-align: center; }
 .placeholder { color: var(--dim); font-size: 14px; padding: 40px 10px; text-align: center;
   border: 1px dashed var(--line); border-radius: var(--radius); }
