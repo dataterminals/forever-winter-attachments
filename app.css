@@ -141,6 +141,8 @@ a { color: var(--gold); }
 .stat { background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
 .stat .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: .6px; color: var(--dim); }
 .stat .v { font-size: 15px; font-weight: 600; margin-top: 2px; }
+.stat.key { border-color: #6a5a2c; }
+.stat.key .v { color: var(--gold); }
 
 .req { color: var(--gold); font-weight: 700; margin-left: 1px; }
 .legend { color: var(--muted); font-size: 12px; margin: 12px 0 0; }

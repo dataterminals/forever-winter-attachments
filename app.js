@@ -12,8 +12,22 @@ const SUBTYPE_LABEL = {
 const SUBTYPE_ORDER = ["ATTMD1", "ATTMD2", "ATTMD3", "ATTMD4", "ATTMD5"];
 
 let DATA = null;
+let WEAPONS = null; // per-weapon stats from data/weapons.json, keyed by lowercased name
 const state = { tab: "weapons", weapon: null, att: null, q: "" };
 const idx = { attById: {}, weaponByName: {}, weaponSubtype: {}, subtypes: {} };
+
+// per-weapon stat card rows (accuracy & magazine first — the two that visibly matter)
+const WSTAT_ROWS = [
+  ["accuracy", "Accuracy", (v) => v],
+  ["magazine", "Magazine", (v) => v],
+  ["damage", "Damage", (v) => v],
+  ["stability", "Stability", (v) => v],
+  ["recoil", "Recoil", (v) => v],
+  ["rof", "Rate of fire", (v) => v + " rps"],
+  ["firemodes", "Fire modes", (v) => v],
+  ["weight", "Weight", (v) => v + " kg"],
+  ["value", "Base value", (v) => Number(v).toLocaleString() + " cr"],
+];
 
 const $ = (s, r = document) => r.querySelector(s);
 const view = $("#view");
@@ -26,6 +40,12 @@ async function init() {
     view.innerHTML = `<p class="empty">Could not load data.<br><small>${esc(e.message)}</small></p>`;
     return;
   }
+  // per-weapon stats are optional — a failure here must not break the app
+  try {
+    const wj = await (await fetch("data/weapons.json", { cache: "no-cache" })).json();
+    WEAPONS = {};
+    for (const nm in wj.weapons) WEAPONS[nm.toLowerCase()] = wj.weapons[nm];
+  } catch (e) { WEAPONS = {}; }
   buildIndex();
   wireChrome();
   render();
@@ -167,6 +187,14 @@ function weaponDetail(w) {
   let html = `<button class="backbtn" data-back>&larr; all weapons</button><div class="card">
     <div class="dhead"><h2>${esc(w.name)}</h2><span class="badge gold">${esc(w.class)}</span>
       <span class="badge">${w.total} attachments</span></div>`;
+  const ws = WEAPONS && WEAPONS[w.name.toLowerCase()];
+  if (ws) {
+    const rows = WSTAT_ROWS.filter(([k]) => ws[k] != null)
+      .map(([k, label, fmt]) => `<div class="stat${k === "accuracy" || k === "magazine" ? " key" : ""}"><div class="k">${label}</div><div class="v">${esc(String(fmt(ws[k])))}</div></div>`).join("");
+    if (rows) html += `<div class="statgrid">${rows}</div>`;
+    if (ws.ammo) html += `<p class="legend"><b>Ammo:</b> ${esc(ws.ammo)}</p>`;
+    html += `<p class="legend">Community stats (WIP) &mdash; <b>Accuracy</b> and <b>Magazine</b> are the ones that visibly matter (see the <b>Stats</b> tab).${ws.internal ? ` <span style="color:var(--dim)">&middot; id ${esc(ws.internal)}</span>` : ""}</p>`;
+  }
   if (st) {
     html += `<div class="callout"><b>Muzzle mount: ${st} &mdash; ${esc(SUBTYPE_LABEL[st] || "")}.</b>
       Only accepts muzzle devices from this family.</div>`;

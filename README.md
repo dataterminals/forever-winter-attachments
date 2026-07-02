@@ -13,8 +13,9 @@ for the parts the wiki doesn't cover, straight from the shipping game files.
 
 ## The tabs
 
-- **Weapons** — pick a gun, see *everything* that fits it, grouped by slot, with
-  its **muzzle mount family** named up front (so you know which muzzle letters are valid).
+- **Weapons** — pick a gun, see its **stat card** (damage, accuracy, magazine, RoF,
+  fire modes, …) and *everything* that fits it, grouped by slot, with its **muzzle
+  mount family** named up front (so you know which muzzle letters are valid).
 - **Attachments** — pick an attachment (e.g. *Muzzle Dev. D*), see every weapon it
   fits, its price, loyalty level, and accuracy/stability numbers.
 - **Muzzles** — the whole muzzle system on one screen: the **5 mount families**
@@ -80,6 +81,7 @@ Both fetchers are stdlib-only Python 3, re-runnable, no dependencies:
 
 ```bash
 python tools/fetch_attachments.py   # rebuilds data/attachments.json from the wiki
+python tools/fetch_weapons.py       # rebuilds data/weapons.json (per-weapon stats) from the wiki
 python tools/fetch_maps.py          # rebuilds data/maps.json + per-map JSON, downloads tiles/icons
 ```
 
@@ -102,6 +104,7 @@ app.js · app.css                    Weapons/Attachments/Muzzles/Stats/Detection
 maps.js · maps.css                  the Maps tab (Leaflet atlas, lazy-loaded, scoped to .maps-app)
 sw.js · manifest.webmanifest        PWA / offline (shell precached, imagery runtime-cached)
 data/attachments.json               weapon ↔ attachment dataset (wiki)
+data/weapons.json                   per-weapon stats (wiki, cross-checked vs datamine)
 data/detection.json                 datamined FWAI awareness model
 data/maps.json                      map index; data/<map>.json are the per-map sources
 assets/img/*                        bundled map tiles, marker icons, popup photos
