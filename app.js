@@ -247,7 +247,7 @@ function renderStats() {
     <div class="card">
       <div class="section" style="margin-top:0"><h3>Stats that are display-only, buggy, or disputed</h3></div>
       <div class="gdef"><span class="term">Recoil</span><span>Shown as a single number but it's a <b>compound</b> of hidden values ("wrist" + "arm" recoil). It's theorised to drive <em>camera shake</em> only — it does <b>not</b> move your point of aim under fire. The wild numbers you see when swapping parts are aggregation errors, not real changes.</span></div>
-      <div class="gdef"><span class="term">Stability</span><span><b>Not cosmetic — but not recoil, either.</b> Digging into the game's own weapon code shows Stability feeds the <b>bullet-spread (dispersion)</b> system, not the recoil kick. That's why testers disagree. Full breakdown in <a href="#underhood">Under the hood</a>, just below.</span></div>
+      <div class="gdef"><span class="term">Stability</span><span><b>Real, and higher is better.</b> Decoded from the game data: Stability feeds the <b>bullet-spread (dispersion)</b> system — <b>higher Stability = tighter sustained fire</b> — and never touches the recoil kick. This overturns the old "keep it low" advice. Numbers in <a href="#underhood">Under the hood</a>, just below.</span></div>
       <div class="gdef"><span class="term">The stat card as a whole</span><span>It aggregates several parameters into display values and is frequently wrong when a weapon is modified. Trust behaviour in the shooting range over the card.</span></div>
     </div>
 
@@ -255,11 +255,21 @@ function renderStats() {
       <div class="section" style="margin-top:0"><h3>Under the hood: what Stability really does <span class="badge gold">from the game files</span></h3></div>
       <p>Read straight out of the shipping game's weapon code (the compiled <code>FWWeapon</code> module), "handling" is actually <b>three separate systems</b> — which is exactly why the card confuses everyone:</p>
       <div class="gdef"><span class="term">1 · Recoil — the kick</span><span>The visual muzzle climb: <code>RecoilWristYaw/Pitch</code>, <code>RecoilArmAngle</code>, <code>RecoilWristRecoveryBlend</code>, <code>ScaleRecoilADS</code> — a wrist + arm model, which is why the displayed "Recoil" is a compound. Parts tune it through <code>RecoilWristRelBuff</code> / <code>RecoilArmRelBuff</code>. <b>Stability is not an input here</b>, so "stability doesn't change recoil" is literally correct.</span></div>
-      <div class="gdef"><span class="term">2 · Dispersion — the spread <em>(this is Stability)</em></span><span>Your real accuracy under fire: a spread cone that grows at <code>MaxDispersionRate</code> while you hold the trigger and shrinks via <code>DispersionCoolDownStart/Rate</code> once you stop. The weapon carries three curves — <code>StabilityMaxDispersionRateCurve</code>, <code>StabilityDispersionCoolDownStartCurve</code>, <code>StabilityDispersionCoolDownStopCurve</code> — that convert the <b>Stability</b> stat into those spread values. So Stability governs <b>how fast your spread blooms and how quickly it recovers</b> — not the kick you see.</span></div>
+      <div class="gdef"><span class="term">2 · Dispersion — the spread <em>(this is Stability)</em></span><span>Your real accuracy under fire: a spread cone that grows at <code>MaxDispersionRate</code> while you hold the trigger and shrinks via <code>DispersionCoolDownStart/Rate</code> once you stop. The weapon carries three curves — <code>StabilityMaxDispersionRateCurve</code>, <code>StabilityDispersionCoolDownStartCurve</code>, <code>StabilityDispersionCoolDownStopCurve</code> — that convert the <b>Stability</b> stat into those spread values. So Stability governs <b>how fast your spread blooms and how quickly it recovers</b> — not the kick you see. And <b>higher Stability = tighter</b> (exact numbers below).</span></div>
       <div class="gdef"><span class="term">3 · Aim-lag — the sway/settle</span><span>A spring system (<code>AimLagSpringStiffness/Damping/Mass</code>, <code>MaxAimLagYaw/Pitch</code>) with <code>StabilizeFireTime</code> and the <code>StabilizeTimeRelBuff</code> / <code>StabilizeScalarRelBuff</code> buffs — how fast the reticle re-settles after firing or moving. This is what item cards call "stabilization speed / length".</span></div>
       <p class="gnote"><b>So the argument resolves cleanly:</b> testers who watched the <em>recoil kick</em> saw no change (right — wrong system); players who felt tighter <em>sustained fire</em> were feeling dispersion. <b>Stability = spread, Recoil = kick, Stabilize = sway.</b></p>
-      <div class="callout"><b>Honest caveat.</b> The wiring is unambiguous in the code, but <em>how strongly</em> — and in which direction — each weapon's Stability→spread curves bend lives in that weapon's data (a runtime curve). Reading those exact curve values is the next dig; it needs a game-data mappings dump.</div>
-      <p class="legend">Method: extracted from the shipping binary's reflection data (the <code>FWWeapon</code> module's property &amp; curve names) — so the <em>mechanism</em> is confirmed; the per-weapon <em>magnitude</em> is still to be measured.</p>
+      <div class="section"><h3>The actual numbers <span class="c">assault rifles (AK family)</span></h3></div>
+      <p class="gnote">Decoded straight from the weapon's <code>Stability…DispersionCurve</code> assets. As the <b>Stability</b> stat rises from 0 → 1:</p>
+      <div class="gtable-wrap"><table class="gtable">
+        <thead><tr><th>What it sets</th><th>Stability 0</th><th>Stability 1</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Max spread-growth rate</td><td>3.0</td><td>1.5</td><td>spread blooms <b>half as fast</b></td></tr>
+          <tr><td>Recovery start delay</td><td>0.33 s</td><td>0.17 s</td><td>starts tightening <b>sooner</b></td></tr>
+          <tr><td>Recovery rate</td><td>0.175</td><td>0.35</td><td>tightens <b>twice as fast</b></td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout" style="border-left-color:var(--olive)"><b>Verdict: higher Stability = tighter sustained fire, unambiguously.</b> Spread grows slower <em>and</em> recovers faster. It never touches recoil (the kick values are fixed per weapon). So the old "keep Stability low" advice is backwards — it was confusing Stability with recoil.</div>
+      <p class="legend">Method: property/curve names from the shipping binary; curve values decoded from the game assets via a UE4SS-dumped type mapping. Cross-checked against the wiki (AK <code>WeaponDamage</code> 150 &amp; fire rate 0.09 s both matched exactly).</p>
     </div>
 
     <div class="card">
