@@ -15,7 +15,7 @@ from collections import Counter
 
 API = "https://theforeverwinter.wiki.gg/api.php"
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "parts.json")
-UA = {"User-Agent": "fw-almanac-partdata/1.0 (github.com/dataterminals/forever-winter-attachments)"}
+UA = {"User-Agent": "fw-almanac-partdata/1.0 (github.com/dataterminals/forever-winter-almanac)"}
 
 SLOT_ORDER = ["Upper assembly", "Receiver", "Barrel", "Handguard", "Magazine", "Stock", "Grip"]
 # (infobox key -> short effect label); magCapacity is the headline one (magazines)

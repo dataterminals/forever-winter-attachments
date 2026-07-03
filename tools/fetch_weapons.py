@@ -16,7 +16,7 @@ import json, re, os, sys, urllib.request, urllib.parse
 
 API = "https://theforeverwinter.wiki.gg/api.php"
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "weapons.json")
-UA = {"User-Agent": "fw-almanac-weapondata/1.0 (github.com/dataterminals/forever-winter-attachments)"}
+UA = {"User-Agent": "fw-almanac-weapondata/1.0 (github.com/dataterminals/forever-winter-almanac)"}
 
 
 def api_get(params):

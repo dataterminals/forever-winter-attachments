@@ -15,7 +15,7 @@ import json, re, os, sys, urllib.request, urllib.parse
 
 API = "https://theforeverwinter.wiki.gg/api.php"
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "attachments.json")
-UA = {"User-Agent": "fw-gunsmith-datafetch/2.0 (github.com/dataterminals/forever-winter-attachments)"}
+UA = {"User-Agent": "fw-almanac-datafetch/2.0 (github.com/dataterminals/forever-winter-almanac)"}
 
 # category code + display, resolved from the infobox image texture prefix
 IMG_CAT = {"ATTMD": "MZD", "PICFGR": "FGR", "PICFLL": "FLL", "PICLAM": "LAM",

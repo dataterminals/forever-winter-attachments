@@ -31,7 +31,7 @@ import json, os, sys, html, urllib.request, urllib.parse
 
 API = "https://theforeverwinter.wiki.gg/api.php"
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "economy.json")
-UA = {"User-Agent": "fw-almanac-datafetch/1.0 (github.com/dataterminals/forever-winter-attachments)"}
+UA = {"User-Agent": "fw-almanac-datafetch/1.0 (github.com/dataterminals/forever-winter-almanac)"}
 
 # Wiki's own Items-table conversion: raw internal Value -> displayed credits.
 DIVISOR = 1.9512195122
