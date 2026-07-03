@@ -11,6 +11,7 @@ the Weapons tab shows on each gun's card. Stdlib only.
     python tools/fetch_parts.py
 """
 import json, re, os, urllib.request, urllib.parse
+from collections import Counter
 
 API = "https://theforeverwinter.wiki.gg/api.php"
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "parts.json")
@@ -81,6 +82,25 @@ def short_name(name, slot):
     return re.sub(r'\s+', ' ', s).strip() or name
 
 
+def disambiguate_shorts(rows, slot):
+    """A weapon+slot group can hold parts from two in-game families whose short
+    variants collide (e.g. M4A1 'Handguard Upgrade B' and 'NSN Handguard B' both
+    -> 'B'). For the colliding rows only, fall back to name-minus-slot so the
+    chips are visually distinct ('M4A1 Upgrade B' vs 'NSN B')."""
+    dups = {s for s, c in Counter(r["short"] for r in rows).items() if c > 1}
+    if not dups:
+        return
+    for r in rows:
+        if r["short"] in dups:
+            s = re.sub(r'(?i)\b' + re.escape(slot) + r'\b', ' ', r["name"])
+            r["short"] = re.sub(r'\s+', ' ', s).strip() or r["name"]
+    # near-identical names may still collide -> use the full name
+    still = {s for s, c in Counter(r["short"] for r in rows).items() if c > 1}
+    for r in rows:
+        if r["short"] in still:
+            r["short"] = r["name"]
+
+
 def compat_weapons(wt):
     seg = wt.split("Compatible with", 1)
     body = seg[1] if len(seg) > 1 else wt
@@ -118,7 +138,9 @@ def main():
 
     for w in by_weapon:
         for slot in by_weapon[w]:
-            by_weapon[w][slot].sort(key=lambda x: (x.get("level") or 0, x["name"]))
+            lst = by_weapon[w][slot]
+            lst.sort(key=lambda x: (x.get("level") or 0, x["name"]))
+            disambiguate_shorts(lst, slot)
 
     slot_order = [s for s in SLOT_ORDER if s in slots_seen] + sorted(s for s in slots_seen if s not in SLOT_ORDER)
     data = {
@@ -138,6 +160,15 @@ def main():
     print(f"  slots: {', '.join(slot_order)}")
     if skipped:
         print(f"  skipped {len(skipped)} non-part pages")
+    # surface compat weapons the app roster doesn't model (parts silently unshown)
+    try:
+        with open(os.path.join(os.path.dirname(OUT), "attachments.json"), encoding="utf-8") as f:
+            roster = {wp["name"].lower() for wp in json.load(f)["weapons"]}
+        orphans = sorted(k for k in by_weapon if k.lower() not in roster)
+        if orphans:
+            print(f"  note: {len(orphans)} compat weapon(s) not in the app roster (parts not shown): {', '.join(orphans)}")
+    except Exception:
+        pass
 
 
 if __name__ == "__main__":

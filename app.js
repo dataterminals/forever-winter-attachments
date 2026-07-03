@@ -53,8 +53,11 @@ async function init() {
     WEAPONS = {};
     for (const nm in wj.weapons) WEAPONS[nm.toLowerCase()] = wj.weapons[nm];
   } catch (e) { WEAPONS = {}; }
-  try { PARTS = await (await fetch("data/parts.json", { cache: "no-cache" })).json(); }
-  catch (e) { PARTS = { byWeapon: {}, slotOrder: [] }; }
+  try {
+    PARTS = await (await fetch("data/parts.json", { cache: "no-cache" })).json();
+    PARTS.byWeaponLC = {}; // case-insensitive join, mirroring the weapons.json lookup
+    for (const nm in (PARTS.byWeapon || {})) PARTS.byWeaponLC[nm.toLowerCase()] = PARTS.byWeapon[nm];
+  } catch (e) { PARTS = { byWeapon: {}, byWeaponLC: {}, slotOrder: [] }; }
   buildIndex();
   wireChrome();
   render();
@@ -220,7 +223,7 @@ function weaponDetail(w) {
     if (ws.ammo) html += `<p class="legend"><b>Ammo:</b> ${esc(ws.ammo)}</p>`;
     html += `<p class="legend"><b>Accuracy</b> &amp; <b>Magazine</b> matter most. Stats marked <span class="req">*</span> are display aggregates the game computes &mdash; hover them for what they really measure (or see the <b>Stats</b> tab).${ws.internal ? ` <span style="color:var(--dim)">&middot; id ${esc(ws.internal)}</span>` : ""}</p>`;
   }
-  const wp = PARTS && PARTS.byWeapon[w.name];
+  const wp = PARTS && PARTS.byWeaponLC && PARTS.byWeaponLC[w.name.toLowerCase()];
   if (wp) {
     html += `<div class="section"><h3>Parts <span class="c">unlock at weapon level</span></h3>`;
     (PARTS.slotOrder || []).forEach((slot) => {
@@ -231,7 +234,9 @@ function weaponDetail(w) {
         const tip = [partEffects(p.effects), p.buy ? Number(p.buy).toLocaleString() + " cr" : ""].filter(Boolean).join(" · ");
         const lvl = (p.level != null) ? `<span class="lvl">L${p.level}</span>` : "";
         const cap = (p.effects && p.effects.mag != null) ? `<span class="cap">${p.effects.mag} rnd</span>` : "";
-        html += `<span class="chip part"${tip ? ` title="${esc(tip)}"` : ""}>${esc(p.short || p.name)}${lvl}${cap}</span>`;
+        const label = p.short || p.name;
+        const full = [(p.name && p.name !== label) ? p.name : "", tip].filter(Boolean).join(" — ");
+        html += `<span class="chip part"${full ? ` tabindex="0" role="note" aria-label="${esc(label + ": " + full)}"` : ""}>${esc(label)}${lvl}${cap}${full ? `<span class="tip">${esc(full)}</span>` : ""}</span>`;
       });
       html += `</div>`;
     });

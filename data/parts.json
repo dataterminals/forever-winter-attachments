@@ -1471,7 +1471,7 @@
    "Handguard": [
     {
      "name": "M4A1 Handguard Upgrade B",
-     "short": "B",
+     "short": "M4A1 Upgrade B",
      "level": 0,
      "effects": {
       "acc": 0.15125,
@@ -1482,7 +1482,7 @@
     },
     {
      "name": "M4A1 Handguard Upgrade C",
-     "short": "C",
+     "short": "M4A1 Upgrade C",
      "level": 0,
      "effects": {
       "acc": 0.1325,
@@ -1493,7 +1493,7 @@
     },
     {
      "name": "M4A1 Handguard Upgrade D",
-     "short": "D",
+     "short": "M4A1 Upgrade D",
      "level": 0,
      "effects": {
       "acc": 0.15375,
@@ -1631,13 +1631,13 @@
     },
     {
      "name": "NSN Handguard D",
-     "short": "D",
+     "short": "NSN D",
      "level": 1,
      "buy": 15000
     },
     {
      "name": "NSN Handguard B",
-     "short": "B",
+     "short": "NSN B",
      "level": 11,
      "effects": {
       "acc": 0.02775,
@@ -1648,7 +1648,7 @@
     },
     {
      "name": "NSN Handguard C",
-     "short": "C",
+     "short": "NSN C",
      "level": 21,
      "effects": {
       "acc": 0.0525,
@@ -1687,7 +1687,7 @@
    "Grip": [
     {
      "name": "M4A1 Pistol Grip A",
-     "short": "A",
+     "short": "M4A1 Pistol A",
      "level": 0,
      "effects": {
       "acc": 0.05,
@@ -1698,7 +1698,7 @@
     },
     {
      "name": "M4A1 Pistol Grip B",
-     "short": "B",
+     "short": "M4A1 Pistol B",
      "level": 0,
      "effects": {
       "acc": 0.05,
@@ -1709,7 +1709,7 @@
     },
     {
      "name": "M4A1 Pistol Grip C",
-     "short": "C",
+     "short": "M4A1 Pistol C",
      "level": 0,
      "effects": {
       "acc": 0.0605,
@@ -1720,7 +1720,7 @@
     },
     {
      "name": "NSN Grip A",
-     "short": "A",
+     "short": "NSN A",
      "level": 1,
      "buy": 12000
     },
@@ -1738,7 +1738,7 @@
     },
     {
      "name": "NSN Grip B",
-     "short": "B",
+     "short": "NSN B",
      "level": 15,
      "effects": {
       "acc": 0.0295,
@@ -1749,7 +1749,7 @@
     },
     {
      "name": "NSN Grip C",
-     "short": "C",
+     "short": "NSN C",
      "level": 23,
      "effects": {
       "acc": 0.0575,
@@ -1792,7 +1792,7 @@
    "Stock": [
     {
      "name": "M4A1 Stock A",
-     "short": "A",
+     "short": "M4A1 A",
      "level": 0,
      "effects": {
       "acc": 0.05,
@@ -1803,7 +1803,7 @@
     },
     {
      "name": "M4A1 Stock B",
-     "short": "B",
+     "short": "M4A1 B",
      "level": 0,
      "effects": {
       "acc": 0.08475,
@@ -1814,7 +1814,7 @@
     },
     {
      "name": "M4A1 Stock C",
-     "short": "C",
+     "short": "M4A1 C",
      "level": 0,
      "effects": {
       "acc": 0.07875,
@@ -1825,7 +1825,7 @@
     },
     {
      "name": "M4A1 Stock D",
-     "short": "D",
+     "short": "M4A1 D",
      "level": 0,
      "effects": {
       "acc": 0.07725,
@@ -1858,19 +1858,19 @@
     },
     {
      "name": "NSN Stock A",
-     "short": "A",
+     "short": "NSN A",
      "level": 1,
      "buy": 3000
     },
     {
      "name": "NSN Stock D",
-     "short": "D",
+     "short": "NSN D",
      "level": 1,
      "buy": 15000
     },
     {
      "name": "NSN Stock B",
-     "short": "B",
+     "short": "NSN B",
      "level": 17,
      "effects": {
       "acc": 0.02875,
@@ -1881,7 +1881,7 @@
     },
     {
      "name": "NSN Stock C",
-     "short": "C",
+     "short": "NSN C",
      "level": 25,
      "effects": {
       "acc": 0.0605,
@@ -2008,19 +2008,19 @@
    "Rear sight": [
     {
      "name": "M79 Rear Sight A",
-     "short": "A",
+     "short": "M79 A",
      "level": 1,
      "buy": 3000
     },
     {
      "name": "M79 Sight A",
-     "short": "A",
+     "short": "M79 Sight A",
      "level": 1,
      "buy": 3000
     },
     {
      "name": "M79 Rear Sight B",
-     "short": "B",
+     "short": "M79 B",
      "level": 13,
      "effects": {
       "acc": 0.0515,
@@ -2032,7 +2032,7 @@
     },
     {
      "name": "M79 Sight B",
-     "short": "B",
+     "short": "M79 Sight B",
      "level": 13,
      "effects": {
       "acc": 0.0515,
@@ -2086,7 +2086,7 @@
    "Grip": [
     {
      "name": "NSN Grip A",
-     "short": "A",
+     "short": "NSN A",
      "level": 1,
      "buy": 12000
     },
@@ -2104,7 +2104,7 @@
     },
     {
      "name": "NSN Grip B",
-     "short": "B",
+     "short": "NSN B",
      "level": 15,
      "effects": {
       "acc": 0.0295,
@@ -2115,7 +2115,7 @@
     },
     {
      "name": "NSN Grip C",
-     "short": "C",
+     "short": "NSN C",
      "level": 23,
      "effects": {
       "acc": 0.0575,
@@ -2134,13 +2134,13 @@
     },
     {
      "name": "NSN Handguard D",
-     "short": "D",
+     "short": "NSN D",
      "level": 1,
      "buy": 15000
     },
     {
      "name": "NSN Handguard B",
-     "short": "B",
+     "short": "NSN B",
      "level": 11,
      "effects": {
       "acc": 0.02775,
@@ -2151,7 +2151,7 @@
     },
     {
      "name": "NSN Handguard C",
-     "short": "C",
+     "short": "NSN C",
      "level": 21,
      "effects": {
       "acc": 0.0525,
@@ -2164,19 +2164,19 @@
    "Stock": [
     {
      "name": "NSN Stock A",
-     "short": "A",
+     "short": "NSN A",
      "level": 1,
      "buy": 3000
     },
     {
      "name": "NSN Stock D",
-     "short": "D",
+     "short": "NSN D",
      "level": 1,
      "buy": 15000
     },
     {
      "name": "NSN Stock B",
-     "short": "B",
+     "short": "NSN B",
      "level": 17,
      "effects": {
       "acc": 0.02875,
@@ -2187,7 +2187,7 @@
     },
     {
      "name": "NSN Stock C",
-     "short": "C",
+     "short": "NSN C",
      "level": 25,
      "effects": {
       "acc": 0.0605,
@@ -2202,7 +2202,7 @@
    "Grip": [
     {
      "name": "NSN Grip A",
-     "short": "A",
+     "short": "NSN A",
      "level": 1,
      "buy": 12000
     },
@@ -2220,7 +2220,7 @@
     },
     {
      "name": "NSN Grip B",
-     "short": "B",
+     "short": "NSN B",
      "level": 15,
      "effects": {
       "acc": 0.0295,

@@ -136,7 +136,7 @@ a { color: var(--gold); }
 .chip.static { cursor: default; }
 .chip.static:hover { border-color: var(--line2); color: var(--text); }
 .chip small { color: var(--dim); margin-left: 5px; }
-.chip.part { cursor: default; display: inline-flex; align-items: center; gap: 6px; }
+.chip.part { cursor: default; display: inline-flex; align-items: center; gap: 6px; position: relative; }
 .chip.part:hover { border-color: var(--line2); color: var(--text); }
 .chip .lvl { font-size: 10px; color: var(--dim); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 0 5px; }
 .chip .cap { font-size: 10.5px; color: var(--gold); font-variant-numeric: tabular-nums; }
@@ -150,9 +150,9 @@ a { color: var(--gold); }
 
 /* asterisk note on derived stats (accuracy / stability / recoil) */
 .statnote { position: relative; color: var(--gold); font-weight: 700; cursor: help; }
-.statnote > .tip {
+.statnote > .tip, .chip.part > .tip {
   position: absolute; left: 0; top: 150%; z-index: 40;
-  width: max-content; max-width: min(250px, 74vw);
+  width: max-content; max-width: min(260px, 74vw);
   background: var(--panel2); color: var(--text); font-weight: 400;
   text-transform: none; letter-spacing: 0; text-align: left;
   border: 1px solid var(--line2); border-radius: 8px; padding: 8px 11px;
@@ -160,7 +160,8 @@ a { color: var(--gold); }
   opacity: 0; visibility: hidden; transform: translateY(-3px);
   transition: opacity .12s ease, transform .12s ease; pointer-events: none;
 }
-.statnote:hover > .tip, .statnote:focus > .tip, .statnote:focus-within > .tip {
+.statnote:hover > .tip, .statnote:focus > .tip, .statnote:focus-within > .tip,
+.chip.part:hover > .tip, .chip.part:focus > .tip, .chip.part:focus-within > .tip {
   opacity: 1; visibility: visible; transform: translateY(0);
 }
 
