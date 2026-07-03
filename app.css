@@ -83,18 +83,54 @@ a { color: var(--gold); }
 .view { max-width: var(--maxw); margin: 0 auto; padding: 0 16px 40px;
   border-top: 1px solid var(--line2); }
 
-/* ---- browse grid + toggle-to-detail layout ---- */
-.panes { display: grid; grid-template-columns: 1fr; gap: 14px; padding-top: 16px; }
-/* the weapon/attachment list is a compact responsive grid, not one tall column */
-.list { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
-  gap: 6px; align-content: start; min-width: 0; }
+/* ---- list layouts: three selectable modes (List / Grid / Split) ---- */
+.panes { display: grid; grid-template-columns: 1fr; gap: 14px; padding-top: 8px; }
+.list { min-width: 0; }
 .detail { min-width: 0; }
-/* browse = full-width grid; picking one shows its detail full-width with a back button */
-.view:not(.detail-open) .detail { display: none; }
-.view.detail-open .list { display: none; }
-.backbtn { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 12px;
+.backbtn { display: none; align-items: center; gap: 6px; margin-bottom: 12px;
   background: var(--panel); border: 1px solid var(--line2); color: var(--gold);
   padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; }
+
+/* browse toolbar: count + the layout gear menu */
+.viewbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 0 0; }
+.viewbar-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--dim); font-weight: 700; }
+.layoutpick { position: relative; }
+.gear { background: var(--panel); border: 1px solid var(--line2); color: var(--muted); border-radius: 8px;
+  width: 34px; height: 30px; cursor: pointer; font-size: 15px; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center; }
+.gear:hover { color: var(--gold); border-color: var(--gold); }
+.layoutmenu { position: absolute; right: 0; top: 36px; z-index: 30; min-width: 158px; display: none;
+  background: var(--panel2); border: 1px solid var(--line2); border-radius: 8px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.55); padding: 5px; }
+.layoutpick.open .layoutmenu { display: block; }
+.layoutmenu button { display: flex; align-items: center; gap: 9px; width: 100%; text-align: left;
+  background: none; border: 0; color: var(--text); padding: 8px 10px; border-radius: 6px;
+  cursor: pointer; font-size: 13px; font-family: inherit; }
+.layoutmenu button:hover { background: var(--panel); }
+.layoutmenu button.active { color: var(--gold); }
+.layoutmenu button.active::after { content: "\2713"; margin-left: auto; }
+.layoutmenu .ico { width: 16px; text-align: center; color: var(--muted); font-size: 14px; }
+.layoutmenu button.active .ico { color: var(--gold); }
+
+/* desktop layout modes (mobile forces grid+toggle in the mobile block below) */
+@media (min-width: 721px) {
+  /* List — original: narrow single-column list beside a persistent detail */
+  body.wl-list .panes { grid-template-columns: minmax(240px, 320px) 1fr; }
+  body.wl-list .list { display: block; }
+  body.wl-list .row { margin-bottom: 6px; }
+
+  /* Grid — full-width compact grid; picking one shows its detail full-width */
+  body.wl-grid .panes { grid-template-columns: 1fr; }
+  body.wl-grid .list { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 6px; align-content: start; }
+  body.wl-grid .view:not(.detail-open) .detail { display: none; }
+  body.wl-grid .view.detail-open .list { display: none; }
+  body.wl-grid .view.detail-open .backbtn { display: inline-flex; }
+
+  /* Split — tight grid on ~40%, detail on ~60%, both on one page */
+  body.wl-split .panes { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); }
+  body.wl-split .list { display: grid; grid-template-columns: repeat(auto-fill, minmax(116px, 1fr)); gap: 5px; align-content: start; }
+  body.wl-split .row { padding: 6px 9px; font-size: 12.5px; }
+}
 
 /* group headers in lists */
 .grp { grid-column: 1 / -1; margin: 14px 0 6px; font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase;
@@ -221,14 +257,17 @@ a { color: var(--gold); }
   border-top: 1px solid var(--line); }
 .foot a { color: var(--muted); }
 
-/* ---- mobile ---- */
+/* ---- mobile: always grid-browse + toggle-detail, regardless of chosen mode ---- */
 @media (max-width: 720px) {
   .panes { grid-template-columns: 1fr; }
+  .list { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 6px; align-content: start; }
+  .view.detail-open .list { display: none; }
+  .view:not(.detail-open) .detail { display: none; }
+  .backbtn { display: inline-flex; }
   .tabs { overflow-x: auto; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
   .tab { flex: 1 0 auto; }
   .gdef { grid-template-columns: 1fr; gap: 1px; }
   .gdef .term { margin-top: 2px; }
   .brand h1 { font-size: 14px; white-space: normal; }
-  .list { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 }

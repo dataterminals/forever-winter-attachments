@@ -14,7 +14,7 @@ const SUBTYPE_ORDER = ["ATTMD1", "ATTMD2", "ATTMD3", "ATTMD4", "ATTMD5"];
 let DATA = null;
 let WEAPONS = null; // per-weapon stats from data/weapons.json, keyed by lowercased name
 let PARTS = null;   // structural parts from data/parts.json (byWeapon -> slot -> [parts])
-const state = { tab: "weapons", weapon: null, att: null, q: "" };
+const state = { tab: "weapons", weapon: null, att: null, q: "", layout: "split" };
 const idx = { attById: {}, weaponByName: {}, weaponSubtype: {}, subtypes: {} };
 
 // per-weapon stat card rows (accuracy & magazine first — the two that visibly matter)
@@ -58,6 +58,8 @@ async function init() {
     PARTS.byWeaponLC = {}; // case-insensitive join, mirroring the weapons.json lookup
     for (const nm in (PARTS.byWeapon || {})) PARTS.byWeaponLC[nm.toLowerCase()] = PARTS.byWeapon[nm];
   } catch (e) { PARTS = { byWeapon: {}, byWeaponLC: {}, slotOrder: [] }; }
+  try { const s = localStorage.getItem("fw:wlayout"); if (["list", "grid", "split"].includes(s)) state.layout = s; } catch (e) {}
+  applyLayout();
   buildIndex();
   wireChrome();
   render();
@@ -101,6 +103,10 @@ function wireChrome() {
   clr.addEventListener("click", () => { s.value = ""; state.q = ""; clr.hidden = true; s.focus(); render(); });
 
   view.addEventListener("click", (e) => {
+    const gear = e.target.closest("[data-gear]");
+    if (gear) { e.stopPropagation(); gear.closest(".layoutpick").classList.toggle("open"); return; }
+    const lay = e.target.closest("[data-layout]");
+    if (lay) { setLayout(lay.dataset.layout); return; }
     const el = e.target.closest("[data-weapon],[data-att],[data-goatt],[data-goweapon],[data-back]");
     if (!el) return;
     if (el.dataset.back !== undefined) { view.classList.remove("detail-open"); render(); return; }
@@ -108,6 +114,11 @@ function wireChrome() {
     else if (el.dataset.att) { state.att = el.dataset.att; openDetail(); }
     else if (el.dataset.goatt) { state.tab = "attachments"; state.att = el.dataset.goatt; syncTabs(); openDetail(); }
     else if (el.dataset.goweapon) { state.tab = "weapons"; state.weapon = el.dataset.goweapon; syncTabs(); openDetail(); }
+  });
+
+  // close the layout menu on any click outside it
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".layoutpick")) document.querySelectorAll(".layoutpick.open").forEach((p) => p.classList.remove("open"));
   });
 }
 function syncTabs() { document.querySelectorAll(".tab").forEach((b) => b.classList.toggle("active", b.dataset.tab === state.tab)); }
@@ -158,6 +169,32 @@ function deactivateMaps() { document.body.classList.remove("maps-active"); }
 
 window.addEventListener("resize", () => { if (document.body.classList.contains("maps-active")) positionMaps(); });
 
+/* ---------- list layout (List / Grid / Split), chosen from the gear menu ---------- */
+function applyLayout() {
+  document.body.classList.remove("wl-list", "wl-grid", "wl-split");
+  document.body.classList.add("wl-" + state.layout);
+}
+function setLayout(mode) {
+  if (!["list", "grid", "split"].includes(mode)) return;
+  state.layout = mode;
+  try { localStorage.setItem("fw:wlayout", mode); } catch (e) {}
+  applyLayout();
+  render();
+}
+function layoutBar(count, noun) {
+  const opt = (m, ico, label) =>
+    `<button type="button" data-layout="${m}" class="${state.layout === m ? "active" : ""}"><span class="ico">${ico}</span>${label}</button>`;
+  return `<div class="viewbar"><span class="viewbar-title">${count} ${esc(noun)}</span>
+    <div class="layoutpick">
+      <button type="button" class="gear" data-gear title="Change layout" aria-label="Change layout">&#9881;</button>
+      <div class="layoutmenu" role="menu">
+        ${opt("split", "&#9707;", "Split view")}
+        ${opt("grid", "&#9638;", "Compact grid")}
+        ${opt("list", "&#9776;", "Vertical list")}
+      </div>
+    </div></div>`;
+}
+
 /* ---------- render dispatch ---------- */
 function render() {
   if (state.tab === "maps") return; // the Maps tab is driven by activateMaps(), not #view
@@ -189,7 +226,7 @@ function renderWeapons() {
   const detail = state.weapon && idx.weaponByName[state.weapon]
     ? weaponDetail(idx.weaponByName[state.weapon])
     : `<div class="placeholder">Pick a weapon to see everything that fits it.</div>`;
-  view.innerHTML = `<div class="panes"><div class="list">${list}</div><div class="detail">${detail}</div></div>`;
+  view.innerHTML = layoutBar(DATA.weapons.length, "weapons") + `<div class="panes"><div class="list">${list}</div><div class="detail">${detail}</div></div>`;
 }
 
 function partEffects(e) {
@@ -280,7 +317,7 @@ function renderAttachments() {
   const detail = state.att && idx.attById[state.att]
     ? attDetail(idx.attById[state.att])
     : `<div class="placeholder">Pick an attachment to see which weapons it fits.</div>`;
-  view.innerHTML = `<div class="panes"><div class="list">${list}</div><div class="detail">${detail}</div></div>`;
+  view.innerHTML = layoutBar(DATA.attachments.length, "attachments") + `<div class="panes"><div class="list">${list}</div><div class="detail">${detail}</div></div>`;
 }
 
 function attDetail(a) {
