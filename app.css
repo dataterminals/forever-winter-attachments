@@ -308,6 +308,9 @@ a { color: var(--gold); }
 .eco-tier { display: inline-block; font-size: 10px; text-transform: uppercase; letter-spacing: .4px;
   padding: 1px 7px; border-radius: 20px; border: 1px solid var(--line2); color: var(--tc, var(--muted)); }
 .eco-q { color: var(--gold); font-size: 11px; }
+.eco-loc { display: inline-block; font-size: 9.5px; text-transform: uppercase; letter-spacing: .4px;
+  padding: 0 6px; border-radius: 20px; border: 1px solid var(--line2); color: var(--blue);
+  margin-left: 6px; vertical-align: middle; white-space: nowrap; }
 
 @media (max-width: 560px) {
   .eco-tierbar { grid-template-columns: 104px 1fr 78px; gap: 7px; }

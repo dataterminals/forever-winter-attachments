@@ -625,9 +625,11 @@ function drawEconomy() {
 
   let html = `<div class="guide eco">
     <div class="callout" style="margin-top:16px"><b>What your scavenging is worth.</b>
-      Every lootable item you can sell, bucketed by credit value. Prices are the wiki's standard
-      reference (a Rep&nbsp;2 vendor at 100% cost efficiency), so read them as <em>relative</em> worth &mdash;
-      your real payout shifts with vendor, reputation and faction.</div>`;
+      Every lootable item you can sell, pulled <b>straight from the game's own data</b> and bucketed by
+      credit value. Values are the game's Rep&nbsp;2 / 100%-efficiency reference, so read them as
+      <em>relative</em> worth &mdash; your real payout shifts with vendor, reputation and faction. Where the
+      game tags it, a <span class="eco-loc">Tunnels</span> / <span class="eco-loc">Regions</span> mark shows
+      which map-type it spawns in.</div>`;
 
   // distribution strip
   const maxC = Math.max(...D.tiers.map((t) => t.count));
@@ -663,15 +665,16 @@ function drawEconomy() {
 
   html += state.ecoMode === "density" ? ecoDensityTable(items, catCell, dens) : ecoTierSections(items, tiersDesc, catCell, dens);
 
-  html += `<p class="legend">Source: <a href="https://theforeverwinter.wiki.gg/wiki/Items" target="_blank" rel="noopener">Items</a> (wiki Cargo data).
-    Value = raw item value &divide; ${D.divisor.toFixed(2)} (the wiki's Rep&nbsp;2 / 100%-efficiency reference). Community data &mdash; may lag patches.</p></div>`;
+  html += `<p class="legend">Source: <b>datamined from the shipping game files</b>${D.build ? ` (build ${D.build})` : ""} &mdash; the game's own item &amp; EconV2 value tables.
+    Credits = raw value &divide; ${D.divisor.toFixed(2)} (Rep&nbsp;2 / 100% cost efficiency). Authoritative &mdash; values may shift with future patches.</p></div>`;
   view.innerHTML = html;
 }
 
 function ecoRow(it, catCell, dens, withTier) {
   const tierBadge = withTier ? `<td><span class="eco-tier" style="--tc:${TIER_COLOR[it.tier]}">${esc(ECO.byKey[it.tier].label)}</span></td>` : "";
   const q = it.quest ? ` <span class="eco-q" title="Quest item">&#10022;</span>` : "";
-  return `<tr><td>${esc(it.name)}${q}</td>${tierBadge}<td>${catCell(it)}</td>
+  const loc = it.loc ? ` <span class="eco-loc" title="Spawns in ${esc(it.loc)}">${esc(it.loc === "Tunnels & Regions" ? "Both" : it.loc)}</span>` : "";
+  return `<tr><td>${esc(it.name)}${q}${loc}</td>${tierBadge}<td>${catCell(it)}</td>
     <td class="num gold">${ecoCr(it.cr)}</td><td class="num">${dens(it.perVol)}</td><td class="num">${dens(it.perWgt)}</td></tr>`;
 }
 

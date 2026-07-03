@@ -88,7 +88,7 @@ All the fetchers are stdlib-only Python 3, re-runnable, no dependencies:
 python tools/fetch_attachments.py   # rebuilds data/attachments.json from the wiki
 python tools/fetch_weapons.py       # rebuilds data/weapons.json (per-weapon stats) from the wiki
 python tools/fetch_parts.py         # rebuilds data/parts.json (structural parts) from the wiki
-python tools/fetch_items.py         # rebuilds data/economy.json (loot value tiers) from the wiki's Cargo Items table
+python tools/fetch_items.py         # wiki cross-check for economy.json (the live tab is datamined — see below)
 python tools/fetch_maps.py          # rebuilds data/maps.json + per-map JSON, downloads tiles/icons
 python tools/compress_maps.py       # recompress bundled map imagery in place (shrinks the deploy)
 ```
@@ -98,9 +98,12 @@ python tools/compress_maps.py       # recompress bundled map imagery in place (s
 `data/maps.json` (the map index) and `assets/img-list.json` (the offline cache list).
 It skips images already on disk and backs off politely on rate limits.
 
-`data/detection.json` and the *Stats* tab's Stability numbers are **datamined** from
-the shipping game (UE4SS usmap + CUE4Parse) and are hand-maintained — there is no
-auto-fetch for them yet.
+`data/economy.json` is **datamined straight from the game's own item + EconV2 value
+tables** (build-stamped) by `parse_items.py` in the private
+[forever-winter-datamine](https://github.com/dataterminals/forever-winter-datamine) repo —
+authoritative and ahead of the wiki, so `fetch_items.py` above is now just a wiki
+cross-check. `data/detection.json` and the *Stats* tab's Stability numbers are likewise
+**datamined** (UE4SS usmap + CUE4Parse) and hand-maintained.
 
 PWA icons: `python tools/generate_icons.py` (Pillow) or `node tools/make_icons.mjs`.
 
@@ -114,7 +117,7 @@ sw.js · manifest.webmanifest        PWA / offline (shell precached, imagery run
 data/attachments.json               weapon ↔ attachment dataset (wiki)
 data/weapons.json                   per-weapon stats (wiki, cross-checked vs datamine)
 data/parts.json                     structural parts per weapon, by slot + unlock level (wiki)
-data/economy.json                   raiding-loot value tiers + density (wiki Cargo Items table)
+data/economy.json                   raiding-loot value tiers, density + spawn-location (datamined from game files)
 data/detection.json                 datamined FWAI awareness model
 data/maps.json                      map index; data/<map>.json are the per-map sources
 assets/img/*                        bundled map tiles, marker icons, popup photos
