@@ -597,9 +597,7 @@ function ammoCard(a, usedBy) {
     : "";
   return `<div class="ammo-card">
     <div class="ammo-head"><span class="ammo-name">${esc(a.name)}</span>
-      ${a.faction ? `<span class="badge">${esc(a.faction)}</span>` : ""}
-      ${a.band === "high" ? `<span class="badge gold">headshot &times;${a.headshot}</span>` : ""}
-      ${a.band === "low" ? `<span class="badge">crit &times;${a.headshot}</span>` : ""}</div>
+      ${a.faction ? `<span class="badge">${esc(a.faction)}</span>` : ""}</div>
     ${grid ? `<div class="statgrid ammo-stats">${grid}</div>` : ""}
     ${a.desc ? `<p class="ammo-desc">${esc(a.desc)}</p>` : ""}
     ${chips}
