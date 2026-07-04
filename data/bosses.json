@@ -567,7 +567,7 @@
    "blurb": "The one that circles overhead and strafes you.",
    "desc": "An airborne Eurasian gunship-mech that flies scripted maneuver splines — circle, figure-8, zig-zag, dog-leg, leap-over — while strafing with dual rapid-fire gun-hands (16.7 per shot, full-auto). Its “Glide of Doom” dash deals 800 over an 8–20 m lunge. Very nearly impossible to stagger — threshold 99,999.",
    "location": "Eurasian airspace; Hunter-Killer variant",
-   "weakpoint": "Its hands are a dedicated target (TargetDef_Opal_Hands) — shoot the gun-hands.",
+   "weakpoint": null,
    "weaknesses": [
     "You will not stun it — 99,999 stagger is effectively immune",
     "Flies predictable maneuver splines — lead its path",
