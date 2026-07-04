@@ -9,7 +9,7 @@ a single tabbed companion. Data comes from the
 [official wiki](https://theforeverwinter.wiki.gg) (CC BY-NC-SA / CC BY-SA), and,
 for the parts the wiki doesn't cover, straight from the shipping game files.
 
-**39 maps · 46 weapons · 268 parts · 68 attachments · 5 muzzle mount families · 361 sellable loot items · the full detection model.**
+**39 maps · 46 weapons · 268 parts · 68 attachments · 5 muzzle mount families · 26 ammo types · 361 sellable loot items · the full detection model.**
 
 ## The tabs
 
@@ -22,6 +22,10 @@ for the parts the wiki doesn't cover, straight from the shipping game files.
 - **Muzzles** — the whole muzzle system on one screen: the **5 mount families**
   (ATTMD1–5), which letters belong to each, and which weapons they fit. The bit the
   game hides worst.
+- **Ammo** — every round in the game, grouped by role (pistol → anti-materiel, plus
+  grenades), each with its **datamined headshot multiplier** (it lives on the caliber,
+  not the gun), sell value + extraction XP, weight/volume, faction, and the weapons that
+  fire it. The full per-caliber headshot table lives here.
 - **Stats** — what each weapon/attachment stat *actually* does, including
   **Stability decoded from the game binary** (it drives bullet-spread, not recoil).
 - **Detection** — the datamined **FWAI awareness system**: per-enemy vision / hearing
@@ -117,6 +121,7 @@ sw.js · manifest.webmanifest        PWA / offline (shell precached, imagery run
 data/attachments.json               weapon ↔ attachment dataset (wiki)
 data/weapons.json                   per-weapon stats (wiki, cross-checked vs datamine)
 data/parts.json                     structural parts per weapon, by slot + unlock level (wiki)
+data/ammo.json                      every ammo type: headshot ×, value/XP, weight/volume (datamined from game files)
 data/economy.json                   raiding-loot value tiers, density + spawn-location (datamined from game files)
 data/detection.json                 datamined FWAI awareness model
 data/maps.json                      map index; data/<map>.json are the per-map sources
