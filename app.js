@@ -14,6 +14,7 @@ const SUBTYPE_ORDER = ["ATTMD1", "ATTMD2", "ATTMD3", "ATTMD4", "ATTMD5"];
 let DATA = null;
 let WEAPONS = null; // per-weapon stats from data/weapons.json, keyed by lowercased name
 let PARTS = null;   // structural parts from data/parts.json (byWeapon -> slot -> [parts])
+let CALIBERS = null; // per-caliber headshot multipliers from data/calibers.json
 const state = { tab: "weapons", weapon: null, att: null, q: "", layout: "split", ecoMode: "tiers", ecoCat: "all" };
 const idx = { attById: {}, weaponByName: {}, weaponSubtype: {}, subtypes: {} };
 
@@ -58,6 +59,11 @@ async function init() {
     PARTS.byWeaponLC = {}; // case-insensitive join, mirroring the weapons.json lookup
     for (const nm in (PARTS.byWeapon || {})) PARTS.byWeaponLC[nm.toLowerCase()] = PARTS.byWeapon[nm];
   } catch (e) { PARTS = { byWeapon: {}, byWeaponLC: {}, slotOrder: [] }; }
+  try {
+    const cj = await (await fetch("data/calibers.json", { cache: "no-cache" })).json();
+    CALIBERS = { byKey: {}, list: cj.calibers, baseline: cj.baseline };
+    cj.calibers.forEach((c) => (CALIBERS.byKey[c.key] = c));
+  } catch (e) { CALIBERS = null; }
   try { const s = localStorage.getItem("fw:wlayout"); if (["list", "grid", "split"].includes(s)) state.layout = s; } catch (e) {}
   try { const m = localStorage.getItem("fw:ecomode"); if (["tiers", "density"].includes(m)) state.ecoMode = m; } catch (e) {}
   applyLayout();
@@ -126,6 +132,13 @@ function wireChrome() {
       state.tab = "detection"; syncTabs(); deactivateMaps(); view.classList.remove("detail-open");
       window.scrollTo({ top: 0 });
       renderDetection().then(() => { const s = document.getElementById("det-priority"); if (s) s.scrollIntoView({ behavior: "smooth", block: "start" }); });
+      return;
+    }
+    const goHS = e.target.closest("[data-gohs]");
+    if (goHS) {
+      state.tab = "stats"; syncTabs(); deactivateMaps(); view.classList.remove("detail-open");
+      render();
+      const s = document.getElementById("hs-table"); if (s) s.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }
     const el = e.target.closest("[data-weapon],[data-att],[data-goatt],[data-goweapon],[data-back]");
@@ -260,6 +273,33 @@ function renderWeapons() {
   view.innerHTML = layoutBar(DATA.weapons.length, "weapons") + `<div class="panes"><div class="list">${list}</div><div class="detail">${detail}</div></div>`;
 }
 
+// per-caliber headshot multiplier: map a weapon's (wiki) ammo string to a caliber
+// key, then look it up in the datamined table. Calibers absent from the table
+// (50PST, Nitro Express) have no defined headshot bonus -> null.
+function ammoToCal(ammo) {
+  ammo = (ammo || "").toLowerCase();
+  if (ammo.includes("20x105")) return "20mm";
+  if (ammo.includes(".50 bmg")) return "50cal";
+  if (ammo.includes(".50 pst") || ammo.includes("nitro")) return null;
+  if (ammo.includes("12.7x55")) return "127";
+  if (ammo.includes(".45 acp")) return "45ACP";
+  if (ammo.includes(".357")) return "357";
+  if (ammo.includes(".308")) return "308";
+  if (ammo.includes("12-gauge") || ammo.includes("buckshot")) return "12g";
+  if (ammo.includes("40mm")) return "40mmHE";
+  if (ammo.includes("5.56")) return "556";
+  if (ammo.includes("5.45")) return "545";
+  if (ammo.includes("7.62x39")) return "762";
+  if (ammo.includes("7.62x54")) return "54R";
+  if (ammo.includes("5.7x28")) return "57x28";
+  if (ammo.includes("9x19") || ammo.includes("9mm")) return "919";
+  return null;
+}
+function headshotFor(ammo) {
+  const cal = ammoToCal(ammo);
+  return (cal && CALIBERS && CALIBERS.byKey[cal]) || null;
+}
+
 function partEffects(e) {
   if (!e) return "";
   const out = [];
@@ -289,6 +329,8 @@ function weaponDetail(w) {
     }).join("");
     if (rows) html += `<div class="statgrid">${rows}</div>`;
     if (ws.ammo) html += `<p class="legend"><b>Ammo:</b> ${esc(ws.ammo)}</p>`;
+    const hs = ws.ammo ? headshotFor(ws.ammo) : null;
+    if (hs) html += `<p class="legend"><b>Headshot:</b> <b class="hs-${hs.band}">×${hs.multi}</b> <span style="color:var(--dim)">per-caliber (${esc(hs.label)})${hs.band === "high" ? " &mdash; well above the 1.5× baseline; a headshot machine" : hs.band === "low" ? " &mdash; below the 1.5× baseline, body shots hit harder" : ""}.</span> <button class="linklike" data-gohs>all calibers &rarr;</button></p>`;
     html += `<p class="legend"><b>Accuracy</b> &amp; <b>Magazine</b> matter most. Stats marked <span class="req">*</span> are display aggregates the game computes &mdash; hover them for what they really measure (or see the <b>Stats</b> tab).${ws.internal ? ` <span style="color:var(--dim)">&middot; id ${esc(ws.internal)}</span>` : ""}</p>`;
   }
   const wp = PARTS && PARTS.byWeaponLC && PARTS.byWeaponLC[w.name.toLowerCase()];
@@ -465,7 +507,8 @@ function renderStats() {
     <div class="card">
       <div class="section" style="margin-top:0"><h3>Damage &amp; headshots (the hidden part)</h3></div>
       <div class="gdef"><span class="term">Base damage</span><span>Tied to the weapon (balanced around caliber/type), <b>not</b> to which ammo you load. The card often <b>under-reports</b> real damage — e.g. the AT-43 MASS deals roughly double what it lists, and shotguns and Painless read low too. Don't dismiss a gun by its listed damage alone.</span></div>
-      <div class="gdef"><span class="term">Critical / headshot damage</span><span>A hidden, per-<b>caliber</b> multiplier that lives on your <b>ammo</b>, not the gun. A lower-damage caliber with a high crit modifier can out-perform a higher-damage one on consistent headshots. Some enemies (notably melee cyborgs) have headshot <em>resistance</em>.</span></div>
+      <div class="gdef" id="hs-table"><span class="term">Critical / headshot damage</span><span>A per-<b>caliber</b> multiplier that lives on your <b>ammo</b>, not the gun &mdash; a head hit multiplies the weapon's listed damage by it. Most rounds sit at the <b>1.5×</b> baseline, but a few big single-shot calibers <b>triple</b> it and <b>shotguns are penalised</b>. So a lower-damage, high-crit caliber can out-perform a bigger gun on consistent headshots. Some enemies (notably melee cyborgs) also have headshot <em>resistance</em>. Datamined values:</span></div>
+      ${CALIBERS ? `<div class="gtable-wrap"><table class="gtable"><thead><tr><th>Caliber</th><th class="num">Headshot</th><th>vs 1.5× baseline</th></tr></thead><tbody>${CALIBERS.list.map((c) => `<tr><td>${esc(c.label)}</td><td class="num ${c.band === "high" ? "ok" : c.band === "low" ? "bad" : ""}">&times;${c.multi}</td><td>${c.band === "high" ? "<b>higher crit</b> &mdash; reward headshots" : c.band === "low" ? "lower &mdash; body shots hit harder" : "baseline"}</td></tr>`).join("")}</tbody></table></div>` : ""}
     </div>
 
     <div class="card">
