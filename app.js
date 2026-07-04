@@ -598,7 +598,7 @@ async function renderDetection() {
 /* ---------- bosses tab ---------- */
 let BOSSDATA = null;
 const bNum = (n) => Number(n).toLocaleString();
-const mdb = (s) => esc(s == null ? "" : String(s)).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+const mdb = (s) => esc(s == null ? "" : String(s)).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/`([^`]+)`/g, "<code>$1</code>");
 const CAL_LABEL = { "545": "5.45mm", "556": "5.56mm", "762": "7.62mm", "919": "9mm", "308": ".308", "40m": "40mm", "12G": "12ga" };
 const THREAT_CLASS = { High: "rust", Medium: "gold", Low: "olive" };
 

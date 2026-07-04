@@ -66,13 +66,14 @@
    "blurb": "The standard walking tank — and the chassis Rat King and Toothy are built on.",
    "desc": "The workhorse bipedal war-mech, fielded by every faction. It grinds you down with a long rifle, dual quad-guns and two miniguns, plus an 8,000-damage ground-pound up close. Its armour is split into zones totalling roughly 451,000 HP.",
    "location": "Region maps, all factions",
-   "weakpoint": "The **vulnerable** armour zone (40,000 HP) takes full damage; the heavy zone (200,000) only soaks 10%.",
+   "weakpoint": "Aim the **exposed lower torso** — the waist/belly joint where the upper body pivots over the hips (the datamined `armor_vulnerable` zone, mesh `SM_Spine_jnt__EXO_TorsoPivotBottom`). It takes **full** damage, while the heavy chest & leg plating (200,000 HP) soaks 90%. The cockpit glass isn't it — that panel is just an info display.",
    "weaknesses": [
-    "Layered armour — pour fire into the vulnerable zone, not the heavy plating",
-    "Stagger window: 20,000 in 4 s",
-    "Small arms barely scratch it — anti-tank / railgun class only"
+    "Weak spot: the exposed lower-torso / waist joint takes full damage; the plating soaks up to 90%",
+    "Its guns are destructible hardpoints — blow off the shoulder quad-guns and arm cannon to defang it",
+    "Stagger window: 20,000 in 4 s",
+    "Small arms barely scratch the plating — hit the weak spot, or bring anti-tank / railgun class"
    ],
-   "howToDefeat": "Don't trade with its guns. Flank to the vulnerable component (full damage vs the heavy zone's 10%), or burst 20,000 in 4 s to stagger it and open a window. It grabs and executes other mechs, not you — so the threat is purely its firepower and the ground-pound.",
+   "howToDefeat": "Don’t trade with its guns from the open. Put fire into the exposed lower torso — the waist joint under the chest — where damage isn’t soaked, and/or blow off its weapon hardpoints (shoulder quad-guns, arm cannon) to disarm it. A 20,000 burst in 4 s staggers it for a free window. It grabs and executes other mechs, not you, so the danger is purely its firepower and the ground-pound.",
    "internal": "AIDEF_Europa_MediumMech",
    "tag": "Pawn.AI.Europa.MediumMech",
    "threat": "High",
@@ -187,7 +188,7 @@
    "blurb": "A Medium Mech the Scavengers stole and bolted junk onto.",
    "desc": "Mechanically a Medium Mech — same ~451,000 HP layered armour and mech guns (Rat King weapon variants) — but Scav-piloted and noticeably easier to stun (12,000 vs the standard 20,000). It drops its loot container on death, and its parts are a fetch-quest objective.",
    "location": "Scav territory; fetch-quest target",
-   "weakpoint": "Same vulnerable 40,000 zone as the Medium Mech.",
+   "weakpoint": "Same Medium Mech chassis, so the same weak spot — the exposed lower-torso / waist joint takes full damage while the plating soaks up to 90%.",
    "weaknesses": [
     "Easiest mech to stagger — only 12,000 burst in the window",
     "Drops its container (and the codex) on death"
@@ -370,7 +371,7 @@
    "blurb": "The one with the digestive sacks. It eats what it grabs.",
    "desc": "A blocky, ground-shaking Euruskan mech that patrols the flat deserts of Ashen Mesa. A cannon railgun and a left-shoulder machine gun, plus an 8,000-damage Stomp AOE. It grabs troops and scavengers into black digestive sacks (a Bag or Smash sync-kill) and expels the skeletons.",
    "location": "Ashen Mesa, Scorched Enclave",
-   "weakpoint": "The vulnerable 40,000 armour zone takes full damage.",
+   "weakpoint": "Built on the same Exo mech chassis, so the vulnerable zone is the exposed lower torso (the waist/pivot joint under the chest) — it takes full damage while the plating soaks up to 90%.",
    "weaknesses": [
     "Grab only triggers at ≤700 HP — stay healthy and it can't bag you",
     "Stagger window: 30,000 in 4 s",
