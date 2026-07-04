@@ -665,8 +665,8 @@ function drawEconomy() {
 
   html += state.ecoMode === "density" ? ecoDensityTable(items, catCell, dens) : ecoTierSections(items, tiersDesc, catCell, dens);
 
-  html += `<p class="legend">Source: <b>datamined from the shipping game files</b>${D.build ? ` (build ${D.build})` : ""} &mdash; the game's own item &amp; EconV2 value tables.
-    Credits = raw value &divide; ${D.divisor.toFixed(2)} (Rep&nbsp;2 / 100% cost efficiency). Authoritative &mdash; values may shift with future patches.</p></div>`;
+  html += `<p class="legend">Source: read straight from the game's <b>current</b> item &amp; value tables (its in-game &ldquo;EconV2&rdquo; economy)${D.build ? `, decoded from build ${D.build}` : ""}.
+    Credits = raw value &divide; ${D.divisor.toFixed(2)} (the game's Rep&nbsp;2 / 100% cost-efficiency reference). Accurate to this build &mdash; values shift with patches.</p></div>`;
   view.innerHTML = html;
 }
 
