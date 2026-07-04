@@ -232,6 +232,7 @@ function render() {
   else if (state.tab === "stats") renderStats();
   else if (state.tab === "detection") renderDetection();
   else if (state.tab === "bosses") renderBosses();
+  else if (state.tab === "factions") renderFactions();
   else renderEconomy();
 }
 const match = (name) => !state.q || name.toLowerCase().includes(state.q);
@@ -703,6 +704,76 @@ function drawBosses() {
   else html += bosses.map(bossCard).join("");
 
   html += `<p class="legend">Method: decoded from the shipping game's <code>FW/AI/Characters/&hellip;/AIDEF_*</code> pawn definitions and <code>DA_WPN_*</code> weapon defs via a UE4SS type mapping + CUE4Parse (build ${D.build}). Ranges: Unreal units &divide; 100 = metres. Codex values &amp; tactics cross-checked against the wiki and community testing.</p></div>`;
+  view.innerHTML = html;
+}
+
+/* ---------- factions / tug-of-war tab ---------- */
+let FACTIONDATA = null;
+const FCOLOR = { Eurasia: "var(--rust)", Europa: "var(--blue)", Euruska: "var(--olive)", Scavenger: "var(--gold)", "Scav NPC": "var(--gold)", "Water Thieves": "var(--muted)" };
+
+async function renderFactions() {
+  view.classList.remove("detail-open");
+  if (!FACTIONDATA) {
+    view.innerHTML = `<div class="placeholder" style="margin-top:16px">Loading faction control&hellip;</div>`;
+    try { FACTIONDATA = await (await fetch("data/factions.json", { cache: "no-cache" })).json(); }
+    catch (e) { view.innerHTML = `<p class="empty">Could not load faction data.<br><small>${esc(e.message)}</small></p>`; return; }
+  }
+  drawFactions();
+}
+
+function facBar(control) {
+  return `<div class="fac-bar">${control.map((c) => `<span class="fac-seg" style="width:${c.pct}%;background:${FCOLOR[c.faction] || "var(--dim)"}" title="${esc(c.faction)} ${c.pct}%">${c.pct >= 12 ? Math.round(c.pct) : ""}</span>`).join("")}</div>`;
+}
+
+function facActionCard(a) {
+  const groups = {};
+  (a.effects || []).forEach((e) => {
+    const key = e.faction + "|" + e.pct;
+    (groups[key] = groups[key] || { faction: e.faction, pct: e.pct, maps: [] }).maps.push(e.map);
+  });
+  const gArr = Object.values(groups).sort((x, y) => y.pct - x.pct);
+  let h = `<div class="fac-action"><div class="fac-action-head">
+      <span class="fac-action-name">${esc(a.name)}</span>
+      <span class="badge">${esc(a.where)}</span>
+      ${a.durationHours ? `<span class="badge gold">${a.durationHours} h</span>` : ""}</div>`;
+  if (a.desc) h += `<p class="fac-action-desc">&ldquo;${esc(a.desc)}&rdquo;</p>`;
+  if (gArr.length) {
+    h += `<div class="fac-effects">${gArr.map((g) => {
+      const up = g.pct >= 0;
+      return `<span class="fac-eff ${up ? "up" : "down"}"><span class="fac-dot" style="background:${FCOLOR[g.faction] || "var(--dim)"}"></span>${esc(g.faction)} ${up ? "+" : "−"}${Math.abs(g.pct)}%<small> in ${g.maps.map(esc).join(", ")}</small></span>`;
+    }).join("")}</div>`;
+  } else {
+    h += `<p class="gnote">Local effect &mdash; no cross-map control shift in the data.</p>`;
+  }
+  return h + `</div>`;
+}
+
+function drawFactions() {
+  const D = FACTIONDATA;
+  let html = `<div class="guide">
+    <div class="callout" style="margin-top:16px"><b>Datamined from the game's Tug-of-War system.</b> ${esc(D.note)}</div>
+    <div class="callout" style="border-left-color:var(--olive)"><b>Two different faction systems.</b> <b>Map control</b> (below) is a shared, server-wide tug-of-war over each map, shifted by sabotage and lasting hours. <b>Standing</b> (bottom) is your <em>personal</em> reputation with each army &mdash; how hostile they are to <em>you</em>.</div>
+    <div class="fac-legend">${D.factions.map((f) => `<span class="fac-key"><span class="fac-dot" style="background:${FCOLOR[f.name] || "var(--dim)"}"></span>${esc(f.name)}</span>`).join("")}</div>`;
+
+  html += `<div class="card"><div class="section" style="margin-top:0"><h3>Who controls each map <span class="c">starting split</span></h3></div>`;
+  const maps = D.maps.filter((m) => match(m.name));
+  if (!maps.length) html += `<p class="empty">No maps match &ldquo;${esc(state.q)}&rdquo;.</p>`;
+  else maps.forEach((m) => { html += `<div class="fac-map"><div class="fac-map-name">${esc(m.name)}</div>${facBar(m.control)}</div>`; });
+  html += `<p class="gnote">Each army starts with a share of every surface map; whoever holds more fields more units there. These are the <b>default</b> weights &mdash; live control drifts as the war (and players) push it. Hubs (${(D.hubs || []).map((h) => esc(h.name)).join(", ")}) are Scavenger-held.</p></div>`;
+
+  html += `<div class="card"><div class="section" style="margin-top:0"><h3>The sabotage playbook <span class="c">shift the war yourself</span></h3></div>
+    <p class="gnote">Each is a droppable objective on its map. Pull it off and it ripples to <em>other</em> maps &mdash; server-wide, for the listed real-world hours &mdash; changing who you'll face there.</p>`;
+  D.actions.filter((a) => match(a.name) || match(a.where) || (a.desc && match(a.desc))).forEach((a) => { html += facActionCard(a); });
+  html += `</div>`;
+
+  const rep = D.reputation;
+  html += `<div class="card"><div class="section" style="margin-top:0"><h3>Faction standing <span class="c">your personal rep</span></h3></div>
+    <p class="gnote">${esc(rep.note)}</p>
+    <div class="gtable-wrap"><table class="gtable"><thead><tr><th>Damage dealt to&hellip;</th><th class="num">Standing shift / HP</th></tr></thead>
+      <tbody>${rep.perDamage.map((p) => `<tr><td>${esc(p.faction)}</td><td class="num">${p.perHp}</td></tr>`).join("")}</tbody></table></div>
+    <div class="callout" style="border-left-color:var(--rust)"><b>Destroying a heavy: ${bNum(rep.bossKill)}.</b> ${esc(rep.bossKillNote)}</div></div>`;
+
+  html += `<p class="legend">Method: decoded from <code>FW/TugOfWar/DT_*</code> (per-map faction splits, level actions + their percentage shifts) and <code>FactionAdjustmentsViaBattle</code> via CUE4Parse (build ${D.build}). Effect durations are the game's own real-world marker timers.</p></div>`;
   view.innerHTML = html;
 }
 

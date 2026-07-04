@@ -1,0 +1,620 @@
+{
+ "source": "The Forever Winter shipping game files (build 24045295) — FW/TugOfWar/* + FactionAdjustmentsViaBattle DataTables, decoded with CUE4Parse",
+ "note": "The \"Tug of War\": every surface map is contested by the three armies, and your sabotage/hack actions shift who controls it — for the whole server, for real-world hours. Higher control = more of that faction's units on that map.",
+ "build": 24045295,
+ "factions": [
+  {
+   "id": "Eurasia",
+   "name": "Eurasia",
+   "color": "rust"
+  },
+  {
+   "id": "Europa",
+   "name": "Europa",
+   "color": "blue"
+  },
+  {
+   "id": "Euruska",
+   "name": "Euruska",
+   "color": "olive"
+  },
+  {
+   "id": "Scavenger",
+   "name": "Scavenger",
+   "color": "gold"
+  }
+ ],
+ "maps": [
+  {
+   "id": "StairwayGate",
+   "name": "Stairway Gate",
+   "control": [
+    {
+     "faction": "Eurasia",
+     "pct": 30.0
+    },
+    {
+     "faction": "Europa",
+     "pct": 40.0
+    },
+    {
+     "faction": "Euruska",
+     "pct": 30.0
+    }
+   ]
+  },
+  {
+   "id": "AshenMesa",
+   "name": "Ashen Mesa",
+   "control": [
+    {
+     "faction": "Eurasia",
+     "pct": 30.0
+    },
+    {
+     "faction": "Europa",
+     "pct": 40.0
+    },
+    {
+     "faction": "Euruska",
+     "pct": 30.0
+    }
+   ]
+  },
+  {
+   "id": "ElephantMausoleum",
+   "name": "Elephant Mausoleum",
+   "control": [
+    {
+     "faction": "Eurasia",
+     "pct": 30.0
+    },
+    {
+     "faction": "Europa",
+     "pct": 40.0
+    },
+    {
+     "faction": "Euruska",
+     "pct": 30.0
+    }
+   ]
+  },
+  {
+   "id": "FrozenSwamp",
+   "name": "Frozen Swamp",
+   "control": [
+    {
+     "faction": "Eurasia",
+     "pct": 30.0
+    },
+    {
+     "faction": "Europa",
+     "pct": 40.0
+    },
+    {
+     "faction": "Euruska",
+     "pct": 30.0
+    }
+   ]
+  },
+  {
+   "id": "ScorchedEnclave",
+   "name": "Scorched Enclave",
+   "control": [
+    {
+     "faction": "Eurasia",
+     "pct": 30.0
+    },
+    {
+     "faction": "Europa",
+     "pct": 40.0
+    },
+    {
+     "faction": "Euruska",
+     "pct": 30.0
+    }
+   ]
+  },
+  {
+   "id": "MechTrenches",
+   "name": "Mech Trenches",
+   "control": [
+    {
+     "faction": "Eurasia",
+     "pct": 30.0
+    },
+    {
+     "faction": "Europa",
+     "pct": 40.0
+    },
+    {
+     "faction": "Euruska",
+     "pct": 30.0
+    }
+   ]
+  },
+  {
+   "id": "ScrapyardNexus",
+   "name": "Scrapyard Nexus",
+   "control": [
+    {
+     "faction": "Eurasia",
+     "pct": 40.0
+    },
+    {
+     "faction": "Europa",
+     "pct": 20.0
+    },
+    {
+     "faction": "Euruska",
+     "pct": 40.0
+    }
+   ]
+  },
+  {
+   "id": "Shanti",
+   "name": "Babel",
+   "control": [
+    {
+     "faction": "Eurasia",
+     "pct": 20.0
+    },
+    {
+     "faction": "Europa",
+     "pct": 40.0
+    },
+    {
+     "faction": "Euruska",
+     "pct": 40.0
+    }
+   ]
+  },
+  {
+   "id": "UndergroundCemetery",
+   "name": "Underground Cemetery",
+   "control": [
+    {
+     "faction": "Eurasia",
+     "pct": 30.0
+    },
+    {
+     "faction": "Europa",
+     "pct": 20.0
+    },
+    {
+     "faction": "Euruska",
+     "pct": 50.0
+    }
+   ]
+  },
+  {
+   "id": "DowntownLostAngels",
+   "name": "Downtown Lost Angels",
+   "control": [
+    {
+     "faction": "Eurasia",
+     "pct": 10.0
+    },
+    {
+     "faction": "Europa",
+     "pct": 45.0
+    },
+    {
+     "faction": "Euruska",
+     "pct": 45.0
+    }
+   ]
+  }
+ ],
+ "hubs": [
+  {
+   "id": "Innards",
+   "name": "Innards",
+   "control": [
+    {
+     "faction": "Scavenger",
+     "pct": 90.0
+    },
+    {
+     "faction": "ScavengerNPC",
+     "pct": 10.0
+    }
+   ]
+  },
+  {
+   "id": "ThunderDome",
+   "name": "ThunderDome",
+   "control": [
+    {
+     "faction": "Scavenger",
+     "pct": 90.0
+    },
+    {
+     "faction": "ScavengerNPC",
+     "pct": 10.0
+    }
+   ]
+  }
+ ],
+ "actions": [
+  {
+   "id": "SabotageRadarTruck_Downtown",
+   "name": "Destroy the mobile radar truck",
+   "where": "Downtown Lost Angels",
+   "desc": "Europa weakened following sabotage of their communications in the Downtown district",
+   "durationHours": 8.0,
+   "effects": [
+    {
+     "map": "Stairway Gate",
+     "faction": "Europa",
+     "pct": -20.0
+    },
+    {
+     "map": "Babel",
+     "faction": "Europa",
+     "pct": -20.0
+    },
+    {
+     "map": "Downtown Lost Angels",
+     "faction": "Europa",
+     "pct": -20.0
+    },
+    {
+     "map": "Stairway Gate",
+     "faction": "Eurasia",
+     "pct": 20.0
+    },
+    {
+     "map": "Babel",
+     "faction": "Eurasia",
+     "pct": 20.0
+    },
+    {
+     "map": "Downtown Lost Angels",
+     "faction": "Eurasia",
+     "pct": 20.0
+    },
+    {
+     "map": "Babel",
+     "faction": "Euruska",
+     "pct": 20.0
+    },
+    {
+     "map": "Downtown Lost Angels",
+     "faction": "Euruska",
+     "pct": 20.0
+    },
+    {
+     "map": "Stairway Gate",
+     "faction": "Euruska",
+     "pct": 20.0
+    }
+   ]
+  },
+  {
+   "id": "PowerUpEuropanTurrets_Babel",
+   "name": "Power up the Europan turrets",
+   "where": "Babel",
+   "desc": "Europan turrets active in Babel. Euruskan drone activity has dropped.",
+   "durationHours": 8.0,
+   "effects": [
+    {
+     "map": "Stairway Gate",
+     "faction": "Euruska",
+     "pct": -20.0
+    },
+    {
+     "map": "Babel",
+     "faction": "Europa",
+     "pct": 20.0
+    },
+    {
+     "map": "Babel",
+     "faction": "Euruska",
+     "pct": -20.0
+    },
+    {
+     "map": "Downtown Lost Angels",
+     "faction": "Euruska",
+     "pct": -20.0
+    }
+   ]
+  },
+  {
+   "id": "SabotageChopperHelipad_Frozen",
+   "name": "Blow up the chopper",
+   "where": "Frozen Swamp",
+   "desc": "Euruskan air forces weakened following sabotage in Frozen Swamp",
+   "durationHours": 6.0,
+   "effects": [
+    {
+     "map": "Scorched Enclave",
+     "faction": "Euruska",
+     "pct": -20.0
+    },
+    {
+     "map": "Elephant Mausoleum",
+     "faction": "Euruska",
+     "pct": -20.0
+    },
+    {
+     "map": "Stairway Gate",
+     "faction": "Euruska",
+     "pct": -20.0
+    },
+    {
+     "map": "Frozen Swamp",
+     "faction": "Euruska",
+     "pct": -20.0
+    }
+   ]
+  },
+  {
+   "id": "SabotageCommsTower_Trenches",
+   "name": "Destroy the comms tower",
+   "where": "Mech Trenches",
+   "desc": "Communications in this region are disrupted due to tower destruction in Mech Trenches",
+   "durationHours": 4.0,
+   "effects": [
+    {
+     "map": "Elephant Mausoleum",
+     "faction": "Eurasia",
+     "pct": -20.0
+    },
+    {
+     "map": "Scrapyard Nexus",
+     "faction": "Eurasia",
+     "pct": -20.0
+    },
+    {
+     "map": "Mech Trenches",
+     "faction": "Eurasia",
+     "pct": -20.0
+    }
+   ]
+  },
+  {
+   "id": "SabotageChopperHelipad_Stairway",
+   "name": "Blow up the chopper",
+   "where": "Stairway Gate",
+   "desc": "Euruskan air forces weakened following sabotage in Stairway Gate",
+   "durationHours": 6.0,
+   "effects": [
+    {
+     "map": "Babel",
+     "faction": "Euruska",
+     "pct": -20.0
+    },
+    {
+     "map": "Downtown Lost Angels",
+     "faction": "Euruska",
+     "pct": -20.0
+    },
+    {
+     "map": "Stairway Gate",
+     "faction": "Europa",
+     "pct": 20.0
+    }
+   ]
+  },
+  {
+   "id": "HackEuropaRadar_Ashen",
+   "name": "Hack the Europan radar",
+   "where": "Ashen Mesa",
+   "desc": "Drone operations compromised due to Europan radar failure in Ashen Mesa",
+   "durationHours": 2.0,
+   "effects": [
+    {
+     "map": "Mech Trenches",
+     "faction": "Europa",
+     "pct": -20.0
+    },
+    {
+     "map": "Ashen Mesa",
+     "faction": "Europa",
+     "pct": -20.0
+    }
+   ]
+  },
+  {
+   "id": "SabotageBridge_Ashen",
+   "name": "Destroy the bridge",
+   "where": "Ashen Mesa",
+   "desc": "Infrastructure failure in Ashen Mesa. Cyborg units isolated",
+   "durationHours": 2.0,
+   "effects": [
+    {
+     "map": "Scrapyard Nexus",
+     "faction": "Eurasia",
+     "pct": -20.0
+    },
+    {
+     "map": "Ashen Mesa",
+     "faction": "Eurasia",
+     "pct": -20.0
+    }
+   ]
+  },
+  {
+   "id": "SabotageEuropaElevator_Frozen",
+   "name": "Sabotage the injection-well lift",
+   "where": "Frozen Swamp",
+   "desc": "The injection well elevator has been sabotaged, disrupting Europan operations",
+   "durationHours": 6.0,
+   "effects": [
+    {
+     "map": "Stairway Gate",
+     "faction": "Europa",
+     "pct": -20.0
+    },
+    {
+     "map": "Frozen Swamp",
+     "faction": "Europa",
+     "pct": -20.0
+    }
+   ]
+  },
+  {
+   "id": "SabotageElevator_Trenches",
+   "name": "Sabotage the extraction elevator",
+   "where": "Mech Trenches",
+   "desc": "The trenches elevator has been sabotaged, disrupting Europan operations",
+   "durationHours": 4.0,
+   "effects": [
+    {
+     "map": "Scrapyard Nexus",
+     "faction": "Europa",
+     "pct": -20.0
+    },
+    {
+     "map": "Elephant Mausoleum",
+     "faction": "Europa",
+     "pct": -20.0
+    }
+   ]
+  },
+  {
+   "id": "PowerUpRadarTower_Scorched",
+   "name": "Power up the radar tower",
+   "where": "Scorched Enclave",
+   "desc": "The radar tower on Europa in Scorched Enclave is active - Airspace restricted",
+   "durationHours": 2.0,
+   "effects": [
+    {
+     "map": "Elephant Mausoleum",
+     "faction": "Europa",
+     "pct": 20.0
+    },
+    {
+     "map": "Scorched Enclave",
+     "faction": "Europa",
+     "pct": 20.0
+    }
+   ]
+  },
+  {
+   "id": "SabotageTanks_Scrapyard",
+   "name": "Blow up the 3 tanks",
+   "where": "Scrapyard Nexus",
+   "desc": "Euruskan tank numbers have dwindled following losses in Scrapyard Nexus",
+   "durationHours": 4.0,
+   "effects": [
+    {
+     "map": "Scrapyard Nexus",
+     "faction": "Euruska",
+     "pct": -20.0
+    },
+    {
+     "map": "Ashen Mesa",
+     "faction": "Euruska",
+     "pct": -20.0
+    }
+   ]
+  },
+  {
+   "id": "HackStairwayGate_Underground",
+   "name": "Hack the old spy server",
+   "where": "Underground Cemetery",
+   "desc": "Stairway wall gate is now offline due to server breach in Underground Cemetery",
+   "durationHours": 8.0,
+   "effects": [
+    {
+     "map": "Stairway Gate",
+     "faction": "Europa",
+     "pct": -20.0
+    },
+    {
+     "map": "Underground Cemetery",
+     "faction": "Euruska",
+     "pct": 20.0
+    }
+   ]
+  },
+  {
+   "id": "PlantWaterThiefMask_Elephant",
+   "name": "Plant a Water-Thief mask",
+   "where": "Elephant Mausoleum",
+   "desc": "Europa will exact revenge on the Water Thieves in Frozen Swamp due to actions in Elephant Mausoleum",
+   "durationHours": 4.0,
+   "effects": [
+    {
+     "map": "Frozen Swamp",
+     "faction": "Europa",
+     "pct": 20.0
+    }
+   ]
+  },
+  {
+   "id": "KillEuruskaDrones_Elephant",
+   "name": "Destroy Euruskan drones",
+   "where": "Elephant Mausoleum",
+   "desc": "Euruskan drone losses recorded at Elephant Mausoleum. Reduced deployment expected.",
+   "durationHours": 4.0,
+   "effects": [
+    {
+     "map": "Mech Trenches",
+     "faction": "Euruska",
+     "pct": -20.0
+    }
+   ]
+  },
+  {
+   "id": "HackElephantMedBay_Trenches",
+   "name": "Hack the med-bay gates",
+   "where": "Elephant Mausoleum",
+   "desc": "Security breach in Mech Trenches – Med Bay gates failing",
+   "durationHours": 4.0,
+   "effects": [
+    {
+     "map": "Mech Trenches",
+     "faction": "Europa",
+     "pct": -20.0
+    }
+   ]
+  },
+  {
+   "id": "HackArmament_Elephant",
+   "name": "Hack the armament terminal",
+   "where": "Elephant Mausoleum",
+   "desc": "Europan missile systems compromised — instability detected",
+   "durationHours": 4.0,
+   "effects": []
+  },
+  {
+   "id": "KillWaterThievesDrones_Frozen",
+   "name": "Destroy Water-Thief drones",
+   "where": "Frozen Swamp",
+   "desc": "Water thieves operations disrupted in the area",
+   "durationHours": 6.0,
+   "effects": []
+  }
+ ],
+ "reputation": {
+  "note": "Separate from map control: your personal standing with each army. Fighting a faction sours it toward you (its units grow hostile and hunt you harder).",
+  "perDamage": [
+   {
+    "faction": "Eurasia",
+    "perHp": 1.44
+   },
+   {
+    "faction": "Europa",
+    "perHp": 1.44
+   },
+   {
+    "faction": "Euruska",
+    "perHp": 1.44
+   },
+   {
+    "faction": "Scav NPC",
+    "perHp": -100.0
+   },
+   {
+    "faction": "Water Thieves",
+    "perHp": 2.88
+   }
+  ],
+  "bossKill": -18000.0,
+  "bossKillNote": "One-time standing hit the first time you destroy one of a faction's heavies/bosses (Medium Mech, Mother Courage, Toothy, Rat King, tanks, Exos, Choppers, the Grabber…)."
+ },
+ "count": 10
+}
