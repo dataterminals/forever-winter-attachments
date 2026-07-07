@@ -69,13 +69,21 @@ async function init() {
   applyLayout();
   buildIndex();
   wireChrome();
-  render();
+  // Back/forward, edited URLs, and clicked deep-links all route through applyRoute.
+  window.addEventListener("hashchange", () => { if (!routing) applyRoute(); });
+  applyRoute(); // hydrate initial state from the URL (deep-link) or default to Weapons
   registerSW();
 }
 
 function buildIndex() {
   DATA.attachments.forEach((a) => (idx.attById[a.id] = a));
   DATA.weapons.forEach((w) => (idx.weaponByName[w.name] = w));
+  // slug <-> name/id maps for deep-link URLs (weapon names & attachment ids are
+  // both unique; slugify is verified collision-free, uniqueSlug is just a guard).
+  idx.weaponSlug = {}; idx.slugByWeapon = {};
+  DATA.weapons.forEach((w) => { const s = uniqueSlug(slugify(w.name), idx.weaponSlug); idx.weaponSlug[s] = w.name; idx.slugByWeapon[w.name] = s; });
+  idx.attSlug = {}; idx.slugByAtt = {};
+  DATA.attachments.forEach((a) => { const s = uniqueSlug(slugify(a.id), idx.attSlug); idx.attSlug[s] = a.id; idx.slugByAtt[a.id] = s; });
   // muzzle subtypes -> devices + weapons
   DATA.attachments.forEach((a) => {
     if ((a.category === "MZD" || a.category === "SMZD") && a.subtype) {
@@ -96,7 +104,7 @@ function wireChrome() {
       view.classList.remove("detail-open");
       syncTabs();
       if (state.tab === "maps") activateMaps();
-      else { deactivateMaps(); render(); }
+      else { deactivateMaps(); render(); writeHash({ push: true }); }
       window.scrollTo({ top: 0 });
     })
   );
@@ -106,32 +114,39 @@ function wireChrome() {
     clr.hidden = !s.value;
     view.classList.remove("detail-open");
     render();
+    writeHash();
   });
-  clr.addEventListener("click", () => { s.value = ""; state.q = ""; clr.hidden = true; s.focus(); render(); });
+  clr.addEventListener("click", () => { s.value = ""; state.q = ""; clr.hidden = true; s.focus(); render(); writeHash(); });
 
   view.addEventListener("click", (e) => {
+    // per-section link icon: copy a deep link to this sub-section (must run first,
+    // and swallow the event so it doesn't toggle a <details> or trigger a row).
+    const al = e.target.closest(".anchor-link");
+    if (al) { e.preventDefault(); e.stopPropagation(); copySectionLink(al.dataset.copy); return; }
     const gear = e.target.closest("[data-gear]");
     if (gear) { e.stopPropagation(); gear.closest(".layoutpick").classList.toggle("open"); return; }
     const lay = e.target.closest("[data-layout]");
     if (lay) { setLayout(lay.dataset.layout); return; }
     const em = e.target.closest("[data-ecomode]");
-    if (em) { setEcoMode(em.dataset.ecomode); return; }
+    if (em) { setEcoMode(em.dataset.ecomode); writeHash(); return; }
     const ec = e.target.closest("[data-ecocat]");
-    if (ec) { state.ecoCat = ec.dataset.ecocat; render(); return; }
+    if (ec) { state.ecoCat = ec.dataset.ecocat; render(); writeHash(); return; }
     const et = e.target.closest("[data-ecotier]");
     if (et) {
       if (state.ecoMode !== "tiers") setEcoMode("tiers");
       const sec = document.getElementById("eco-tier-" + et.dataset.ecotier);
       if (sec) { sec.open = true; sec.scrollIntoView({ behavior: "smooth", block: "start" }); }
+      writeHash({ sub: "tier-" + et.dataset.ecotier });
       return;
     }
     const bj = e.target.closest("[data-bossjump]");
-    if (bj) { const sec = document.getElementById("boss-" + bj.dataset.bossjump); if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+    if (bj) { const sec = document.getElementById("boss-" + bj.dataset.bossjump); if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" }); writeHash({ sub: bj.dataset.bossjump }); return; }
     const goAI = e.target.closest("[data-goai]");
     if (goAI) {
       state.tab = "detection"; syncTabs(); deactivateMaps(); view.classList.remove("detail-open");
       window.scrollTo({ top: 0 });
       renderDetection().then(() => { const s = document.getElementById("det-priority"); if (s) s.scrollIntoView({ behavior: "smooth", block: "start" }); });
+      writeHash({ sub: "priority", push: true });
       return;
     }
     const goHS = e.target.closest("[data-gohs]");
@@ -141,10 +156,11 @@ function wireChrome() {
       if (sb) sb.value = ""; if (clr) clr.hidden = true; state.q = ""; // "all calibers" => clear any filter
       render();
       requestAnimationFrame(() => { const s = document.getElementById("ammo-headshots"); if (s) s.scrollIntoView({ behavior: "smooth", block: "start" }); });
+      writeHash({ sub: "headshots", push: true });
       return;
     }
     const lk = e.target.closest("[data-lootkind]");
-    if (lk) { state.lootKind = lk.dataset.lootkind; render(); return; }
+    if (lk) { state.lootKind = lk.dataset.lootkind; render(); writeHash(); return; }
     const ge = e.target.closest("[data-goeco]");
     if (ge) {
       state.tab = "economy"; state.ecoCat = "all"; syncTabs(); deactivateMaps(); view.classList.remove("detail-open");
@@ -152,11 +168,12 @@ function wireChrome() {
       if (sb) { sb.value = ge.dataset.goeco; } if (clr) clr.hidden = false;
       state.q = ge.dataset.goeco.toLowerCase();
       render(); window.scrollTo({ top: 0 });
+      writeHash({ push: true });
       return;
     }
     const el = e.target.closest("[data-weapon],[data-att],[data-goatt],[data-goweapon],[data-back]");
     if (!el) return;
-    if (el.dataset.back !== undefined) { view.classList.remove("detail-open"); render(); return; }
+    if (el.dataset.back !== undefined) { view.classList.remove("detail-open"); render(); writeHash(); return; }
     if (el.dataset.weapon) { state.weapon = el.dataset.weapon; openDetail(); }
     else if (el.dataset.att) { state.att = el.dataset.att; openDetail(); }
     else if (el.dataset.goatt) { state.tab = "attachments"; state.att = el.dataset.goatt; syncTabs(); openDetail(); }
@@ -169,10 +186,10 @@ function wireChrome() {
   });
 }
 function syncTabs() { document.querySelectorAll(".tab").forEach((b) => b.classList.toggle("active", b.dataset.tab === state.tab)); }
-function openDetail() { view.classList.add("detail-open"); render(); window.scrollTo({ top: 0 }); }
+function openDetail() { view.classList.add("detail-open"); render(); window.scrollTo({ top: 0 }); writeHash({ push: true }); }
 
 /* ---------- maps tab: lazy Leaflet + hand off to the FWMaps module ---------- */
-let mapsBooted = false, leafletPromise = null;
+let mapsBooted = false, leafletPromise = null, mapsWriterSet = false;
 
 function ensureLeaflet() {
   if (window.L) return Promise.resolve();
@@ -198,13 +215,17 @@ function positionMaps() {
   document.documentElement.style.setProperty("--maps-top", Math.round(tabs.getBoundingClientRect().bottom) + "px");
 }
 
-async function activateMaps() {
+async function activateMaps(route) {
   document.body.classList.add("maps-active");
   positionMaps();
   try {
     await ensureLeaflet();
-    if (!mapsBooted) { await window.FWMaps.init(); mapsBooted = true; } // guard AFTER success so a failed first boot stays retryable
+    // hand the atlas a writer so map/layer/bg changes flow back into the URL
+    if (window.FWMaps && !mapsWriterSet) { window.FWMaps.setRouteWriter((rs) => writeHashRaw("#/" + rs)); mapsWriterSet = true; }
+    if (!mapsBooted) { await window.FWMaps.init(route || null); mapsBooted = true; } // guard AFTER success so a failed first boot stays retryable
+    else if (route && (route.map || (route.layers && route.layers.length) || route.bg != null)) { await window.FWMaps.openRoute(route); }
     window.FWMaps.invalidateSize();
+    if (window.FWMaps.syncRoute) window.FWMaps.syncRoute(); // keep the URL == the atlas
   } catch (e) {
     const lt = document.getElementById("loading-text"), l = document.getElementById("loading");
     if (lt) lt.textContent = "Map failed to load: " + e.message;
@@ -250,18 +271,25 @@ function setEcoMode(mode) {
 }
 
 /* ---------- render dispatch ---------- */
+// render() dispatches to the active tab, then decorates the fresh DOM with the
+// per-section link icons. It returns a promise that resolves after decoration so
+// the router can scroll to a deep-link anchor once the (possibly async) tab is up.
 function render() {
+  const p = dispatch();
+  return Promise.resolve(p).then(() => { if (state.tab !== "maps") decorateAnchors(); });
+}
+function dispatch() {
   if (state.tab === "maps") return; // the Maps tab is driven by activateMaps(), not #view
-  if (state.tab === "weapons") renderWeapons();
-  else if (state.tab === "attachments") renderAttachments();
-  else if (state.tab === "muzzles") renderMuzzles();
-  else if (state.tab === "ammo") renderAmmo();
-  else if (state.tab === "stats") renderStats();
-  else if (state.tab === "detection") renderDetection();
-  else if (state.tab === "bosses") renderBosses();
-  else if (state.tab === "factions") renderFactions();
-  else if (state.tab === "economy") renderEconomy();
-  else renderLoot();
+  if (state.tab === "weapons") return renderWeapons();
+  else if (state.tab === "attachments") return renderAttachments();
+  else if (state.tab === "muzzles") return renderMuzzles();
+  else if (state.tab === "ammo") return renderAmmo();
+  else if (state.tab === "stats") return renderStats();
+  else if (state.tab === "detection") return renderDetection();
+  else if (state.tab === "bosses") return renderBosses();
+  else if (state.tab === "factions") return renderFactions();
+  else if (state.tab === "economy") return renderEconomy();
+  else return renderLoot();
 }
 const match = (name) => !state.q || name.toLowerCase().includes(state.q);
 
@@ -335,7 +363,7 @@ function weaponDetail(w) {
   const st = idx.weaponSubtype[w.name];
   const needs = w.needsPart || {};
   let anyReq = false;
-  let html = `<button class="backbtn" data-back>&larr; all weapons</button><div class="card">
+  let html = `<button class="backbtn" data-back>&larr; all weapons</button><div class="card" data-anchor="${esc(idx.slugByWeapon[w.name] || slugify(w.name))}">
     <div class="dhead"><h2>${esc(w.name)}</h2><span class="badge gold">${esc(w.class)}</span>
       <span class="badge">${w.total} attachments</span></div>`;
   const ws = WEAPONS && WEAPONS[w.name.toLowerCase()];
@@ -411,7 +439,7 @@ function renderAttachments() {
 }
 
 function attDetail(a) {
-  let html = `<button class="backbtn" data-back>&larr; all attachments</button><div class="card">
+  let html = `<button class="backbtn" data-back>&larr; all attachments</button><div class="card" data-anchor="${esc(idx.slugByAtt[a.id] || slugify(a.id))}">
     <div class="dhead"><h2>${esc(a.name)}</h2><span class="badge olive">${esc(CATLABEL[a.category])}</span>
       ${a.subtype ? `<span class="badge gold">${esc(a.subtype)} · ${esc(SUBTYPE_LABEL[a.subtype] || "")}</span>` : ""}</div>`;
   // stats
@@ -465,7 +493,7 @@ function renderMuzzles() {
       if (!hit) return;
     }
     const weapons = [...s.weapons].sort();
-    html += `<div class="mzcard"><h3>${st}</h3><div class="fam">${esc(SUBTYPE_LABEL[st] || "")}</div>
+    html += `<div class="mzcard" data-anchor="${st.toLowerCase()}"><h3>${st}</h3><div class="fam">${esc(SUBTYPE_LABEL[st] || "")}</div>
       <div class="lab">Muzzle devices</div><div class="chips">
       ${s.mzd.map((m) => `<button class="chip" data-goatt="${esc("MZD:" + m)}">${esc(m)}</button>`).join("")}</div>`;
     if (s.smzd.length) html += `<div class="lab">Suppressed</div><div class="chips">
@@ -488,20 +516,20 @@ function renderStats() {
       change. Here's what each stat <em>actually</em> does — and which ones to ignore.
     </div>
 
-    <div class="card">
+    <div class="card" data-anchor="basics">
       <div class="section" style="margin-top:0"><h3>The only two stats that visibly matter</h3></div>
       <div class="gdef"><span class="term">Accuracy</span><span>How tightly your shots land. At ~90 accuracy a gun puts rounds dead-centre (hip-fire <em>or</em> aimed); lower accuracy widens a random spread cone. This is the single handling number worth chasing, and it's the one attachments meaningfully raise.</span></div>
       <div class="gdef"><span class="term">Magazine capacity</span><span>Rounds per reload. Obvious, and real. Note: mag size is changed by <b>weapon parts</b> (different magazines), <b>not</b> by attachments.</span></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-anchor="display-only">
       <div class="section" style="margin-top:0"><h3>Stats that are display-only, buggy, or disputed</h3></div>
       <div class="gdef"><span class="term">Recoil</span><span>Shown as a single number but it's a <b>compound</b> of hidden values ("wrist" + "arm" recoil). It's theorised to drive <em>camera shake</em> only — it does <b>not</b> move your point of aim under fire. The wild numbers you see when swapping parts are aggregation errors, not real changes.</span></div>
       <div class="gdef"><span class="term">Stability</span><span><b>Real, and higher is better.</b> Decoded from the game data: Stability feeds the <b>bullet-spread (dispersion)</b> system — <b>higher Stability = tighter sustained fire</b> — and never touches the recoil kick. This overturns the old "keep it low" advice. Numbers in <a href="#underhood">Under the hood</a>, just below.</span></div>
       <div class="gdef"><span class="term">The stat card as a whole</span><span>It aggregates several parameters into display values and is frequently wrong when a weapon is modified. Trust behaviour in the shooting range over the card.</span></div>
     </div>
 
-    <div class="card" id="underhood">
+    <div class="card" id="underhood" data-anchor="underhood">
       <div class="section" style="margin-top:0"><h3>Under the hood: what Stability really does <span class="badge gold">from the game files</span></h3></div>
       <p>Read straight out of the shipping game's weapon code (the compiled <code>FWWeapon</code> module), "handling" is actually <b>three separate systems</b> — which is exactly why the card confuses everyone:</p>
       <div class="gdef"><span class="term">1 · Recoil — the kick</span><span>The visual muzzle climb: <code>RecoilWristYaw/Pitch</code>, <code>RecoilArmAngle</code>, <code>RecoilWristRecoveryBlend</code>, <code>ScaleRecoilADS</code> — a wrist + arm model, which is why the displayed "Recoil" is a compound. Parts tune it through <code>RecoilWristRelBuff</code> / <code>RecoilArmRelBuff</code>. <b>Stability is not an input here</b>, so "stability doesn't change recoil" is literally correct.</span></div>
@@ -522,14 +550,14 @@ function renderStats() {
       <p class="legend">Method: property/curve names from the shipping binary; curve values decoded from the game assets via a UE4SS-dumped type mapping. Cross-checked against the wiki (AK <code>WeaponDamage</code> 150 &amp; fire rate 0.09 s both matched exactly).</p>
     </div>
 
-    <div class="card">
+    <div class="card" data-anchor="damage">
       <div class="section" style="margin-top:0"><h3>Damage (the hidden part)</h3></div>
       <div class="gdef"><span class="term">Base damage</span><span>Tied to the weapon (balanced around caliber/type), <b>not</b> to which ammo you load. The card often <b>under-reports</b> real damage — e.g. the AT-43 MASS deals roughly double what it lists, and shotguns and Painless read low too. Don't dismiss a gun by its listed damage alone.</span></div>
       <div class="gdef"><span class="term">Critical / headshot damage</span><span>A per-<b>caliber</b> multiplier that lives on your <b>ammo</b>, not the gun &mdash; a head hit multiplies the weapon's listed damage by it. Most rounds sit at the <b>1.5×</b> baseline, but a few big single-shot calibers <b>triple</b> it and <b>shotguns are penalised</b>, so a lower-damage, high-crit caliber can out-perform a bigger gun on consistent headshots. Some enemies (notably melee cyborgs) also have headshot <em>resistance</em>. <button class="linklike" data-gohs>See the full per-caliber table on the <b>Ammo</b> tab &rarr;</button></span></div>
     </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-anchor="attachment-effects">
       <div class="section" style="margin-top:0"><h3>What each attachment type really changes</h3></div>
       <p class="gnote">Within a category every item gives the <b>same</b> bonus — only the look differs (the displayed % also scales per weapon). Relative effect:</p>
       <div class="gtable-wrap"><table class="gtable">
@@ -547,7 +575,7 @@ function renderStats() {
       <p class="gnote">*Handling = the recoil / stabilisation numbers — real-world benefit is small given how unreliable those stats are. The accuracy bump is the part that actually helps.</p>
     </div>
 
-    <div class="card">
+    <div class="card" data-anchor="glossary">
       <div class="section" style="margin-top:0"><h3>Attachment stat glossary</h3></div>
       <div class="gdef"><span class="term">Accuracy</span><span>Tighter shot grouping. The meaningful one.</span></div>
       <div class="gdef"><span class="term">Recoil (1st / 3rd person)</span><span>Camera kick you see while aiming / that others see. Cosmetic-ish; doesn't shift your aim.</span></div>
@@ -607,7 +635,7 @@ function ammoCard(a, usedBy) {
   const chips = guns.length
     ? `<div class="ammo-usedby"><div class="lab">Used by</div><div class="chips">${guns.map((g) => `<button class="chip" data-goweapon="${esc(g)}">${esc(g)}</button>`).join("")}</div></div>`
     : "";
-  return `<div class="ammo-card">
+  return `<div class="ammo-card" data-anchor="${esc(a.key)}">
     <div class="ammo-head"><span class="ammo-name">${esc(a.name)}</span>
       ${a.faction ? `<span class="badge">${esc(a.faction)}</span>` : ""}</div>
     ${grid ? `<div class="statgrid ammo-stats">${grid}</div>` : ""}
@@ -630,7 +658,7 @@ function drawAmmo() {
   if (!state.q) {
     const hsRows = D.ammo.filter((a) => a.headshot != null).slice()
       .sort((x, y) => y.headshot - x.headshot || x.name.localeCompare(y.name));
-    html += `<div class="card" id="ammo-headshots"><div class="section" style="margin-top:0"><h3>Headshot multipliers <span class="c">per caliber &middot; ${base}&times; baseline</span></h3></div>
+    html += `<div class="card" id="ammo-headshots" data-anchor="headshots"><div class="section" style="margin-top:0"><h3>Headshot multipliers <span class="c">per caliber &middot; ${base}&times; baseline</span></h3></div>
       <p class="gnote">A head hit multiplies the weapon's <b>listed damage</b> by this. It lives on the <b>ammo</b>, not the gun &mdash; so a lower-damage, high-crit caliber can beat a bigger gun on consistent headshots.</p>
       <div class="gtable-wrap"><table class="gtable"><thead><tr><th>Caliber</th><th class="num">Headshot</th><th>vs ${base}&times; baseline</th></tr></thead><tbody>${
         hsRows.map((a) => `<tr><td>${esc(a.name)}</td><td class="num ${a.band === "high" ? "ok" : a.band === "low" ? "bad" : ""}">&times;${a.headshot}</td><td>${a.band === "high" ? "<b>higher crit</b> &mdash; reward headshots" : a.band === "low" ? "lower &mdash; body shots hit harder" : "baseline"}</td></tr>`).join("")
@@ -643,7 +671,7 @@ function drawAmmo() {
   D.categories.forEach((c) => {
     const list = D.ammo.filter((a) => a.category === c.key && matchAmmo(a));
     if (!list.length) return;
-    sections += `<div class="card"><div class="section" style="margin-top:0"><h3>${esc(c.label)} <span class="c">&times;${list.length}</span></h3></div>
+    sections += `<div class="card" data-anchor="${esc(c.key)}"><div class="section" style="margin-top:0"><h3>${esc(c.label)} <span class="c">&times;${list.length}</span></h3></div>
       <p class="gnote">${esc(c.note)}</p>
       ${list.map((a) => ammoCard(a, usedBy)).join("")}</div>`;
   });
@@ -692,12 +720,12 @@ async function renderDetection() {
       These are the real numbers behind how enemies detect you — sight, sound, and the through-wall "sixth sense".
       Ranges are converted to metres.</div>
 
-    <div class="card">
+    <div class="card" data-anchor="senses">
       <div class="section" style="margin-top:0"><h3>The six ways they sense you</h3></div>
       ${D.senses.map((s) => `<div class="gdef"><span class="term">${esc(s.name)}</span><span>${esc(s.desc)}</span></div>`).join("")}
     </div>
 
-    <div class="card">
+    <div class="card" data-anchor="enemies">
       <div class="section" style="margin-top:0"><h3>Per-enemy senses <span class="c">hover a row for tactics</span></h3></div>
       <div class="gtable-wrap"><table class="gtable">
         <thead><tr><th>Enemy</th><th>Vision (near→far)</th><th>Cone</th><th>Hearing</th><th>ESP</th></tr></thead>
@@ -706,7 +734,7 @@ async function renderDetection() {
       <p class="gnote">Vision is a line-of-sight cone; you build detection faster up close (near range) than at the edge (far range). ESP ignores walls. "∞" = effectively omniscient at range (turrets, Hunter-Killers).</p>
     </div>
 
-    ${D.hunterKillers ? `<div class="card" id="hunterkillers">
+    ${D.hunterKillers ? `<div class="card" id="hunterkillers" data-anchor="hunter-killers">
       <div class="section" style="margin-top:0"><h3>Hunter-Killers: how you summon them <span class="badge gold">datamined</span></h3></div>
       <p class="gnote">${esc(D.hunterKillers.intro)}</p>
       <div class="section"><h3 style="color:var(--rust)">Any one of these trips it</h3></div>
@@ -717,7 +745,7 @@ async function renderDetection() {
       <p class="gnote">${esc(D.hunterKillers.escalation)}</p>
     </div>` : ""}
 
-    <div class="card">
+    <div class="card" data-anchor="visibility">
       <div class="section" style="margin-top:0"><h3>What makes <em>you</em> visible</h3></div>
       <div class="gtable-wrap"><table class="gtable">
         <thead><tr><th>Factor</th><th>Effect</th><th>What it does</th></tr></thead>
@@ -726,13 +754,13 @@ async function renderDetection() {
       <p class="gnote">${esc(D.note)}</p>
     </div>
 
-    <div class="card">
+    <div class="card" data-anchor="noise">
       <div class="section" style="margin-top:0"><h3>Noise you make (audible radius)</h3></div>
       <div class="noise-list">${D.noise.map(nrow).join("")}</div>
       <p class="gnote">Crouch-moving emits <b>no</b> noise event at all. Sprinting is ~3× louder than walking; a single gunshot is heard 75–100 m away.</p>
     </div>
 
-    <div class="card">
+    <div class="card" data-anchor="timing">
       <div class="section" style="margin-top:0"><h3>Timing &amp; memory</h3></div>
       <div class="statgrid">
         <div class="stat"><div class="k">Confirm a target</div><div class="v">${esc(gm.identifyTime)}</div></div>
@@ -746,7 +774,7 @@ async function renderDetection() {
       <div class="callout"><b>Squad transference.</b> ${esc(D.transference.desc)}</div>
     </div>
 
-    ${D.targetPriority ? `<div class="card" id="det-priority">
+    ${D.targetPriority ? `<div class="card" id="det-priority" data-anchor="priority">
       <div class="section" style="margin-top:0"><h3>How enemies choose a target <span class="badge gold">datamined</span></h3></div>
       <p class="gnote">${esc(D.targetPriority.intro)}</p>
       <div class="gtable-wrap"><table class="gtable">
@@ -789,7 +817,7 @@ function bossGrabVal(g) {
 }
 
 function bossCard(b) {
-  let h = `<div class="card boss" id="boss-${esc(b.id)}">
+  let h = `<div class="card boss" id="boss-${esc(b.id)}" data-anchor="${esc(b.id)}">
     <div class="dhead"><h2>${esc(b.name)}</h2>
       <span class="badge gold">${esc(b.faction)}</span>
       <span class="badge olive">${esc(b.type)}</span>
@@ -879,7 +907,7 @@ function facActionCard(a) {
     (groups[key] = groups[key] || { faction: e.faction, pct: e.pct, maps: [] }).maps.push(e.map);
   });
   const gArr = Object.values(groups).sort((x, y) => y.pct - x.pct);
-  let h = `<div class="fac-action"><div class="fac-action-head">
+  let h = `<div class="fac-action" data-anchor="action-${esc(slugify(a.id || a.name))}"><div class="fac-action-head">
       <span class="fac-action-name">${esc(a.name)}</span>
       <span class="badge">${esc(a.where)}</span>
       ${a.durationHours ? `<span class="badge gold">${a.durationHours} h</span>` : ""}</div>`;
@@ -902,19 +930,19 @@ function drawFactions() {
     <div class="callout" style="border-left-color:var(--olive)"><b>Two different faction systems.</b> <b>Map control</b> (below) is a shared, server-wide tug-of-war over each map, shifted by sabotage and lasting hours. <b>Standing</b> (bottom) is your <em>personal</em> reputation with each army &mdash; how hostile they are to <em>you</em>.</div>
     <div class="fac-legend">${D.factions.map((f) => `<span class="fac-key"><span class="fac-dot" style="background:${FCOLOR[f.name] || "var(--dim)"}"></span>${esc(f.name)}</span>`).join("")}</div>`;
 
-  html += `<div class="card"><div class="section" style="margin-top:0"><h3>Who controls each map <span class="c">starting split</span></h3></div>`;
+  html += `<div class="card" data-anchor="control"><div class="section" style="margin-top:0"><h3>Who controls each map <span class="c">starting split</span></h3></div>`;
   const maps = D.maps.filter((m) => match(m.name));
   if (!maps.length) html += `<p class="empty">No maps match &ldquo;${esc(state.q)}&rdquo;.</p>`;
-  else maps.forEach((m) => { html += `<div class="fac-map"><div class="fac-map-name">${esc(m.name)}</div>${facBar(m.control)}</div>`; });
+  else maps.forEach((m) => { html += `<div class="fac-map" data-anchor="map-${esc(slugify(m.id || m.name))}"><div class="fac-map-name">${esc(m.name)}</div>${facBar(m.control)}</div>`; });
   html += `<p class="gnote">Each army starts with a share of every surface map; whoever holds more fields more units there. These are the <b>default</b> weights &mdash; live control drifts as the war (and players) push it. Hubs (${(D.hubs || []).map((h) => esc(h.name)).join(", ")}) are Scavenger-held.</p></div>`;
 
-  html += `<div class="card"><div class="section" style="margin-top:0"><h3>The sabotage playbook <span class="c">shift the war yourself</span></h3></div>
+  html += `<div class="card" data-anchor="sabotage"><div class="section" style="margin-top:0"><h3>The sabotage playbook <span class="c">shift the war yourself</span></h3></div>
     <p class="gnote">Each is a droppable objective on its map. Pull it off and it ripples to <em>other</em> maps &mdash; server-wide, for the listed real-world hours &mdash; changing who you'll face there.</p>`;
   D.actions.filter((a) => match(a.name) || match(a.where) || (a.desc && match(a.desc))).forEach((a) => { html += facActionCard(a); });
   html += `</div>`;
 
   const rep = D.reputation;
-  html += `<div class="card"><div class="section" style="margin-top:0"><h3>Faction standing <span class="c">your personal rep</span></h3></div>
+  html += `<div class="card" data-anchor="standing"><div class="section" style="margin-top:0"><h3>Faction standing <span class="c">your personal rep</span></h3></div>
     <p class="gnote">${esc(rep.note)}</p>
     <div class="gtable-wrap"><table class="gtable"><thead><tr><th>Damage dealt to&hellip;</th><th class="num">Standing shift / HP</th></tr></thead>
       <tbody>${rep.perDamage.map((p) => `<tr><td>${esc(p.faction)}</td><td class="num">${p.perHp}</td></tr>`).join("")}</tbody></table></div>
@@ -965,7 +993,7 @@ function drawEconomy() {
 
   // distribution strip
   const maxC = Math.max(...D.tiers.map((t) => t.count));
-  html += `<div class="card"><div class="section" style="margin-top:0"><h3>The loot economy at a glance <span class="c">${D.count} sellable items</span></h3></div>
+  html += `<div class="card" data-anchor="overview"><div class="section" style="margin-top:0"><h3>The loot economy at a glance <span class="c">${D.count} sellable items</span></h3></div>
     <div class="eco-strip">`;
   tiersDesc.forEach((t) => {
     const w = Math.max(3, Math.round((t.count / maxC) * 100));
@@ -1020,7 +1048,7 @@ function ecoTierSections(items, tiers, catCell, dens) {
     if (!grp.length) return;
     const sum = grp.reduce((a, it) => a + it.cr, 0);
     const open = expandAll || t.key === "jackpot";
-    html += `<details class="eco-det" id="eco-tier-${t.key}"${open ? " open" : ""}>
+    html += `<details class="eco-det" id="eco-tier-${t.key}" data-anchor="tier-${t.key}"${open ? " open" : ""}>
       <summary class="eco-sum"><span class="eco-dot" style="background:${TIER_COLOR[t.key]}"></span>
         <span class="eco-sum-name">${esc(t.label)}</span>
         <span class="c">${ecoRange(t)} cr &middot; ${grp.length} item${grp.length === 1 ? "" : "s"} &middot; ${ecoCompact(sum)} cr total</span></summary>
@@ -1037,7 +1065,7 @@ function ecoDensityTable(items, catCell, dens) {
     if ((a.perVol == null) !== (b.perVol == null)) return a.perVol == null ? 1 : -1;
     return (b.perVol || 0) - (a.perVol || 0);
   });
-  return `<div class="section eco-sec"><h3>By space-efficiency <span class="c">${ranked.length} items &middot; credits per unit of bin volume</span></h3></div>
+  return `<div class="section eco-sec" data-anchor="density"><h3>By space-efficiency <span class="c">${ranked.length} items &middot; credits per unit of bin volume</span></h3></div>
     <p class="gnote">Rig space is the real constraint. When your small-item bins are nearly full, grab the <b>densest</b> loot first &mdash;
     the top of this list is the most credits per cubic unit. Destroyed weapons and Large items use dedicated bins (no small-item volume),
     so they sink to the bottom.</p>
@@ -1095,7 +1123,7 @@ function lootCard(s, items, open) {
     head = `<tr><th>Item</th><th>Rarity</th><th class="num">Pool share</th><th class="num">Value</th></tr>`;
     rows = items.map(lootRow).join("");
   }
-  return `<details class="loot-src"${open ? " open" : ""}>
+  return `<details class="loot-src" id="loot-src-${esc(s.key)}" data-anchor="${esc(s.key)}"${open ? " open" : ""}>
     <summary class="loot-sum"><span class="loot-src-name">${esc(s.label)}</span>${tierBadge}
       <span class="c">${items.length} item${items.length === 1 ? "" : "s"}</span></summary>
     <div class="gtable-wrap"><table class="gtable loot-table${s.tiered ? " loot-tiered" : ""}">
@@ -1132,7 +1160,7 @@ function drawLoot() {
     if (s.kind !== curKind) {
       curKind = s.kind;
       const n = pool.filter((x) => x.kind === s.kind).length;
-      body += `<div class="section loot-kindhead"><h3>${esc(D.kindLabel[s.kind])}${q ? "" : ` <span class="c">${n} source${n === 1 ? "" : "s"}</span>`}</h3></div>`;
+      body += `<div class="section loot-kindhead" data-anchor="kind-${esc(s.kind)}"><h3>${esc(D.kindLabel[s.kind])}${q ? "" : ` <span class="c">${n} source${n === 1 ? "" : "s"}</span>`}</h3></div>`;
     }
     body += lootCard(s, items, !!q);
   });
@@ -1143,6 +1171,138 @@ function drawLoot() {
   html += `<p class="legend">Source: <code>RandomContainerLootData</code> + <code>DT_GachaLootTable</code> + <code>BP_RareLootManager</code>, decoded from build ${D.build}.
     Pool share = the item's weight in that source's loot table; real per-raid odds also depend on how many items a source rolls. ${D.count} sources.</p></div>`;
   view.innerHTML = html;
+}
+
+/* ---------- deep-link router (hash-based; static-host & offline safe) ----------
+   URL shape:  #/<tab>[/<sub>][?q=&mode=&cat=&kind=&layers=&bg=]
+   The "#/" prefix keeps us clear of the browser's native "scroll to #id" behaviour.
+   The URL is the source of truth on load / hashchange (applyRoute); every in-app
+   navigation mirrors state back into it (writeHash). Maps owns its own sub-route. */
+const TAB_SLUG = { loot: "drops" };   // internal tab key -> pretty URL slug
+const TAB_KEY = { drops: "loot" };    // pretty URL slug -> internal tab key
+const VALID_TABS = ["weapons", "attachments", "muzzles", "ammo", "stats", "detection", "bosses", "factions", "economy", "loot", "maps"];
+const tabToSlug = (t) => TAB_SLUG[t] || t;
+const slugToTab = (s) => TAB_KEY[s] || s;
+const slugify = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+function uniqueSlug(base, taken) { let s = base || "x", i = 2; while (Object.prototype.hasOwnProperty.call(taken, s)) s = (base || "x") + "-" + i++; return s; }
+
+let routing = false; // true only while we programmatically write the hash (suppresses the echo)
+const ANCHOR_ICON = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M3.9 12a3.1 3.1 0 0 1 3.1-3.1h4v-2H7a5.1 5.1 0 1 0 0 10.2h4v-2H7A3.1 3.1 0 0 1 3.9 12Zm5.1 1h6v-2H9v2Zm8-6h-4v2h4a3.1 3.1 0 1 1 0 6.2h-4v2h4a5.1 5.1 0 0 0 0-10.2Z"/></svg>';
+
+function parseHash() {
+  let h = (location.hash || "").replace(/^#/, "").replace(/^\//, "");
+  let qs = ""; const qi = h.indexOf("?");
+  if (qi >= 0) { qs = h.slice(qi + 1); h = h.slice(0, qi); }
+  const parts = h.split("/").filter(Boolean).map((p) => { try { return decodeURIComponent(p); } catch (e) { return p; } });
+  const query = {};
+  qs.split("&").filter(Boolean).forEach((kv) => {
+    const i = kv.indexOf("="); const k = i < 0 ? kv : kv.slice(0, i); const v = i < 0 ? "" : kv.slice(i + 1);
+    try { query[decodeURIComponent(k)] = decodeURIComponent(v); } catch (e) { query[k] = v; }
+  });
+  return { tab: slugToTab(parts[0] || ""), sub: parts.slice(1).join("/"), query };
+}
+
+function writeHashRaw(hash, push) {
+  if (location.hash === hash) return;
+  routing = true;
+  try { push ? history.pushState(null, "", hash) : history.replaceState(null, "", hash); }
+  catch (e) { location.hash = hash; }
+  routing = false;
+}
+
+// Serialise the current state into the hash. `opts.sub` sets an explicit
+// sub-anchor; `opts.push` adds a history entry (used for tab / detail nav).
+function writeHash(opts) {
+  opts = opts || {};
+  const t = state.tab;
+  if (t === "maps") return; // the atlas writes its own #/maps/... route via FWMaps
+  let path = "/" + tabToSlug(t);
+  const detOpen = view.classList.contains("detail-open");
+  if (t === "weapons" && state.weapon && detOpen && idx.slugByWeapon[state.weapon]) path += "/" + idx.slugByWeapon[state.weapon];
+  else if (t === "attachments" && state.att && detOpen && idx.slugByAtt[state.att]) path += "/" + idx.slugByAtt[state.att];
+  else if (opts.sub) path += "/" + opts.sub;
+  const q = [];
+  if (state.q) q.push("q=" + encodeURIComponent(state.q));
+  if (t === "economy") { if (state.ecoMode === "density") q.push("mode=density"); if (state.ecoCat && state.ecoCat !== "all") q.push("cat=" + encodeURIComponent(state.ecoCat)); }
+  if (t === "loot" && state.lootKind && state.lootKind !== "all") q.push("kind=" + encodeURIComponent(state.lootKind));
+  writeHashRaw("#" + path + (q.length ? "?" + q.join("&") : ""), opts.push);
+}
+
+// The single reader: hash -> state -> render -> scroll. Runs on load & hashchange.
+function applyRoute() {
+  const r = parseHash();
+  const tab = VALID_TABS.includes(r.tab) ? r.tab : "weapons";
+  state.tab = tab;
+  state.q = (r.query.q || "").trim().toLowerCase();
+  if (r.query.mode) state.ecoMode = r.query.mode === "density" ? "density" : "tiers";
+  if (r.query.cat) state.ecoCat = r.query.cat;
+  if (r.query.kind) state.lootKind = r.query.kind;
+  state.weapon = null; state.att = null;
+  let sub = r.sub || "";
+  if (tab === "weapons" && sub && idx.weaponSlug[sub]) { state.weapon = idx.weaponSlug[sub]; sub = ""; }
+  else if (tab === "attachments" && sub && idx.attSlug[sub]) { state.att = idx.attSlug[sub]; sub = ""; }
+  if (tab === "economy") { if (sub === "density") state.ecoMode = "density"; else if (sub.indexOf("tier-") === 0) state.ecoMode = "tiers"; }
+  syncTabs();
+  const sb = $("#search"), clr = $("#searchClear");
+  if (sb) { sb.value = state.q; if (clr) clr.hidden = !state.q; }
+
+  if (tab === "maps") {
+    activateMaps({ map: sub || null, layers: r.query.layers ? r.query.layers.split(",").filter(Boolean) : null, bg: (r.query.bg != null && r.query.bg !== "") ? +r.query.bg : null });
+    return;
+  }
+  deactivateMaps();
+  view.classList.toggle("detail-open", !!(state.weapon || state.att));
+  // setTimeout (not rAF) so the scroll still runs if the tab is backgrounded
+  // when a deep-link lands (rAF is paused in non-visible tabs).
+  Promise.resolve(render()).then(() => { if (sub) setTimeout(() => scrollToAnchor(sub), 0); });
+}
+
+function scrollToAnchor(sub) {
+  if (!sub) return;
+  let el;
+  try { el = view.querySelector('[data-anchor="' + ((window.CSS && CSS.escape) ? CSS.escape(sub) : sub) + '"]'); } catch (e) { el = null; }
+  if (!el) return;
+  const det = el.closest("details"); if (det) det.open = true;
+  if (el.tagName === "DETAILS") el.open = true;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// After each render, inject a copy-link icon into every [data-anchor] section head.
+function decorateAnchors() {
+  view.querySelectorAll("[data-anchor]").forEach((box) => {
+    const head = box.matches("summary") ? box : box.querySelector("summary, .dhead, .ammo-head, .fac-map-name, .fac-action-head, h2, h3");
+    if (!head || head.querySelector(":scope > .anchor-link")) return;
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "anchor-link"; b.dataset.copy = box.getAttribute("data-anchor");
+    b.title = "Copy link to this section"; b.setAttribute("aria-label", "Copy link to this section");
+    b.innerHTML = ANCHOR_ICON;
+    head.appendChild(b);
+  });
+}
+
+function copySectionLink(sub) {
+  const hash = "#/" + tabToSlug(state.tab) + (sub ? "/" + sub : "");
+  const url = location.origin + location.pathname + hash;
+  copyText(url).then((ok) => { writeHashRaw(hash); toast(ok ? "Link copied" : "Copy this link: " + url); });
+}
+
+// clipboard with a legacy fallback (navigator.clipboard is undefined on http/file://)
+async function copyText(t) {
+  try { if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(t); return true; } } catch (e) {}
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = t; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.top = "-1000px"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    const ok = document.execCommand("copy"); ta.remove(); return ok;
+  } catch (e) { return false; }
+}
+
+let toastTimer = null;
+function toast(msg) {
+  let t = document.getElementById("fw-toast");
+  if (!t) { t = document.createElement("div"); t.id = "fw-toast"; document.body.appendChild(t); }
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 1900);
 }
 
 /* ---------- PWA plumbing ---------- */
@@ -1159,4 +1319,7 @@ function registerSW() {
   if ("serviceWorker" in navigator && !local) navigator.serviceWorker.register("sw.js").catch(() => {});
 }
 
-init();
+// Defer boot until maps.js has defined window.FWMaps (it loads after app.js), so a
+// cold #/maps/<id> deep-link can hand off to the atlas immediately.
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+else init();

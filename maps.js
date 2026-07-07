@@ -57,17 +57,19 @@ const LS = {
 };
 
 /* ---------------- bootstrap ---------------- */
-async function init() {
+async function init(route) {
   State.manifest = await fetch('data/maps.json').then(r => r.json());
   buildMapsPanel();
   wireUI();
   wireOfflineSave();
 
-  // pick the last map used, else the first. (No URL hash: the host owns the
-  // location — map selection persists via localStorage instead.)
+  // Map selection persists via localStorage, but an incoming deep-link
+  // (#/maps/<id>, passed in by the host router) wins over the remembered map.
+  const wanted = route && route.map && State.manifest.maps.some(m => m.id === route.map) ? route.map : null;
   const last = LS.get('lastMap');
-  const start = State.manifest.maps.some(m => m.id === last) ? last : State.manifest.maps[0].id;
-  loadMap(start);
+  const start = wanted || (State.manifest.maps.some(m => m.id === last) ? last : State.manifest.maps[0].id);
+  await loadMap(start);
+  if (route) applyRouteExtras(route);
 }
 
 function buildMapsPanel() {
@@ -109,6 +111,7 @@ async function loadMap(id) {
     $('#loading-text').textContent = 'Error: ' + err.message;
   }
   hideLoading();
+  writeRoute(); // mirror the newly-loaded map (+ its restored layers/bg) into the URL
 }
 
 function freshMap() {
@@ -217,6 +220,7 @@ function showBackground(idx) {
   const entry = State.bgLayers[idx];
   if (!entry) return;
   State.bgGroup = entry.layer.addTo(State.map);
+  State.bgIdx = idx;
   if (State.current) LS.set('bg:' + State.current, idx);
 }
 
@@ -229,7 +233,7 @@ function buildBgSwitch(backgrounds, selected = 0) {
     const id = 'bg-' + i;
     const lab = el('label');
     lab.innerHTML = `<input type="radio" name="bgsel" id="${id}" ${i === selected ? 'checked' : ''}><span>${esc(bg.name || ('View ' + (i + 1)))}</span>`;
-    lab.querySelector('input').onchange = () => showBackground(i);
+    lab.querySelector('input').onchange = () => { showBackground(i); writeRoute(); };
     box.appendChild(lab);
   });
 }
@@ -322,6 +326,7 @@ function buildLayersPanel(data, meta) {
       else State.map.removeLayer(State.groupLayers[gid]);
       row.classList.toggle('off', !cb.checked);
       saveLayerPrefs();
+      writeRoute();
     };
     list.appendChild(row);
   });
@@ -341,6 +346,7 @@ function setAllLayers(mode) {
   if (mode === 'default') LS.del('layers:' + State.current); else saveLayerPrefs();
   // resync checkboxes
   buildLayersPanel(State.data, null);
+  writeRoute();
 }
 
 /* ---------------- search ---------------- */
@@ -518,6 +524,51 @@ function wireOfflineSave() {
   };
 }
 
+/* ---------------- deep-link route bridge ----------------
+   The host app.js owns window.location; FWMaps never writes the URL directly.
+   Instead it hands the host a compact route string via hostWriter, and accepts
+   an incoming route (map + layers + bg) on boot/openRoute. */
+let hostWriter = null;
+function applyRouteExtras(route) {
+  if (!route) return;
+  if (route.bg != null && route.bg >= 0 && route.bg < State.bgLayers.length) { showBackground(route.bg); syncBgRadios(route.bg); }
+  if (route.layers && route.layers.length) applyLayerRoute(route.layers);
+}
+function syncBgRadios(idx) { const r = document.getElementById('bg-' + idx); if (r) r.checked = true; }
+function applyLayerRoute(gids) {
+  const want = new Set(gids);
+  for (const gid in State.groupLayers) {
+    const on = State.map.hasLayer(State.groupLayers[gid]);
+    if (want.has(gid) && !on) State.groupLayers[gid].addTo(State.map);
+    if (!want.has(gid) && on) State.map.removeLayer(State.groupLayers[gid]);
+  }
+  saveLayerPrefs();
+  buildLayersPanel(State.data, null);
+}
+async function openRoute(route) {
+  if (!route) return;
+  if (route.map && route.map !== State.current && State.manifest.maps.some(m => m.id === route.map)) await loadMap(route.map);
+  applyRouteExtras(route);
+  writeRoute();
+}
+// Serialise the atlas into a host route: maps/<id>[?layers=<gid,gid>][&bg=<n>].
+// layers is emitted only when it differs from the map's data defaults, so a
+// default view stays a clean #/maps/<id>.
+function currentRouteStr() {
+  if (!State.current) return 'maps';
+  let s = 'maps/' + encodeURIComponent(State.current);
+  const q = [];
+  if (State.map && State.data) {
+    const groups = State.data.groups || {};
+    const on = Object.keys(State.groupLayers).filter(g => State.map.hasLayer(State.groupLayers[g]));
+    const def = Object.keys(State.groupLayers).filter(g => { const gg = groups[g]; return !gg || gg.isDefault !== false; });
+    if (on.slice().sort().join(',') !== def.slice().sort().join(',')) q.push('layers=' + on.map(encodeURIComponent).join(','));
+  }
+  if (State.bgIdx > 0) q.push('bg=' + State.bgIdx);
+  return s + (q.length ? '?' + q.join('&') : '');
+}
+function writeRoute() { if (hostWriter) { try { hostWriter(currentRouteStr()); } catch (e) {} } }
+
 window.FW = State; // expose for debugging
 
 /* Public surface for the host (app.js). init() boots the atlas once, lazily,
@@ -526,6 +577,9 @@ window.FW = State; // expose for debugging
 window.FWMaps = {
   init,
   invalidateSize() { if (State.map) setTimeout(function () { State.map.invalidateSize(); }, 0); },
+  setRouteWriter(fn) { hostWriter = fn; }, // host hands us its URL writer
+  syncRoute() { writeRoute(); },           // push current atlas state into the URL
+  openRoute,                               // apply an incoming deep-link (already booted)
 };
 
 })();
