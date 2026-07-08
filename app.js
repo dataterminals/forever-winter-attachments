@@ -149,6 +149,14 @@ function wireChrome() {
       writeHash({ sub: "priority", push: true });
       return;
     }
+    const goDet = e.target.closest("[data-godetect]");
+    if (goDet) {
+      state.tab = "detection"; syncTabs(); deactivateMaps(); view.classList.remove("detail-open");
+      window.scrollTo({ top: 0 });
+      renderDetection().then(() => { const s = view.querySelector('[data-anchor="enemies"]'); if (s) s.scrollIntoView({ behavior: "smooth", block: "start" }); });
+      writeHash({ sub: "enemies", push: true });
+      return;
+    }
     const goHS = e.target.closest("[data-gohs]");
     if (goHS) {
       state.tab = "ammo"; syncTabs(); deactivateMaps(); view.classList.remove("detail-open");
@@ -835,9 +843,15 @@ function unitCard(b) {
   }
 
   const grab = bossGrabVal(b.grab);
-  const hp = (b.health && b.health.total) || b.hp;
+  // durability slot — every card gets one: armour sum, real HP, ∞ for the
+  // sentinel-HP bosses (defeated by mechanics/evasion, not damage), or "Heavy" for tanks.
+  let durLabel = "Health", durVal = null;
+  if (b.health && b.health.total) { durLabel = "Armour"; durVal = bNum(b.health.total); }
+  else if (b.hp) { durVal = bNum(b.hp); }
+  else if (b.hpNote === "invincible") { durVal = `<span title="~1,000,000,000 HP — no conventional health bar. These aren't dropped by raw damage; you win by mechanics (stagger-lock, destroying components, scanning for the codex) or simply evade them.">&infin;</span>`; }
+  else if (b.hpNote === "heavy") { durLabel = "Armour"; durVal = `<span class="dim" title="Exact durability isn't exposed in the AI files — tanks are heavily armoured and need anti-tank weapons.">Heavy</span>`; }
   h += `<div class="statgrid">`;
-  if (hp) h += `<div class="stat"><div class="k">${b.health ? "Armour" : "Health"}</div><div class="v">${bNum(hp)}</div></div>`;
+  if (durVal) h += `<div class="stat"><div class="k">${durLabel}</div><div class="v">${durVal}</div></div>`;
   h += `<div class="stat key"><div class="k">Stagger &middot; stun</div><div class="v">${bossStaggerVal(b.stagger)}</div></div>`;
   if (grab) h += `<div class="stat"><div class="k">Instakill grab</div><div class="v">${grab}</div></div>`;
   h += `<div class="stat"><div class="k">Kill XP</div><div class="v">${b.killXp ? bNum(b.killXp) : "&mdash;"}</div></div>`;
@@ -859,6 +873,17 @@ function unitCard(b) {
     [w.damage != null ? bNum(w.damage) + " dmg" : "", w.rps ? `${w.rps}/s` : "", w.caliber ? (CAL_LABEL[w.caliber] || w.caliber) : "", w.knockdown ? "knockdown" : ""].filter(Boolean).join(" &middot; ")]));
   if (rows.length) {
     h += `<div class="section"><h3>Attacks</h3><div class="gtable-wrap"><table class="gtable"><tbody>${rows.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join("")}</tbody></table></div></div>`;
+  }
+
+  if (b.senses) {
+    const s = b.senses, bits = [];
+    bits.push(s.visionFar ? `<b>Vision</b> ${s.visionNear}&rarr;${s.visionFar} m${s.coneH ? ` <span class="dim">${s.coneH}&deg;</span>` : ""}`
+                          : `<b>Vision</b> <span class="dim">none — blind</span>`);
+    if (s.hearing) bits.push(`<b>Hearing</b> ${s.hearing} m`);
+    if (s.esp) bits.push(`<b>ESP</b> ${esc(s.esp)}`);
+    h += `<div class="section"><h3>Senses <button class="linklike" data-godetect>full detection model &rarr;</button></h3>
+      <div class="unit-senses">${bits.join(` <span class="dim">&middot;</span> `)}</div>
+      ${s.notes ? `<p class="gnote">${mdb(s.notes)}</p>` : ""}</div>`;
   }
 
   if (b.weakpoint) h += `<div class="callout" style="border-left-color:var(--olive)"><b>Weak point.</b> ${mdb(b.weakpoint)}</div>`;

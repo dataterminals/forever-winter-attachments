@@ -181,7 +181,16 @@
     "min": 333.0,
     "max": 333.0
    },
-   "hp": 1250.0
+   "hp": 1250.0,
+   "senses": {
+    "visionNear": 14,
+    "visionFar": 80,
+    "coneH": 176,
+    "hearing": 11.5,
+    "esp": null,
+    "notes": "Sees twice as far as a soldier in a near-180° arc — stay out of sightlines. (The 'Deadly Sniper' variant shares this exact profile.)",
+    "profile": "Europa Sniper"
+   }
   },
   {
    "tier": "unit",
@@ -237,7 +246,16 @@
     "min": 333.0,
     "max": 333.0
    },
-   "hp": 1250.0
+   "hp": 1250.0,
+   "senses": {
+    "visionNear": 14,
+    "visionFar": 40,
+    "coneH": 134,
+    "hearing": 11.5,
+    "esp": "base",
+    "notes": "The baseline grunt. In-front and within 40 m is the danger zone; 14 m is near-guaranteed.",
+    "profile": "Soldier (standard)"
+   }
   },
   {
    "tier": "unit",
@@ -441,6 +459,16 @@
     "rangeM": 4.5,
     "vsPlayer": true
    },
+   "hpNote": "invincible",
+   "senses": {
+    "visionNear": 10,
+    "visionFar": 60,
+    "coneH": 176,
+    "hearing": 40,
+    "esp": "×2",
+    "notes": "Exceptional hearing (40 m) and a tall vertical cone; doubles its ESP radius. Built to hunt.",
+    "profile": "Stalker"
+   },
    "codexReward": {
     "name": "Grabber Codex",
     "xp": 62500,
@@ -536,7 +564,16 @@
     "rangeM": 6.0,
     "vsPlayer": true
    },
-   "hp": 2500.0
+   "hp": 2500.0,
+   "senses": {
+    "visionNear": 30,
+    "visionFar": 60,
+    "coneH": 90,
+    "hearing": null,
+    "esp": null,
+    "notes": "Narrow 90° cone but wide vertical arc — it looks down well.",
+    "profile": "Drone"
+   }
   },
   {
    "tier": "unit",
@@ -587,7 +624,16 @@
     "damage": 999999.0,
     "window": null
    },
-   "hp": 7000.0
+   "hp": 7000.0,
+   "senses": {
+    "visionNear": 14,
+    "visionFar": 40,
+    "coneH": 195,
+    "hearing": null,
+    "esp": "×4.5",
+    "notes": "The ordinary mounted turret — not the Scav 360° one. A wide 195° arc to 40 m at a soldier's lock speed, plus a 4.5× ESP bubble that sees through walls up close. Come at it from behind, or from well past 40 m.",
+    "profile": "Turret (emplaced)"
+   }
   },
   {
    "tier": "unit",
@@ -620,7 +666,16 @@
      "knockdown": false
     }
    ],
-   "hp": 66750.0
+   "hp": 66750.0,
+   "senses": {
+    "visionNear": 80,
+    "visionFar": 108,
+    "coneH": 90,
+    "hearing": 5.75,
+    "esp": null,
+    "notes": "Long range but very slow to lock (12–18 s) — you can cross gaps between its sweeps.",
+    "profile": "Chopper"
+   }
   },
   {
    "tier": "boss",
@@ -675,6 +730,16 @@
      "mount": "Right.Shoulder"
     }
    ],
+   "hpNote": "invincible",
+   "senses": {
+    "visionNear": 14,
+    "visionFar": 40,
+    "coneH": 176,
+    "hearing": 11.5,
+    "esp": "base",
+    "notes": "A named Eurasia elite in a near-180° arc. Only 40 m range, but she locks almost as fast at the edge as up close (1.5 s far vs a grunt's 2.75) — there's no safe lingering distance. Killing her spawns an Opal Hunter-Killer.",
+    "profile": "Opal (Eurasia elite)"
+   },
    "codexReward": {
     "name": "Opal Codex",
     "xp": 62500,
@@ -717,7 +782,17 @@
      "caliber": "545",
      "knockdown": false
     }
-   ]
+   ],
+   "hpNote": "heavy",
+   "senses": {
+    "visionNear": 10,
+    "visionFar": 108,
+    "coneH": 150,
+    "hearing": null,
+    "esp": null,
+    "notes": "Wide arc, long range, slow build.",
+    "profile": "Tank"
+   }
   },
   {
    "tier": "unit",
@@ -754,7 +829,17 @@
      "caliber": "545",
      "knockdown": false
     }
-   ]
+   ],
+   "hpNote": "heavy",
+   "senses": {
+    "visionNear": 10,
+    "visionFar": 108,
+    "coneH": 150,
+    "hearing": null,
+    "esp": null,
+    "notes": "Wide arc, long range, slow build.",
+    "profile": "Tank"
+   }
   },
   {
    "tier": "unit",
@@ -869,7 +954,16 @@
      "caliber": "545",
      "knockdown": true
     }
-   ]
+   ],
+   "senses": {
+    "visionNear": 14,
+    "visionFar": 400,
+    "coneH": 176,
+    "hearing": 15,
+    "esp": "×3",
+    "notes": "Enormous 400 m vision, but slow to build detection (4–9 s) — you have a moment before it commits.",
+    "profile": "Mech"
+   }
   },
   {
    "tier": "unit",
@@ -986,7 +1080,16 @@
      "caliber": "40mmHE",
      "knockdown": true
     }
-   ]
+   ],
+   "senses": {
+    "visionNear": 14,
+    "visionFar": 400,
+    "coneH": 176,
+    "hearing": 15,
+    "esp": "×3",
+    "notes": "Enormous 400 m vision, but slow to build detection (4–9 s) — you have a moment before it commits.",
+    "profile": "Mech"
+   }
   },
   {
    "tier": "boss",
@@ -1028,6 +1131,16 @@
     "hpAlways": true,
     "rangeM": 7.0,
     "vsPlayer": true
+   },
+   "hpNote": "invincible",
+   "senses": {
+    "visionNear": null,
+    "visionFar": null,
+    "coneH": null,
+    "hearing": 30,
+    "esp": null,
+    "notes": "Runs on hearing — a 30 m listen radius with an instant lock. Move slow and quiet; do not sprint near her. (She does carry a long, flat vision cone in the files, but it builds so slowly it never matters — the fight is entirely about noise.)",
+    "profile": "BlindMother"
    }
   },
   {
@@ -1077,6 +1190,7 @@
     "maxM": 200.0,
     "cooldown": 6.0
    },
+   "hpNote": "invincible",
    "codexReward": {
     "name": "MeatMan Codex",
     "xp": 62500,
@@ -1201,6 +1315,15 @@
      "knockdown": true
     }
    ],
+   "senses": {
+    "visionNear": 14,
+    "visionFar": 400,
+    "coneH": 176,
+    "hearing": 15,
+    "esp": "×3",
+    "notes": "Enormous 400 m vision, but slow to build detection (4–9 s) — you have a moment before it commits.",
+    "profile": "Mech"
+   },
    "codexReward": {
     "name": "MediumMech Codex",
     "xp": 62500,
@@ -1250,6 +1373,7 @@
     "rangeM": 7.0,
     "vsPlayer": true
    },
+   "hpNote": "invincible",
    "codexReward": {
     "name": "MotherCourage Codex",
     "xp": 62500,
@@ -1304,6 +1428,7 @@
     "maxM": 10.0,
     "cooldown": 10.0
    },
+   "hpNote": "invincible",
    "codexReward": {
     "name": "Orga Codex",
     "xp": 62500,
@@ -1402,6 +1527,15 @@
      "mount": "MachineGun"
     }
    ],
+   "senses": {
+    "visionNear": 14,
+    "visionFar": 400,
+    "coneH": 176,
+    "hearing": 15,
+    "esp": "×3",
+    "notes": "Enormous 400 m vision, but slow to build detection (4–9 s) — you have a moment before it commits.",
+    "profile": "Mech"
+   },
    "codexReward": {
     "name": "RatKing Codex",
     "xp": 62500,
@@ -1455,6 +1589,16 @@
     "minM": 4.0,
     "maxM": 10.0,
     "cooldown": 10.0
+   },
+   "hpNote": "invincible",
+   "senses": {
+    "visionNear": 14,
+    "visionFar": 40,
+    "coneH": 176,
+    "hearing": 11.5,
+    "esp": null,
+    "notes": "Soldier-range vision in a wide arc.",
+    "profile": "Shield Guy"
    },
    "codexReward": {
     "name": "ShieldOfficer Codex",
@@ -1558,6 +1702,15 @@
      "knockdown": false
     }
    ],
+   "senses": {
+    "visionNear": 14,
+    "visionFar": 400,
+    "coneH": 176,
+    "hearing": 15,
+    "esp": "×3",
+    "notes": "Enormous 400 m vision, but slow to build detection (4–9 s) — you have a moment before it commits.",
+    "profile": "Mech"
+   },
    "codexReward": {
     "name": "Toothy Codex",
     "xp": 62500,
