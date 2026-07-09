@@ -169,6 +169,32 @@ function wireChrome() {
     }
     const lk = e.target.closest("[data-lootkind]");
     if (lk) { state.lootKind = lk.dataset.lootkind; render(); writeHash(); return; }
+    // Drops "How drops work" panel: jump to a crate type's source card…
+    const gsrc = e.target.closest("[data-gosrc]");
+    if (gsrc) {
+      const key = gsrc.dataset.gosrc;
+      const go = () => { const d = document.getElementById("loot-src-" + key); if (d) { d.open = true; d.scrollIntoView({ behavior: "smooth", block: "start" }); } };
+      if (state.lootKind !== "all") { state.lootKind = "all"; Promise.resolve(render()).then(go); } else go();
+      writeHash({ sub: key });
+      return;
+    }
+    // …or hop to another tab (e.g. Armaments Bin -> Ammo, boss codex -> Enemies).
+    const gtab = e.target.closest("[data-gotab]");
+    if (gtab) {
+      state.tab = gtab.dataset.gotab; syncTabs(); deactivateMaps(); view.classList.remove("detail-open");
+      const sb = $("#search"), clr = $("#searchClear"); if (sb) sb.value = ""; if (clr) clr.hidden = true; state.q = "";
+      render(); window.scrollTo({ top: 0 }); writeHash({ push: true });
+      return;
+    }
+    // a container card's "How tiers work" link -> back up to the model (revealing it if a search hid it).
+    const gsm = e.target.closest("[data-gosrc-model]");
+    if (gsm) {
+      const go = () => { const p = view.querySelector('.dropmodel [data-anchor="tier-budget"]') || view.querySelector(".dropmodel"); if (p) p.scrollIntoView({ behavior: "smooth", block: "start" }); };
+      if (state.q) { state.q = ""; const sb = $("#search"), clr = $("#searchClear"); if (sb) sb.value = ""; if (clr) clr.hidden = true; Promise.resolve(render()).then(go); }
+      else go();
+      writeHash({ sub: "how-it-works" });
+      return;
+    }
     const ge = e.target.closest("[data-goeco]");
     if (ge) {
       state.tab = "economy"; state.ecoCat = "all"; syncTabs(); deactivateMaps(); view.classList.remove("detail-open");
@@ -800,7 +826,7 @@ async function renderDetection() {
 /* ---------- enemies tab ---------- */
 let ENEMYDATA = null;
 const bNum = (n) => Number(n).toLocaleString();
-const mdb = (s) => esc(s == null ? "" : String(s)).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/`([^`]+)`/g, "<code>$1</code>");
+const mdb = (s) => esc(s == null ? "" : String(s)).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/\*([^*\n]+?)\*/g, "<i>$1</i>").replace(/`([^`]+)`/g, "<code>$1</code>");
 const CAL_LABEL = { "545": "5.45mm", "556": "5.56mm", "762": "7.62mm", "919": "9mm", "308": ".308", "40m": "40mm", "12G": "12ga" };
 
 async function renderEnemies() {
@@ -1155,6 +1181,7 @@ function ecoDensityTable(items, catCell, dens) {
 
 /* ---------- drops / loot-source tab ---------- */
 let LOOT = null;
+let DROPMODEL = null;
 const RAR_COLOR = { 5: "var(--muted)", 4: "var(--blue)", 3: "var(--olive)", 2: "var(--gold)", 1: "var(--rust)" };
 
 async function renderLoot() {
@@ -1165,7 +1192,76 @@ async function renderLoot() {
     catch (e) { view.innerHTML = `<p class="empty">Could not load loot data.<br><small>${esc(e.message)}</small></p>`; return; }
     LOOT.kindLabel = {}; LOOT.kinds.forEach((k) => (LOOT.kindLabel[k.key] = k.label));
   }
+  if (!DROPMODEL) {
+    // the "How drops work" panel is a nicety — if it can't load, the source index still renders.
+    try { DROPMODEL = await (await fetch("data/drops-model.json", { cache: "no-cache" })).json(); }
+    catch (e) { DROPMODEL = { _err: true }; }
+  }
   drawLoot();
+}
+
+// Context-first "How drops work" panel (Drops tab): the placement/tier/contents model,
+// the crate-type taxonomy, quest spawn rates and the other drop sources. Curated from
+// data/drops-model.json (regen: forever-winter-datamine/tools/parse_crate_types.py).
+function dropModelPanel() {
+  const D = DROPMODEL;
+  if (!D || D._err) return "";
+  const b = D.tierBudget || {};
+  const kcr = (n) => (n >= 1000 ? n / 1000 + "k" : String(n));
+
+  const layers = (D.model || []).map((m, i) => `
+    <div class="dm-layer">
+      <div class="dm-num">${i + 1}</div>
+      <div class="dm-layer-body"><h4>${esc(m.title)}</h4>
+        <p class="dm-lead">${mdb(m.lead)}</p>
+        <p class="dm-detail">${mdb(m.body)}</p></div>
+    </div>`).join("");
+
+  const tiers = ["T1", "T2", "T3", "T4"].filter((t) => b[t] != null);
+  const budgetStrip = `<div class="dm-budget" data-anchor="tier-budget">
+    <span class="dm-budget-label">Tier&nbsp;=&nbsp;credit budget</span>
+    <span class="dm-budget-scale">${tiers.map((t) => `<span class="dm-b"><b>${t}</b> ${kcr(b[t])}</span>`).join('<span class="dm-arrow">&rarr;</span>')}</span>
+  </div>`;
+
+  const typeRow = (c) => {
+    const name = c.file === "gear"
+      ? `<button class="dm-type" data-gotab="${esc(c.tab)}">${esc(c.type)}</button> <span class="dm-gear">${esc(c.tab)} tab</span>`
+      : `<button class="dm-type" data-gosrc="${esc(c.source)}">${esc(c.type)}</button>`;
+    return `<tr><td>${name}</td><td class="num">${c.cap}</td><td class="num">${c.pool}</td>
+      <td class="dm-inside">${mdb(c.inside)}</td></tr>`;
+  };
+  const typeTable = `<details class="loot-src dm-det" data-anchor="crate-types" open>
+    <summary class="loot-sum"><span class="loot-src-name">Crate types &mdash; what each is &amp; holds</span>
+      <span class="c">${(D.crateTypes || []).length} types</span></summary>
+    <div class="gtable-wrap"><table class="gtable dm-type-table">
+      <thead><tr><th>Type</th><th class="num">Cap</th><th class="num">Pool</th><th>What&rsquo;s inside</th></tr></thead>
+      <tbody>${(D.crateTypes || []).map(typeRow).join("")}</tbody></table></div>
+    <p class="gnote">Every tier of a type shares one pool; the tier only sets the budget it fills toward. <b>Cap</b> = most items it can hold &middot; <b>Pool</b> = distinct items it can draw.</p></details>`;
+
+  const pctVar = (c) => (c >= 1 ? "--olive" : c >= 0.6 ? "--gold" : "--rust");
+  const spawnRow = (q) => `<tr><td>${esc(q.spawner)}</td>
+    <td class="num"><b class="dm-pct" style="color:var(${pctVar(q.chance)})">${Math.round(q.chance * 100)}%</b></td>
+    <td class="dm-inside">${esc(q.note || "")}</td></tr>`;
+  const spawnTable = `<details class="loot-src dm-det" data-anchor="spawn-rates">
+    <summary class="loot-sum"><span class="loot-src-name">Quest-crate spawn rates</span>
+      <span class="c">the only real spawn roll</span></summary>
+    <p class="gnote dm-gnote">${mdb(D.questSpawnNote || "")}</p>
+    <div class="gtable-wrap"><table class="gtable">
+      <thead><tr><th>Spawner</th><th class="num">Chance</th><th>Notes</th></tr></thead>
+      <tbody>${(D.questSpawn || []).map(spawnRow).join("")}</tbody></table></div></details>`;
+
+  const specialList = `<details class="loot-src dm-det" data-anchor="other-drops">
+    <summary class="loot-sum"><span class="loot-src-name">Other drop sources</span>
+      <span class="c">${(D.special || []).length}</span></summary>
+    <div class="dm-special">${(D.special || []).map((s) =>
+      `<div class="dm-sp"><b>${esc(s.name)}.</b> ${mdb(s.body)}${s.goto ? ` <button class="dm-type" data-gotab="${esc(s.goto)}">${esc(s.goto)} tab &rarr;</button>` : ""}</div>`).join("")}</div></details>`;
+
+  return `<section class="dropmodel" data-anchor="how-it-works">
+    <div class="section dm-head"><h3>How drops work</h3></div>
+    <p class="dm-tldr">${mdb(D.tldr || "")}</p>
+    <div class="dm-layers">${layers}</div>
+    ${budgetStrip}${typeTable}${spawnTable}${specialList}
+  </section>`;
 }
 
 const lootVal = (it) => (it.cr != null ? `<span class="gold">${ecoCr(it.cr)}</span>` : `<span class="dim">&mdash;</span>`);
@@ -1191,6 +1287,13 @@ function lootRowTiered(it, tiers) {
     <td class="num">${lootVal(it)}</td></tr>`;
 }
 
+// If this source is one of the datamined crate types, pull its budget/cap from the
+// drops-model so the "tier = credit budget" mechanic shows right where you read contents.
+function crateTypeFor(key) {
+  return DROPMODEL && !DROPMODEL._err && (DROPMODEL.crateTypes || []).find((c) => c.source === key);
+}
+const fmtK = (n) => (n >= 1000 ? n / 1000 + "k" : String(n));
+
 function lootCard(s, items, open) {
   const tierBadge = s.tiers && s.tiers.length ? ` <span class="badge">${s.tiers.join(" · ")}</span>` : "";
   let head, rows;
@@ -1201,20 +1304,23 @@ function lootCard(s, items, open) {
     head = `<tr><th>Item</th><th>Rarity</th><th class="num">Pool share</th><th class="num">Value</th></tr>`;
     rows = items.map(lootRow).join("");
   }
+  const ct = crateTypeFor(s.key), tb = DROPMODEL && DROPMODEL.tierBudget;
+  const budgetNote = ct && tb ? `<p class="gnote loot-budgetnote">Fills toward a credit budget &mdash; <b>T1 ${fmtK(tb.T1)} &rarr; T4 ${fmtK(tb.T4)}</b> &mdash; and holds at most <b>${ct.cap} items</b> per open. <button class="linklike" data-gosrc-model>How tiers work &rarr;</button></p>` : "";
   return `<details class="loot-src" id="loot-src-${esc(s.key)}" data-anchor="${esc(s.key)}"${open ? " open" : ""}>
     <summary class="loot-sum"><span class="loot-src-name">${esc(s.label)}</span>${tierBadge}
       <span class="c">${items.length} item${items.length === 1 ? "" : "s"}</span></summary>
-    <div class="gtable-wrap"><table class="gtable loot-table${s.tiered ? " loot-tiered" : ""}">
+    ${budgetNote}<div class="gtable-wrap"><table class="gtable loot-table${s.tiered ? " loot-tiered" : ""}">
       <thead>${head}</thead><tbody>${rows}</tbody></table></div></details>`;
 }
 
 function drawLoot() {
   const D = LOOT;
   const q = state.q;
-  let html = `<div class="guide">
-    <div class="callout" style="margin-top:16px"><b>Where loot comes from.</b> Pick a source &mdash; a crate type, a wrecked mech, an enemy, a boss codex &mdash; to see everything it can yield, ranked by how common it is. Datamined straight from the game's drop tables.</div>
-    <div class="callout" style="border-left-color:var(--olive)"><b>Reading rarity:</b> an item's <b>pool share</b> is its weight within that one source's loot roll &mdash; relative scarcity when you crack it, <em>not</em> a per-raid probability. Crates show a dot <b>per tier</b> (T1&rarr;T4) &mdash; colour = how common that tier makes it, a hollow dot means it <em>can't</em> spawn in that tier. Search an item name to see <b>every</b> source that drops it.</div>
-    <div class="callout" style="border-left-color:var(--rust)"><b>&ldquo;Rare&rdquo; means unlikely, not valuable.</b> Rarity is measured <b>per table</b> &mdash; it's the odds of pulling that item from <em>this</em> source, nothing about its worth. Cheap junk like <b>Drywall</b> shows as <b>Ultra Rare</b> in the rare-loot pool just because it's a <em>bad roll</em> there (one of the least likely things to fall out) &mdash; not a prized find. The same item can read Common in one source and Ultra Rare in another, so always read a rarity together with the source it's under.</div>
+  let html = `<div class="guide">`;
+  // The "How drops work" model leads the tab; hidden during a search so results stay focused.
+  if (!q) html += dropModelPanel() +
+    `<div class="section dm-sources-head" data-anchor="sources"><h3>Loot sources <span class="c">what drops from where, ranked by how common</span></h3></div>`;
+  html += `<p class="gnote">Rarity is <b>per pool</b>: cheap filler like Drywall can read <span style="color:var(--rust)">Ultra&nbsp;Rare</span> just because it's an unlikely pull &mdash; not because it's a prize. Search an item to see <b>every</b> source that drops it.</p>
     <div class="loot-legend"><span class="c">Rarity</span>${[5, 4, 3, 2, 1].map((r) => `<span class="loot-key"><span class="loot-dot" style="--rc:${RAR_COLOR[r]}"></span>${esc(D.rarityLabels[r])}</span>`).join("")}<span class="loot-key"><span class="loot-tdot gap"></span>not in tier</span></div>`;
 
   // kind filter chips

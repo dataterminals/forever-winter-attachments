@@ -348,6 +348,44 @@ a { color: var(--gold); }
 .loot-legend .c { color: var(--dim); text-transform: uppercase; letter-spacing: .5px; font-size: 10px; }
 .loot-key { display: inline-flex; align-items: center; gap: 5px; }
 
+/* ---- Drops: "How drops work" model panel ---- */
+.dropmodel { margin-top: 14px; scroll-margin-top: 88px; }
+.dm-head { margin-top: 0; }
+.dm-tldr { font-size: 14.5px; color: var(--text); line-height: 1.55; margin: 10px 0 0 !important;
+  background: var(--panel); border: 1px solid var(--line2); border-radius: 8px; padding: 11px 14px; }
+.dm-tldr b { color: var(--gold); }
+.dm-layers { display: grid; gap: 10px; margin: 12px 0 14px; }
+.dm-layer { display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: start;
+  background: var(--bg2); border: 1px solid var(--line); border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0; padding: 12px 14px; }
+.dm-num { font-size: 26px; font-weight: 800; color: var(--gold); opacity: .45; line-height: 1;
+  font-variant-numeric: tabular-nums; }
+.dm-layer-body h4 { margin: 0 0 4px; font-size: 14.5px; color: var(--text); letter-spacing: .2px; }
+.dropmodel .dm-lead { font-size: 14px; color: var(--text); line-height: 1.55; margin: 0 0 6px; }
+.dropmodel .dm-detail { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0; }
+.dm-budget { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 4px 0 16px;
+  padding: 10px 14px; background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; scroll-margin-top: 88px; }
+.dm-budget-label { font-size: 11px; text-transform: uppercase; letter-spacing: .6px; color: var(--dim); font-weight: 700; }
+.dm-budget-scale { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.dm-b { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.dm-b b { color: var(--gold); margin-right: 3px; }
+.dm-arrow { color: var(--dim); }
+.dm-det { scroll-margin-top: 88px; }
+.dm-type { background: none; border: 0; padding: 0; color: var(--gold); cursor: pointer; font: inherit;
+  font-size: 13px; font-weight: 600; text-align: left; }
+.dm-type:hover { text-decoration: underline; }
+.dm-gear { font-size: 10px; text-transform: uppercase; letter-spacing: .4px; color: var(--dim);
+  border: 1px solid var(--line2); border-radius: 4px; padding: 1px 5px; margin-left: 5px; white-space: nowrap; }
+.dm-type-table td:first-child { white-space: normal; font-weight: 400; }
+.dm-inside { color: var(--muted); font-size: 12.5px; line-height: 1.5; font-weight: 400 !important; white-space: normal; }
+.dm-pct { font-variant-numeric: tabular-nums; }
+.dm-special { display: grid; gap: 10px; padding: 6px 2px 2px; }
+.dm-sp { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.dm-sp b { color: var(--text); font-weight: 600; }
+.dm-sources-head { margin-top: 24px !important; padding-top: 16px; border-top: 1px solid var(--line2); scroll-margin-top: 88px; }
+.loot-budgetnote { margin: 4px 0 8px !important; padding: 7px 11px; background: var(--bg2); border: 1px solid var(--line); border-radius: 6px; }
+.loot-budgetnote b { color: var(--gold); }
+
 /* ---- enemies tab ---- */
 .guide .card.boss { margin-top: 14px; }
 .badge.boss-threat { cursor: pointer; font-family: inherit; color: var(--muted); }

@@ -123,6 +123,8 @@ data/weapons.json                   per-weapon stats (wiki, cross-checked vs dat
 data/parts.json                     structural parts per weapon, by slot + unlock level (wiki)
 data/ammo.json                      every ammo type: headshot ×, value/XP, weight/volume (datamined from game files)
 data/economy.json                   raiding-loot value tiers, density + spawn-location (datamined from game files)
+data/loot.json                      source-first drop index — what each crate/enemy/wreck yields (datamined)
+data/drops-model.json               how drops work: crate placement, tier = credit budget, quest spawn rates (datamined + curated)
 data/detection.json                 datamined FWAI awareness model
 data/maps.json                      map index; data/<map>.json are the per-map sources
 assets/img/*                        bundled map tiles, marker icons, popup photos
