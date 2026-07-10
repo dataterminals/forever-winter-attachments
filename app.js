@@ -15,8 +15,18 @@ let DATA = null;
 let WEAPONS = null; // per-weapon stats from data/weapons.json, keyed by lowercased name
 let PARTS = null;   // structural parts from data/parts.json (byWeapon -> slot -> [parts])
 let AMMO = null; // full ammunition catalogue from data/ammo.json (also feeds weapon-card headshots)
-const state = { tab: "weapons", weapon: null, att: null, q: "", layout: "split", ecoMode: "tiers", ecoCat: "all", lootKind: "all", enemyCat: "all" };
+let CRAFT = null; // active crafting recipes (data/crafting.json), lazy-loaded on first Crafting visit
+let REBAL = null; // the mod overlay (data/rebalance.json) — Heavy Rifles Rebalance deltas + new content
+// Vanilla + rebalance variants of each dataset. The active globals above point at
+// one set; setDataset() re-points them. Built once in init()/on first Crafting visit.
+let DATA_V = null, DATA_RB = null, WEAPONS_V = null, WEAPONS_RB = null,
+    PARTS_V = null, PARTS_RB = null, AMMO_V = null, AMMO_RB = null, CRAFT_V = null, CRAFT_RB = null;
+// membership sets (weapon internal ids / ammo keys the mod changes, ids of brand-new
+// attachments/parts it adds) — drive the "changed" / "new" badges
+const rbAffected = { weapons: new Set(), ammo: new Set(), attAdded: new Set(), partsAdded: new Set() };
+const state = { tab: "weapons", weapon: null, att: null, q: "", layout: "split", dataset: "vanilla", ecoMode: "tiers", ecoCat: "all", lootKind: "all", enemyCat: "all" };
 const idx = { attById: {}, weaponByName: {}, weaponSubtype: {}, subtypes: {} };
+const clone = (o) => (o == null ? o : JSON.parse(JSON.stringify(o)));
 
 // per-weapon stat card rows (accuracy & magazine first — the two that visibly matter)
 const WSTAT_ROWS = [
@@ -64,10 +74,15 @@ async function init() {
     AMMO.byKey = {};
     AMMO.ammo.forEach((a) => (AMMO.byKey[a.key] = a));
   } catch (e) { AMMO = null; }
+  // the mod overlay (optional — the app works fine without it)
+  try { REBAL = await (await fetch("data/rebalance.json", { cache: "no-cache" })).json(); } catch (e) { REBAL = null; }
+  DATA_V = DATA; WEAPONS_V = WEAPONS; PARTS_V = PARTS; AMMO_V = AMMO;
+  buildVariants();
   try { const s = localStorage.getItem("fw:wlayout"); if (["list", "grid", "split"].includes(s)) state.layout = s; } catch (e) {}
   try { const m = localStorage.getItem("fw:ecomode"); if (["tiers", "density"].includes(m)) state.ecoMode = m; } catch (e) {}
+  try { const d = localStorage.getItem("fw:dataset"); if (["vanilla", "rebalance"].includes(d)) state.dataset = d; } catch (e) {}
   applyLayout();
-  buildIndex();
+  applyDataset(); // points the active globals at the chosen dataset and (re)builds the index
   wireChrome();
   // Back/forward, edited URLs, and clicked deep-links all route through applyRoute.
   window.addEventListener("hashchange", () => { if (!routing) applyRoute(); });
@@ -95,6 +110,120 @@ function buildIndex() {
   });
   $("#stats").textContent = `${DATA.weapons.length} weapons · ${DATA.attachments.length} attachments`;
 }
+
+/* ---------- dataset toggle (Vanilla <-> a mod overlay, e.g. Heavy Rifles Rebalance) ----------
+   Every dataset is a bare module global (DATA/WEAPONS/PARTS/AMMO/CRAFT). We build a
+   "_RB" variant of each by cloning the vanilla data and layering REBAL's deltas + new
+   content on top, then setDataset() just re-points the active globals and re-renders. */
+function buildVariants() {
+  // default the variants to vanilla so the app is unaffected when no overlay is present
+  DATA_RB = DATA_V; WEAPONS_RB = WEAPONS_V; PARTS_RB = PARTS_V; AMMO_RB = AMMO_V;
+  rbAffected.weapons = new Set(); rbAffected.ammo = new Set(); rbAffected.attAdded = new Set(); rbAffected.partsAdded = new Set();
+  if (!REBAL) return;
+  const R = REBAL;
+
+  // weapons: clone the lowercased-name map, apply byInternal overrides (joined on .internal)
+  if (WEAPONS_V) {
+    WEAPONS_RB = {};
+    for (const lc in WEAPONS_V) WEAPONS_RB[lc] = Object.assign({}, WEAPONS_V[lc]);
+    const byInt = (R.weapons && R.weapons.byInternal) || {};
+    for (const lc in WEAPONS_RB) {
+      const w = WEAPONS_RB[lc], d = w.internal && byInt[w.internal];
+      if (d) { Object.assign(w, d); rbAffected.weapons.add(w.internal); }
+    }
+  }
+
+  // ammo: clone, apply per-key headshot overrides, rebuild byKey
+  if (AMMO_V) {
+    AMMO_RB = clone(AMMO_V);
+    const byKey = (R.ammo && R.ammo.byKey) || {};
+    AMMO_RB.byKey = {};
+    AMMO_RB.ammo.forEach((a) => {
+      if (byKey[a.key]) { Object.assign(a, byKey[a.key]); rbAffected.ammo.add(a.key); }
+      AMMO_RB.byKey[a.key] = a;
+    });
+  }
+
+  // parts: clone, merge effect overrides + append new parts into byWeapon, rebuild byWeaponLC
+  if (PARTS_V) {
+    PARTS_RB = clone(PARTS_V);
+    const bw = PARTS_RB.byWeapon || (PARTS_RB.byWeapon = {});
+    ((R.parts && R.parts.override) || []).forEach((o) => {
+      const arr = bw[o.weapon] && bw[o.weapon][o.slot];
+      const p = arr && arr.find((x) => x.name === o.name);
+      if (p) p.effects = Object.assign({}, p.effects || {}, o.effects);
+    });
+    ((R.parts && R.parts.add) || []).forEach((o) => {
+      const slots = bw[o.weapon] || (bw[o.weapon] = {});
+      const arr = slots[o.slot] || (slots[o.slot] = []);
+      if (!arr.some((x) => x.name === o.name)) arr.push({ name: o.name, short: o.short, level: o.level, effects: o.effects, buy: o.buy, mod: true });
+      rbAffected.partsAdded.add(o.weapon.toLowerCase() + "|" + o.slot + "|" + o.name);
+      if (PARTS_RB.slotOrder && !PARTS_RB.slotOrder.includes(o.slot)) PARTS_RB.slotOrder.push(o.slot);
+    });
+    PARTS_RB.byWeaponLC = {};
+    for (const nm in bw) PARTS_RB.byWeaponLC[nm.toLowerCase()] = bw[nm];
+  }
+
+  // attachments: clone, append new attachments, and thread them into each compatible
+  // weapon's byCategory (+total) so the weapon-detail card lists them too
+  if (DATA_V) {
+    DATA_RB = clone(DATA_V);
+    const wByName = {}; DATA_RB.weapons.forEach((w) => (wByName[w.name] = w));
+    ((R.attachments && R.attachments.add) || []).forEach((a) => {
+      if (!DATA_RB.attachments.some((x) => x.id === a.id)) DATA_RB.attachments.push(a);
+      rbAffected.attAdded.add(a.id);
+      (a.compatible || []).forEach((wn) => {
+        const w = wByName[wn]; if (!w) return;
+        w.byCategory = w.byCategory || {};
+        const cat = (w.byCategory[a.category] = w.byCategory[a.category] || []);
+        if (!cat.includes(a.name)) { cat.push(a.name); w.total = (w.total || 0) + 1; }
+      });
+    });
+  }
+}
+
+// crafting is lazy (loaded on first Crafting visit); build its overlay then
+function buildCraftRB() {
+  CRAFT_RB = clone(CRAFT_V);
+  const add = REBAL && REBAL.crafting && REBAL.crafting.addGroups;
+  if (add) add.forEach((g) => CRAFT_RB.groups.push(Object.assign({}, g, { mod: true })));
+}
+
+function applyDataset() {
+  const rb = state.dataset === "rebalance";
+  DATA = rb ? DATA_RB : DATA_V;
+  WEAPONS = rb ? WEAPONS_RB : WEAPONS_V;
+  PARTS = rb ? PARTS_RB : PARTS_V;
+  AMMO = rb ? AMMO_RB : AMMO_V;
+  if (CRAFT_V) CRAFT = rb ? (CRAFT_RB || CRAFT_V) : CRAFT_V;
+  document.body.classList.toggle("ds-rebalance", rb);
+  buildIndex(); // idx (attachments, weapon-by-name, slugs, subtypes) is derived from the active DATA
+}
+
+function setDataset(mode) {
+  if (!["vanilla", "rebalance"].includes(mode) || mode === state.dataset) return;
+  state.dataset = mode;
+  try { localStorage.setItem("fw:dataset", mode); } catch (e) {}
+  applyDataset();
+  render();
+}
+
+// the per-page Vanilla | <mod> control (rendered inside affected pages)
+function datasetBar() {
+  if (!REBAL) return "";
+  const m = REBAL.meta || {}, rb = state.dataset === "rebalance";
+  const note = rb
+    ? `Showing <b>${esc(m.name || "mod")}</b> values${m.nexusUrl ? ` &middot; <a href="${esc(m.nexusUrl)}" target="_blank" rel="noopener">Nexus&nbsp;#${esc(m.nexus || "")}</a>` : ""}`
+    : `Vanilla, datamined from the game. Toggle to overlay a mod.`;
+  return `<div class="ds-bar${rb ? " on" : ""}">
+    <div class="ds-modes" role="tablist" aria-label="Dataset">
+      <button data-dataset="vanilla" class="${rb ? "" : "on"}">Vanilla</button>
+      <button data-dataset="rebalance" class="${rb ? "on" : ""}">${esc(m.short || "Mod")}</button>
+    </div>
+    <span class="ds-note${rb ? "" : " ds-dim"}">${note}</span>
+  </div>`;
+}
+const dsAffectedWeapon = (name) => state.dataset === "rebalance" && WEAPONS && WEAPONS[name.toLowerCase()] && rbAffected.weapons.has(WEAPONS[name.toLowerCase()].internal);
 
 /* ---------- chrome / events ---------- */
 function wireChrome() {
@@ -127,6 +256,8 @@ function wireChrome() {
     if (gear) { e.stopPropagation(); gear.closest(".layoutpick").classList.toggle("open"); return; }
     const lay = e.target.closest("[data-layout]");
     if (lay) { setLayout(lay.dataset.layout); return; }
+    const ds = e.target.closest("[data-dataset]");
+    if (ds) { setDataset(ds.dataset.dataset); return; }
     const em = e.target.closest("[data-ecomode]");
     if (em) { setEcoMode(em.dataset.ecomode); writeHash(); return; }
     const ec = e.target.closest("[data-ecocat]");
@@ -323,6 +454,7 @@ function dispatch() {
   else if (state.tab === "enemies") return renderEnemies();
   else if (state.tab === "factions") return renderFactions();
   else if (state.tab === "economy") return renderEconomy();
+  else if (state.tab === "crafting") return renderCrafting();
   else return renderLoot();
 }
 const match = (name) => !state.q || name.toLowerCase().includes(state.q);
@@ -337,8 +469,9 @@ function renderWeapons() {
     const ws = groups[cls]; if (!ws) return;
     list += `<div class="grp">${esc(cls)}</div>`;
     ws.sort((a, b) => a.name.localeCompare(b.name)).forEach((w) => {
+      const dot = dsAffectedWeapon(w.name) ? `<span class="ds-dot" title="Changed by ${esc((REBAL.meta || {}).name || "the mod")}"></span>` : "";
       list += `<button class="row ${state.weapon === w.name ? "sel" : ""}" data-weapon="${esc(w.name)}">
-        <span class="rname">${esc(w.name)}</span>
+        <span class="rname">${esc(w.name)}${dot}</span>
         <span class="rmeta"><span class="count">${w.total}</span></span></button>`;
     });
   });
@@ -347,7 +480,7 @@ function renderWeapons() {
   const detail = state.weapon && idx.weaponByName[state.weapon]
     ? weaponDetail(idx.weaponByName[state.weapon])
     : `<div class="placeholder">Pick a weapon to see everything that fits it.</div>`;
-  view.innerHTML = layoutBar(DATA.weapons.length, "weapons") + `<div class="panes"><div class="list">${list}</div><div class="detail">${detail}</div></div>`;
+  view.innerHTML = datasetBar() + layoutBar(DATA.weapons.length, "weapons") + `<div class="panes"><div class="list">${list}</div><div class="detail">${detail}</div></div>`;
 }
 
 // map a weapon's (wiki) ammo string to an ammo.json key, then look it up in the
@@ -399,7 +532,7 @@ function weaponDetail(w) {
   let anyReq = false;
   let html = `<button class="backbtn" data-back>&larr; all weapons</button><div class="card" data-anchor="${esc(idx.slugByWeapon[w.name] || slugify(w.name))}">
     <div class="dhead"><h2>${esc(w.name)}</h2><span class="badge gold">${esc(w.class)}</span>
-      <span class="badge">${w.total} attachments</span></div>`;
+      <span class="badge">${w.total} attachments</span>${dsAffectedWeapon(w.name) ? `<span class="badge rust" title="Stats reflect ${esc((REBAL.meta || {}).name || "the mod")}">${esc((REBAL.meta || {}).badge || (REBAL.meta || {}).short || "Mod")}</span>` : ""}</div>`;
   const ws = WEAPONS && WEAPONS[w.name.toLowerCase()];
   if (ws) {
     const rows = WSTAT_ROWS.filter(([k]) => ws[k] != null).map(([k, label, fmt]) => {
@@ -425,8 +558,9 @@ function weaponDetail(w) {
         const lvl = (p.level != null) ? `<span class="lvl">L${p.level}</span>` : "";
         const cap = (p.effects && p.effects.mag != null) ? `<span class="cap">${p.effects.mag} rnd</span>` : "";
         const label = p.short || p.name;
+        const nu = p.mod ? `<span class="ds-new">new</span>` : "";
         const full = [(p.name && p.name !== label) ? p.name : "", tip].filter(Boolean).join(" — ");
-        html += `<span class="chip part"${full ? ` tabindex="0" role="note" aria-label="${esc(label + ": " + full)}"` : ""}>${esc(label)}${lvl}${cap}${full ? `<span class="tip">${esc(full)}</span>` : ""}</span>`;
+        html += `<span class="chip part${p.mod ? " mod" : ""}"${full ? ` tabindex="0" role="note" aria-label="${esc(label + ": " + full)}"` : ""}>${esc(label)}${lvl}${cap}${nu}${full ? `<span class="tip">${esc(full)}</span>` : ""}</span>`;
       });
       html += `</div>`;
     });
@@ -460,8 +594,9 @@ function renderAttachments() {
     if (!items.length) return;
     list += `<div class="grp">${esc(CATLABEL[code])}</div>`;
     items.forEach((a) => {
+      const nu = (state.dataset === "rebalance" && rbAffected.attAdded.has(a.id)) ? `<span class="ds-new">new</span>` : "";
       list += `<button class="row ${state.att === a.id ? "sel" : ""}" data-att="${esc(a.id)}">
-        <span class="rname">${esc(a.name)}</span>
+        <span class="rname">${esc(a.name)}${nu}</span>
         <span class="rmeta"><span class="count">${a.compatible.length}</span></span></button>`;
     });
   });
@@ -469,7 +604,7 @@ function renderAttachments() {
   const detail = state.att && idx.attById[state.att]
     ? attDetail(idx.attById[state.att])
     : `<div class="placeholder">Pick an attachment to see which weapons it fits.</div>`;
-  view.innerHTML = layoutBar(DATA.attachments.length, "attachments") + `<div class="panes"><div class="list list-att">${list}</div><div class="detail">${detail}</div></div>`;
+  view.innerHTML = datasetBar() + layoutBar(DATA.attachments.length, "attachments") + `<div class="panes"><div class="list list-att">${list}</div><div class="detail">${detail}</div></div>`;
 }
 
 function attDetail(a) {
@@ -671,7 +806,7 @@ function ammoCard(a, usedBy) {
     : "";
   return `<div class="ammo-card" data-anchor="${esc(a.key)}">
     <div class="ammo-head"><span class="ammo-name">${esc(a.name)}</span>
-      ${a.faction ? `<span class="badge">${esc(a.faction)}</span>` : ""}</div>
+      ${a.faction ? `<span class="badge">${esc(a.faction)}</span>` : ""}${(state.dataset === "rebalance" && rbAffected.ammo.has(a.key)) ? `<span class="badge rust" title="Changed by ${esc((REBAL.meta || {}).name || "the mod")}">${esc((REBAL.meta || {}).badge || (REBAL.meta || {}).short || "Mod")}</span>` : ""}</div>
     ${grid ? `<div class="statgrid ammo-stats">${grid}</div>` : ""}
     ${a.desc ? `<p class="ammo-desc">${esc(a.desc)}</p>` : ""}
     ${chips}
@@ -684,8 +819,8 @@ function drawAmmo() {
   const matchAmmo = (a) => match(a.name) || match(a.desc || "") || match(a.key);
   const base = D.headshotBaseline;
 
-  let html = `<div class="guide">
-    <div class="callout" style="margin-top:16px"><b>Every round in the game.</b> ${esc(D.note)}</div>`;
+  let html = `<div class="guide">` + datasetBar() +
+    `<div class="callout" style="margin-top:16px"><b>Every round in the game.</b> ${esc(D.note)}</div>`;
 
   // headshot-at-a-glance table (the datamined per-caliber multipliers, moved here
   // from Stats). It's a reference chart, so it's shown only when not searching.
@@ -713,6 +848,63 @@ function drawAmmo() {
   else html += sections;
 
   html += `<p class="legend">Method: merged from <code>ItemDetailsData</code> (names, blurbs, weight/volume), <code>ValueV2_AMMO</code> (sell value + extraction XP) and <code>DT_CaliberToHeadshotMulti</code> via CUE4Parse (build ${D.build}). Which weapons fire each round is cross-referenced live against the Weapons list; the &ldquo;used by&rdquo; chips open the weapon.</p></div>`;
+  view.innerHTML = html;
+}
+
+/* ---------- crafting / manufacturing tab ---------- */
+async function renderCrafting() {
+  view.classList.remove("detail-open");
+  if (!CRAFT_V) {
+    view.innerHTML = `<div class="placeholder" style="margin-top:16px">Loading crafting recipes&hellip;</div>`;
+    try { CRAFT_V = await (await fetch("data/crafting.json", { cache: "no-cache" })).json(); }
+    catch (e) { view.innerHTML = `<p class="empty">Could not load crafting data.<br><small>${esc(e.message)}</small></p>`; return; }
+    buildCraftRB();
+    CRAFT = state.dataset === "rebalance" ? CRAFT_RB : CRAFT_V;
+  }
+  drawCrafting();
+}
+
+function recipeCard(r) {
+  const io = (x) => `${x.qty > 1 ? `<span class="rq">${x.qty}&times;</span> ` : ""}${esc(x.name)}`;
+  const ins = (r.inputs || []).map(io).join(`<span class="rplus">+</span>`) || "&mdash;";
+  const outs = (r.outputs || []).map(io).join(`<span class="rplus">+</span>`) || "&mdash;";
+  const req = (r.required && r.required.length) ? `<span class="craft-req" title="Requires ${esc(r.required.join(", "))}">&#128274; gated</span>` : "";
+  const t = (r.time && r.time !== "Instant") ? `&#9201; ${esc(r.time)}` : "Instant";
+  return `<div class="recipe">
+    <div class="recipe-out">${outs}</div>
+    <div class="recipe-in"><span class="rlab">from</span> ${ins}</div>
+    <div class="recipe-meta"><span class="craft-time">${t}</span>${req}</div>
+  </div>`;
+}
+
+function drawCrafting() {
+  const D = CRAFT, rb = state.dataset === "rebalance", q = state.q;
+  const recMatch = (r) => !q || r.name.toLowerCase().includes(q)
+    || (r.inputs || []).some((i) => i.name.toLowerCase().includes(q))
+    || (r.outputs || []).some((o) => o.name.toLowerCase().includes(q));
+  const cats = D.categoryOrder || [];
+  const byCat = {};
+  D.groups.forEach((g) => (byCat[g.category] = byCat[g.category] || []).push(g));
+  const order = cats.map((c) => c.key).concat(Object.keys(byCat).filter((k) => !cats.some((c) => c.key === k)));
+
+  let html = `<div class="guide craft">` + datasetBar() +
+    `<div class="callout" style="margin-top:16px"><b>Manufacturing.</b> Every crafting recipe in the game, pulled straight from its data tables &mdash; what each makes, what it costs, and how long it takes.${rb ? ` Overlaid with <b>${esc((REBAL.meta || {}).name)}</b>&rsquo;s added recipes.` : ""}</div>`;
+
+  let any = false;
+  order.forEach((ck) => {
+    const gs = byCat[ck]; if (!gs) return;
+    const label = (cats.find((c) => c.key === ck) || {}).label || ck;
+    let inner = "";
+    gs.forEach((g) => {
+      const recs = (g.recipes || []).filter(recMatch);
+      if (!recs.length) return;
+      any = true;
+      inner += `<div class="craft-group" data-anchor="craft-${esc(g.key)}"><div class="section" style="margin-top:0"><h3>${esc(g.name)}${g.mod ? ` <span class="ds-badge">${esc((REBAL.meta || {}).badge || (REBAL.meta || {}).short || "Mod")}</span>` : ""} <span class="c">&times;${recs.length}</span></h3></div>${g.subtext ? `<p class="gnote">${esc(g.subtext)}</p>` : ""}<div class="craft-recipes">${recs.map(recipeCard).join("")}</div></div>`;
+    });
+    if (inner) html += `<div class="grp craft-cat">${esc(label)}</div>${inner}`;
+  });
+  if (!any) html += `<p class="empty">No recipes match &ldquo;${esc(q)}&rdquo;.</p>`;
+  html += `<p class="legend">Source: datamined <code>DT_ManufactoringRecipies</code> + <code>DT_ManufactoringGroups</code>; ingredient names resolved via <code>ItemDetailsData</code> / <code>DanglyDetailsData</code>. Craft times are the game&rsquo;s real-world timers.</p></div>`;
   view.innerHTML = html;
 }
 
@@ -1364,7 +1556,7 @@ function drawLoot() {
    navigation mirrors state back into it (writeHash). Maps owns its own sub-route. */
 const TAB_SLUG = { loot: "drops" };   // internal tab key -> pretty URL slug
 const TAB_KEY = { drops: "loot", bosses: "enemies" };  // pretty URL slug -> internal tab key (bosses = legacy alias)
-const VALID_TABS = ["weapons", "attachments", "muzzles", "ammo", "stats", "detection", "enemies", "factions", "economy", "loot", "maps"];
+const VALID_TABS = ["weapons", "attachments", "muzzles", "ammo", "crafting", "stats", "detection", "enemies", "factions", "economy", "loot", "maps"];
 const tabToSlug = (t) => TAB_SLUG[t] || t;
 const slugToTab = (s) => TAB_KEY[s] || s;
 const slugify = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");

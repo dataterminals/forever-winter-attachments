@@ -1,0 +1,503 @@
+{
+ "meta": {
+  "id": "hrr",
+  "name": "Heavy Rifles Rebalance",
+  "short": "Heavy Rifles",
+  "badge": "Rebalance",
+  "author": "Meganiikko",
+  "nexus": 123,
+  "nexusUrl": "https://www.nexusmods.com/theforeverwinter/mods/123",
+  "game": "0.9.3.9.2",
+  "note": "Community rebalance of the heavy rifles (HRF01-05) + VKS Vykhlop: big damage buffs, retuned magazines, a 5x headshot multiplier on 12.7 subsonic & 7.62x54R, new VKS magazines and scopes, and craftable optics / .50PST ammo. Overlaid on the datamined vanilla dataset."
+ },
+ "weapons": {
+  "byInternal": {
+   "HRF01": {
+    "damage": 730
+   },
+   "HRF02": {
+    "damage": 28000,
+    "magazine": 3
+   },
+   "HRF03": {
+    "damage": 2300,
+    "magazine": 10
+   },
+   "HRF04": {
+    "damage": 3800,
+    "magazine": 10
+   },
+   "HRF05": {
+    "damage": 36300,
+    "magazine": 1,
+    "weight": 23.29
+   },
+   "RFL29": {
+    "damage": 375,
+    "magazine": 14
+   }
+  }
+ },
+ "ammo": {
+  "byKey": {
+   "127": {
+    "headshot": 5.0
+   },
+   "54R": {
+    "headshot": 5.0
+   }
+  }
+ },
+ "parts": {
+  "override": [
+   {
+    "weapon": "SCAR",
+    "slot": "Barrel",
+    "name": "SCAR Barrel B",
+    "effects": {
+     "stab": 0.04675,
+     "dmg": 25
+    }
+   },
+   {
+    "weapon": "SCAR",
+    "slot": "Barrel",
+    "name": "SCAR Barrel C",
+    "effects": {
+     "stab": 0.086,
+     "dmg": 100
+    }
+   },
+   {
+    "weapon": "SCAR",
+    "slot": "Magazine",
+    "name": "SCAR Magazine C",
+    "effects": {
+     "mag": 35
+    }
+   }
+  ],
+  "add": [
+   {
+    "weapon": "VKS VYKHLOP",
+    "slot": "Magazine",
+    "name": "VKS Magazine A",
+    "short": "Mag A",
+    "level": 0,
+    "effects": {
+     "mag": 14
+    }
+   },
+   {
+    "weapon": "VKS VYKHLOP",
+    "slot": "Magazine",
+    "name": "VKS Magazine B",
+    "short": "Mag B",
+    "level": 1,
+    "effects": {
+     "mag": 19
+    }
+   }
+  ]
+ },
+ "attachments": {
+  "add": [
+   {
+    "id": "SCP:Longbomb 8x",
+    "name": "Longbomb 8x",
+    "category": "SCP",
+    "subtype": null,
+    "buy": "",
+    "level": "0",
+    "weight": "0.5",
+    "volume": "1.1",
+    "accuracy": "0.4905",
+    "stability": "0.14875",
+    "suppressed": false,
+    "compatible": [
+     "AT-43 MASS",
+     "GM6",
+     "SCAR",
+     "LMG-P",
+     "SAW",
+     "87 Target",
+     "AK",
+     "G36",
+     "M16",
+     "M4A1",
+     "R11 RSASS",
+     "RPK",
+     "SA58",
+     "SVD",
+     "VH-Ambi 2",
+     "VKS VYKHLOP",
+     "VEPR-12",
+     "APC9 Pro",
+     "Kriss Vector 45",
+     "P90",
+     "PP-19 Vityaz",
+     "PPSH-41",
+     "PnP-2K"
+    ]
+   },
+   {
+    "id": "SCP:MidnightMight 6x",
+    "name": "MidnightMight 6x",
+    "category": "SCP",
+    "subtype": null,
+    "buy": "",
+    "level": "0",
+    "weight": "0.6",
+    "volume": "1.1",
+    "accuracy": "0.4995",
+    "stability": "0.14",
+    "suppressed": false,
+    "compatible": [
+     "AT-43 MASS",
+     "GM6",
+     "SCAR",
+     "LMG-P",
+     "SAW",
+     "87 Target",
+     "AK",
+     "G36",
+     "M16",
+     "M4A1",
+     "R11 RSASS",
+     "RPK",
+     "SA58",
+     "SVD",
+     "VH-Ambi 2",
+     "VKS VYKHLOP",
+     "VEPR-12",
+     "APC9 Pro",
+     "Kriss Vector 45",
+     "P90",
+     "PP-19 Vityaz",
+     "PPSH-41",
+     "PnP-2K"
+    ]
+   }
+  ]
+ },
+ "crafting": {
+  "addGroups": [
+   {
+    "key": "HeavyAmmo",
+    "name": "Special ammo",
+    "subtext": "Craft special ammo types",
+    "details": "Create alternate ammo types",
+    "category": "ammo",
+    "categoryLabel": "Ammunition",
+    "filterTag": "Hub.Upgrade.Category.Crafting.Ammo",
+    "recipes": [
+     {
+      "key": "DA_CigarettesForCryo545",
+      "name": "Cryo 545",
+      "time": "Instant",
+      "inputs": [
+       {
+        "name": "5.45x39mm",
+        "qty": 30,
+        "tag": "Inventory.Item.Item.Ammo.545"
+       },
+       {
+        "name": "Dogboro Cigarettes",
+        "qty": 3,
+        "tag": "Inventory.Item.Tobacco01"
+       }
+      ],
+      "outputs": [
+       {
+        "name": "5.45x39mm Cryo",
+        "qty": 30,
+        "tag": "Inventory.Item.Item.Ammo.545.Cryo"
+       }
+      ],
+      "required": []
+     },
+     {
+      "key": "DA_WhiskeyForCryo545",
+      "name": "Cryo 545",
+      "time": "Instant",
+      "inputs": [
+       {
+        "name": "5.45x39mm",
+        "qty": 30,
+        "tag": "Inventory.Item.Item.Ammo.545"
+       },
+       {
+        "name": "Whiskey",
+        "qty": 1,
+        "tag": "Inventory.Item.Alcohol01"
+       }
+      ],
+      "outputs": [
+       {
+        "name": "5.45x39mm Cryo",
+        "qty": 30,
+        "tag": "Inventory.Item.Item.Ammo.545.Cryo"
+       }
+      ],
+      "required": []
+     },
+     {
+      "key": "50PST_Ammo2",
+      "name": ".50PST Ammo",
+      "time": "30s",
+      "inputs": [
+       {
+        "name": ".50 BMG",
+        "qty": 8,
+        "tag": "Inventory.Item.Item.Ammo.50cal"
+       },
+       {
+        "name": "Thermite",
+        "qty": 4,
+        "tag": "Inventory.Item.RareLoot_101_Thermite"
+       },
+       {
+        "name": "EDC Multi-tool",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_55_Multitool"
+       }
+      ],
+      "outputs": [
+       {
+        "name": ".50 PST",
+        "qty": 8,
+        "tag": "Inventory.Item.Item.Ammo.50PST"
+       }
+      ],
+      "required": [
+       "Quest.HRF05.UnlockManufacture"
+      ]
+     },
+     {
+      "key": "50PST_Ammo",
+      "name": ".50PST Ammo",
+      "time": "10m",
+      "inputs": [
+       {
+        "name": ".50 BMG",
+        "qty": 8,
+        "tag": "Inventory.Item.Item.Ammo.50cal"
+       },
+       {
+        "name": "Thermite",
+        "qty": 4,
+        "tag": "Inventory.Item.RareLoot_101_Thermite"
+       },
+       {
+        "name": "Diodegradable Multi-tool",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_51_Multitool"
+       }
+      ],
+      "outputs": [
+       {
+        "name": ".50 PST",
+        "qty": 8,
+        "tag": "Inventory.Item.Item.Ammo.50PST"
+       }
+      ],
+      "required": [
+       "Quest.HRF05.UnlockManufacture"
+      ]
+     }
+    ]
+   },
+   {
+    "key": "HeavyOptics",
+    "name": "Optics",
+    "subtext": "Craft weapon scopes and optics",
+    "details": "Manufacture weapon optics",
+    "category": "ammo",
+    "categoryLabel": "Ammunition",
+    "filterTag": "Hub.Upgrade.Category.Crafting.Ammo",
+    "recipes": [
+     {
+      "key": "Craft_PICSCP7",
+      "name": "MidnightMight 6x",
+      "time": "5s",
+      "inputs": [
+       {
+        "name": "WD40",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_69_WD40"
+       },
+       {
+        "name": "Carbon Fiber Tube",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_57_CarbonFiberTube"
+       },
+       {
+        "name": "Camera",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_120_Camera"
+       }
+      ],
+      "outputs": [
+       {
+        "name": "MidnightMight 6x",
+        "qty": 1,
+        "tag": "Inventory.Item.PICSCP7"
+       }
+      ],
+      "required": []
+     },
+     {
+      "key": "Craft_PICSCP2",
+      "name": "Vud 3x",
+      "time": "5s",
+      "inputs": [
+       {
+        "name": "Industrial Black Light",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_66_Blacklight"
+       },
+       {
+        "name": "Carbon Fiber Tube",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_57_CarbonFiberTube"
+       },
+       {
+        "name": "Camera",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_120_Camera"
+       }
+      ],
+      "outputs": [
+       {
+        "name": "Vud 3x",
+        "qty": 1,
+        "tag": "Inventory.Item.PICSCP2"
+       }
+      ],
+      "required": []
+     },
+     {
+      "key": "Craft_PICSCP3",
+      "name": "Tex HD 3x",
+      "time": "5s",
+      "inputs": [
+       {
+        "name": "WD40",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_69_WD40"
+       },
+       {
+        "name": "Carbon Fiber Tube",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_57_CarbonFiberTube"
+       },
+       {
+        "name": "Camera",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_120_Camera"
+       }
+      ],
+      "outputs": [
+       {
+        "name": "Tex HD 3x",
+        "qty": 1,
+        "tag": "Inventory.Item.PICSCP3"
+       }
+      ],
+      "required": []
+     },
+     {
+      "key": "Craft_PICSCP1",
+      "name": "TJ 3x",
+      "time": "5s",
+      "inputs": [
+       {
+        "name": "UV Light Bulb",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_63_UVLightBulb"
+       },
+       {
+        "name": "Carbon Fiber Tube",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_57_CarbonFiberTube"
+       },
+       {
+        "name": "Camera",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_120_Camera"
+       }
+      ],
+      "outputs": [
+       {
+        "name": "TJ 3x",
+        "qty": 1,
+        "tag": "Inventory.Item.PICSCP1"
+       }
+      ],
+      "required": []
+     },
+     {
+      "key": "Craft_PICSCP15",
+      "name": "TrueAimer 4x",
+      "time": "5s",
+      "inputs": [
+       {
+        "name": "Wetware Processor",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_26_AdvancedProcessor"
+       },
+       {
+        "name": "Carbon Fiber Tube",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_57_CarbonFiberTube"
+       },
+       {
+        "name": "LCD",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_24_LCD"
+       }
+      ],
+      "outputs": [
+       {
+        "name": "TrueAimer 4x",
+        "qty": 1,
+        "tag": "Inventory.Item.PICSCP15"
+       }
+      ],
+      "required": []
+     },
+     {
+      "key": "Craft_PICSCP4",
+      "name": "Longbomb 8x",
+      "time": "5s",
+      "inputs": [
+       {
+        "name": "ES Lamp",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_65_ESLamp"
+       },
+       {
+        "name": "Carbon Fiber Tube",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_57_CarbonFiberTube"
+       },
+       {
+        "name": "Camera",
+        "qty": 1,
+        "tag": "Inventory.Item.RareLoot_120_Camera"
+       }
+      ],
+      "outputs": [
+       {
+        "name": "Longbomb 8x",
+        "qty": 1,
+        "tag": "Inventory.Item.PICSCP4"
+       }
+      ],
+      "required": []
+     }
+    ]
+   }
+  ]
+ }
+}

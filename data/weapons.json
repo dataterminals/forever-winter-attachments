@@ -1,6 +1,6 @@
 {
  "source": "theforeverwinter.wiki.gg weapon infoboxes (Category:Weapons)",
- "note": "Community wiki stats, flagged WIP by the devs — see the Stats tab for what each actually does. Cross-checked against game files where available (AK/RFL01 wiki damage 150 & RoF 11.11 match the datamined values exactly).",
+ "note": "Community wiki stats, flagged WIP by the devs — see the Stats tab for what each actually does. Cross-checked against game files where available (AK/RFL01 wiki damage 150 & RoF 11.11 match the datamined values exactly). Heavy rifles (HRF01-05, RFL29) damage/magazine/weight verified against datamined DataAssets + WeaponsDetailsData 2026-07; AT-43 MASS damage corrected 20000->10000 (DA WeaponDamage).",
  "weapons": {
   "36M AntiTank": {
    "class": "Heavy Rifles",
@@ -94,7 +94,7 @@
   },
   "AT-43 MASS": {
    "class": "Heavy Rifles",
-   "damage": 20000.0,
+   "damage": 10000.0,
    "magazine": 4,
    "accuracy": 88.97,
    "stability": 0.33,

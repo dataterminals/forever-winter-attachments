@@ -6,7 +6,7 @@
      working offline afterwards.
    - The Maps tab's "Save all maps offline" button posts SAVE_ALL to warm the
      entire image cache up front. */
-const VERSION = "fw-almanac-v25";
+const VERSION = "fw-almanac-v26";
 const SHELL = VERSION + "-shell";
 const IMG = VERSION + "-img";
 
@@ -16,7 +16,7 @@ const SHELL_ASSETS = [
   "manifest.webmanifest",
   "data/attachments.json", "data/detection.json", "data/maps.json", "data/weapons.json", "data/parts.json",
   "data/economy.json", "data/enemies.json", "data/factions.json", "data/ammo.json", "data/loot.json",
-  "data/drops-model.json",
+  "data/drops-model.json", "data/crafting.json", "data/rebalance.json",
   "assets/vendor/leaflet.js", "assets/vendor/leaflet.css",
   "assets/vendor/images/marker-icon.png", "assets/vendor/images/marker-icon-2x.png",
   "assets/vendor/images/marker-shadow.png",

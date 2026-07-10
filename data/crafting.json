@@ -1,0 +1,3536 @@
+{
+ "source": "Datamined DT_ManufactoringRecipies + DT_ManufactoringGroups (The Forever Winter 0.9.3.9.2); ingredient/product names via DT_TagToRowHandle -> ItemDetailsData/DanglyDetailsData.",
+ "note": "Vanilla crafting/manufacturing recipes as decoded from the game. Craft times are real-time. Use the dataset toggle to overlay the Heavy Rifles Rebalance recipes.",
+ "categoryOrder": [
+  {
+   "key": "ammo",
+   "label": "Ammunition"
+  },
+  {
+   "key": "parts",
+   "label": "Components & Materials"
+  },
+  {
+   "key": "repairs",
+   "label": "Weapon Repairs"
+  },
+  {
+   "key": "other",
+   "label": "Other"
+  }
+ ],
+ "groups": [
+  {
+   "key": "CryoAmmo",
+   "name": "Ammo",
+   "subtext": "Craft various ammo types",
+   "details": "Manufacture homemade ammunition",
+   "category": "ammo",
+   "categoryLabel": "Ammunition",
+   "filterTag": "Hub.Upgrade.Category.Crafting.Ammo",
+   "recipes": [
+    {
+     "key": "Ammo_9mm",
+     "name": "9x19mm Ammunition",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Metal Fragments",
+       "qty": 2,
+       "tag": "Inventory.Item.MetalFragments"
+      },
+      {
+       "name": "Fertilizer",
+       "qty": 1,
+       "tag": "Inventory.Item.Poo01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "9x19mm",
+       "qty": 120,
+       "tag": "Inventory.Item.Item.Ammo.919"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_12G",
+     "name": "12-gauge Shotgun Shells",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Ball Bearings",
+       "qty": 2,
+       "tag": "Inventory.Item.BallBearings"
+      },
+      {
+       "name": "Fertilizer",
+       "qty": 1,
+       "tag": "Inventory.Item.Poo01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "12-Gauge Buckshot",
+       "qty": 30,
+       "tag": "Inventory.Item.Item.Ammo.12g"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_545",
+     "name": "5.45x39mm Ammunition",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Metal Fragments",
+       "qty": 2,
+       "tag": "Inventory.Item.MetalFragments"
+      },
+      {
+       "name": "Gunpowder",
+       "qty": 1,
+       "tag": "Inventory.Item.GunPoweder"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "5.45x39mm",
+       "qty": 90,
+       "tag": "Inventory.Item.Item.Ammo.545"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_556",
+     "name": "5.56x45mm Ammunition",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Metal Fragments",
+       "qty": 2,
+       "tag": "Inventory.Item.MetalFragments"
+      },
+      {
+       "name": "Gunpowder",
+       "qty": 1,
+       "tag": "Inventory.Item.GunPoweder"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "5.56x45mm",
+       "qty": 90,
+       "tag": "Inventory.Item.Item.Ammo.556"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_45acp",
+     "name": ".45ACP Ammunition",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Metal Fragments",
+       "qty": 2,
+       "tag": "Inventory.Item.MetalFragments"
+      },
+      {
+       "name": "Gunpowder",
+       "qty": 1,
+       "tag": "Inventory.Item.GunPoweder"
+      }
+     ],
+     "outputs": [
+      {
+       "name": ".45 ACP",
+       "qty": 90,
+       "tag": "Inventory.Item.Item.Ammo.45acp"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_57",
+     "name": "5.7x28mm Ammunition",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Metal Fragments",
+       "qty": 2,
+       "tag": "Inventory.Item.MetalFragments"
+      },
+      {
+       "name": "Gunpowder",
+       "qty": 1,
+       "tag": "Inventory.Item.GunPoweder"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "5.7x28mm",
+       "qty": 90,
+       "tag": "Inventory.Item.Item.Ammo.57x28"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_357",
+     "name": ".357 Magnum Ammunition",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Nails",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_35_Nails"
+      },
+      {
+       "name": "Gunpowder",
+       "qty": 1,
+       "tag": "Inventory.Item.GunPoweder"
+      }
+     ],
+     "outputs": [
+      {
+       "name": ".357 Magnum",
+       "qty": 60,
+       "tag": "Inventory.Item.Item.Ammo.357"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_308win",
+     "name": ".308 Ammunition",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Nails",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_35_Nails"
+      },
+      {
+       "name": "Gunpowder",
+       "qty": 1,
+       "tag": "Inventory.Item.GunPoweder"
+      }
+     ],
+     "outputs": [
+      {
+       "name": ".308",
+       "qty": 90,
+       "tag": "Inventory.Item.Item.Ammo.308"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_762",
+     "name": "7.62x39mm Ammunition",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Nails",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_35_Nails"
+      },
+      {
+       "name": "Gunpowder",
+       "qty": 2,
+       "tag": "Inventory.Item.GunPoweder"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "7.62x39mm",
+       "qty": 90,
+       "tag": "Inventory.Item.Item.Ammo.762"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_54mmR",
+     "name": "7.62x54mmR Ammunition",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Rare Metals",
+       "qty": 1,
+       "tag": "Inventory.Item.RareMetals"
+      },
+      {
+       "name": "Gunpowder",
+       "qty": 2,
+       "tag": "Inventory.Item.GunPoweder"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "7.62x54mmR",
+       "qty": 30,
+       "tag": "Inventory.Item.Item.Ammo.54R"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_12Subsonic",
+     "name": "12.7mm Subsonic Ammunition",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Rare Metals",
+       "qty": 1,
+       "tag": "Inventory.Item.RareMetals"
+      },
+      {
+       "name": "Gunpowder",
+       "qty": 2,
+       "tag": "Inventory.Item.GunPoweder"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "12.7x55mm Subsonic",
+       "qty": 30,
+       "tag": "Inventory.Item.Item.Ammo.127"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_50cal",
+     "name": ".50BMG Ammunition",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Rare Metals",
+       "qty": 2,
+       "tag": "Inventory.Item.RareMetals"
+      },
+      {
+       "name": "Gunpowder",
+       "qty": 2,
+       "tag": "Inventory.Item.GunPoweder"
+      }
+     ],
+     "outputs": [
+      {
+       "name": ".50 BMG",
+       "qty": 30,
+       "tag": "Inventory.Item.Item.Ammo.50cal"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_20mm",
+     "name": "20x105mm AT Ammunition",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": "Rare Metals",
+       "qty": 2,
+       "tag": "Inventory.Item.RareMetals"
+      },
+      {
+       "name": "Explosives",
+       "qty": 1,
+       "tag": "Inventory.Dangly.BP_Loot_Explosives_C"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "20x105mm Anti-Tank",
+       "qty": 10,
+       "tag": "Inventory.Item.Item.Ammo.20mm"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Ammo_40HE",
+     "name": "40mm Grenades",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": "Explosive Charge",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_106_PlasticExplosive"
+      },
+      {
+       "name": "Thermite",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_101_Thermite"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "40mm Grenade",
+       "qty": 6,
+       "tag": "Inventory.Item.Item.Ammo.40mmHE"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "DA_CigarettesForCryo545",
+     "name": "Cryo 545",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "5.45x39mm",
+       "qty": 30,
+       "tag": "Inventory.Item.Item.Ammo.545"
+      },
+      {
+       "name": "Dogboro Cigarettes",
+       "qty": 3,
+       "tag": "Inventory.Item.Tobacco01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "5.45x39mm Cryo",
+       "qty": 30,
+       "tag": "Inventory.Item.Item.Ammo.545.Cryo"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "DA_WhiskeyForCryo545",
+     "name": "Cryo 545",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "5.45x39mm",
+       "qty": 30,
+       "tag": "Inventory.Item.Item.Ammo.545"
+      },
+      {
+       "name": "Whiskey",
+       "qty": 1,
+       "tag": "Inventory.Item.Alcohol01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "5.45x39mm Cryo",
+       "qty": 30,
+       "tag": "Inventory.Item.Item.Ammo.545.Cryo"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "50PST_Ammo",
+     "name": ".50PST Ammo",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": ".50 BMG",
+       "qty": 8,
+       "tag": "Inventory.Item.Item.Ammo.50cal"
+      },
+      {
+       "name": "Thermite",
+       "qty": 4,
+       "tag": "Inventory.Item.RareLoot_101_Thermite"
+      },
+      {
+       "name": "Diodegradable Multi-tool",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_51_Multitool"
+      }
+     ],
+     "outputs": [
+      {
+       "name": ".50 PST",
+       "qty": 8,
+       "tag": "Inventory.Item.Item.Ammo.50PST"
+      }
+     ],
+     "required": [
+      "Quest.HRF05.UnlockManufacture"
+     ]
+    }
+   ]
+  },
+  {
+   "key": "AntiBoss",
+   "name": "Anti Boss Consumables",
+   "subtext": "Craft anti-boss consumables",
+   "details": "Produce anti-boss consumables",
+   "category": "ammo",
+   "categoryLabel": "Ammunition",
+   "filterTag": "Hub.Upgrade.Category.Crafting.Ammo",
+   "recipes": [
+    {
+     "key": "AntiBossC4",
+     "name": "Anti-Boss C4",
+     "time": "1h",
+     "inputs": [
+      {
+       "name": "Explosive Charge",
+       "qty": 6,
+       "tag": "Inventory.Item.RareLoot_106_PlasticExplosive"
+      },
+      {
+       "name": "Thermite",
+       "qty": 6,
+       "tag": "Inventory.Item.RareLoot_101_Thermite"
+      },
+      {
+       "name": "Military Circuitry",
+       "qty": 3,
+       "tag": "Inventory.Item.RareComputerBits"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Special Units DetPack",
+       "qty": 3,
+       "tag": "Inventory.Item.AntiBossC4"
+      }
+     ],
+     "required": [
+      "Quest.SideQuest.BuildBossRoom.04.AcquireConsumables"
+     ]
+    },
+    {
+     "key": "AntiBossDroneSummon",
+     "name": "Summon Boss Part Drone",
+     "time": "1h",
+     "inputs": [
+      {
+       "name": "Advanced Navigation Device",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_20_MilitaryComputer"
+      },
+      {
+       "name": "Recovery Drone",
+       "qty": 1,
+       "tag": "Inventory.Item.Drone_Recovery"
+      },
+      {
+       "name": "Military Power Cell",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_132_MCCMilitaryComputerPowerCell"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Item Extraction Beacon",
+       "qty": 1,
+       "tag": "Inventory.Item.AntiBossExtractSummon"
+      }
+     ],
+     "required": [
+      "Quest.SideQuest.BuildBossRoom.04.AcquireConsumables"
+     ]
+    }
+   ]
+  },
+  {
+   "key": "GrenadeAmmo",
+   "name": "Grenades",
+   "subtext": "Craft various grenade types",
+   "details": "Create thrown grenades",
+   "category": "ammo",
+   "categoryLabel": "Ammunition",
+   "filterTag": "Hub.Upgrade.Category.Crafting.Ammo",
+   "recipes": [
+    {
+     "key": "Grenade_Frag",
+     "name": "Frag Grenade",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": "Old Paint Can",
+       "qty": 3,
+       "tag": "Inventory.Item.CompCanister"
+      },
+      {
+       "name": "Fuse",
+       "qty": 3,
+       "tag": "Inventory.Item.Fuse"
+      },
+      {
+       "name": "Explosives",
+       "qty": 1,
+       "tag": "Inventory.Dangly.BP_Loot_Explosives_C"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Frag Grenade",
+       "qty": 3,
+       "tag": "Inventory.Item.Item.Ammo.FragGrenade"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Grenade_Cluster",
+     "name": "Cluster Grenade",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": "Frag Grenade",
+       "qty": 3,
+       "tag": "Inventory.Item.Item.Ammo.FragGrenade"
+      },
+      {
+       "name": "Military Tape",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_5_MilitaryTape"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Cluster Grenade",
+       "qty": 1,
+       "tag": "Inventory.Item.Item.Ammo.ClusterGrenade"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Grenade_Faction",
+     "name": "Scrambler Grenade",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": "Old Paint Can",
+       "qty": 3,
+       "tag": "Inventory.Item.CompCanister"
+      },
+      {
+       "name": "Fuse",
+       "qty": 3,
+       "tag": "Inventory.Item.Fuse"
+      },
+      {
+       "name": "Metal Pipe",
+       "qty": 1,
+       "tag": "Inventory.Item.MetalPipe"
+      },
+      {
+       "name": "Frequency Tap",
+       "qty": 1,
+       "tag": "Inventory.Item.TransTower_Quest_Marker"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Signal Scrambler Grenade",
+       "qty": 3,
+       "tag": "Inventory.Item.Item.Ammo.FactionGrenade"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Grenade.Noise",
+     "name": "Decoy Grenade",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": "Old Paint Can",
+       "qty": 3,
+       "tag": "Inventory.Item.CompCanister"
+      },
+      {
+       "name": "Fuse",
+       "qty": 3,
+       "tag": "Inventory.Item.Fuse"
+      },
+      {
+       "name": "Neuralink Disc Player",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_21_DVDplayer"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Decoy Grenade",
+       "qty": 3,
+       "tag": "Inventory.Item.Item.Ammo.NoiseMakerGrenade"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "HRF05",
+   "name": "At-43 Mass",
+   "subtext": "Manufacture the powerful AT-43 MASS",
+   "details": "Manufacture the rare At-43 Mass",
+   "category": "parts",
+   "categoryLabel": "Components & Materials",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponParts",
+   "recipes": [
+    {
+     "key": "HRF05",
+     "name": "Manufacture At-43 Mass",
+     "time": "30m",
+     "inputs": [
+      {
+       "name": "AT-43 Breech Assembly",
+       "qty": 1,
+       "tag": "Inventory.Item.HRF05_Manufacture_BreechAssembly"
+      },
+      {
+       "name": "Crucible",
+       "qty": 1,
+       "tag": "Inventory.Item.HRF05_Manufacture_Crucible"
+      },
+      {
+       "name": "AT-43 Feed Mechanism",
+       "qty": 1,
+       "tag": "Inventory.Item.HRF05_Manufacture_FeedMechanism"
+      },
+      {
+       "name": "Grindstone",
+       "qty": 5,
+       "tag": "Inventory.Item.HRF05_Manufacture_GrindStone"
+      },
+      {
+       "name": "Armorer's Wrench",
+       "qty": 1,
+       "tag": "Inventory.Item.HRF05_Manufacture_MaintenanceTool"
+      },
+      {
+       "name": "AT-43 Muzzle Break",
+       "qty": 1,
+       "tag": "Inventory.Item.HRF05_Manufacture_MuzzleAssembly"
+      },
+      {
+       "name": "AT-43 Spring System",
+       "qty": 1,
+       "tag": "Inventory.Item.HRF05_Manufacture_SpringSystem"
+      },
+      {
+       "name": "AT-43 Trigger Assembly",
+       "qty": 1,
+       "tag": "Inventory.Item.HRF05_Manufacture_TriggerAssembly"
+      },
+      {
+       "name": "Military Grade Lubricant",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_72_WeaponLubricant"
+      },
+      {
+       "name": "Weapon Parts",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_117_WeaponParts"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "At-43 Mass",
+       "qty": 1,
+       "tag": "Inventory.Weapon.HRF05"
+      }
+     ],
+     "required": [
+      "Quest.HRF05.UnlockManufacture"
+     ]
+    }
+   ]
+  },
+  {
+   "key": "Medical",
+   "name": "Medical",
+   "subtext": "Craft first aid items",
+   "details": "Produce medical items",
+   "category": "parts",
+   "categoryLabel": "Components & Materials",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponParts",
+   "recipes": [
+    {
+     "key": "SmallMeds",
+     "name": "Small First Aid",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Syringe",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_81_Syringe"
+      },
+      {
+       "name": "\"Beef\" Flavor Packet",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_110_Soidum"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Small First Aid Kit",
+       "qty": 2,
+       "tag": "Inventory.Item.FirstAid"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "MediumMeds",
+     "name": "Medium First Aid",
+     "time": "1s",
+     "inputs": [
+      {
+       "name": "Bandages",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_89_Bandages"
+      },
+      {
+       "name": "Assorted Medicine",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_88_MiscMedication"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Standard First Aid Kit",
+       "qty": 2,
+       "tag": "Inventory.Item.FirstAid_Med"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "LargeMeds",
+     "name": "Large First Aid",
+     "time": "5s",
+     "inputs": [
+      {
+       "name": "Medical Tools",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_84_MedicalTools"
+      },
+      {
+       "name": "Blood Packs",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_83_BloodPacs"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Advanced First Aid Kit",
+       "qty": 2,
+       "tag": "Inventory.Item.FirstAid_Large"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Adrenaline",
+     "name": "Adrenaline",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Syringe",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_81_Syringe"
+      },
+      {
+       "name": "Energy Bar",
+       "qty": 1,
+       "tag": "Inventory.Item.JunkFood04"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Adrenaline Stim",
+       "qty": 2,
+       "tag": "Inventory.Item.Stim"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "Food",
+   "name": "Provisions",
+   "subtext": "Craft food and drink items",
+   "details": "Cook and prepare improvised foodstuffs",
+   "category": "parts",
+   "categoryLabel": "Components & Materials",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponParts",
+   "recipes": [
+    {
+     "key": "Food_MRE",
+     "name": "MRE",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Boinco Candy Bar",
+       "qty": 1,
+       "tag": "Inventory.Item.JunkFood01"
+      },
+      {
+       "name": "Food Tin",
+       "qty": 1,
+       "tag": "Inventory.Item.FoodTin"
+      },
+      {
+       "name": "Pretzels",
+       "qty": 1,
+       "tag": "Inventory.Item.JunkFood03"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "MRE",
+       "qty": 1,
+       "tag": "Inventory.Item.CerealBox"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Food_FoodTin",
+     "name": "Food Tin",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Smuggled Organs",
+       "qty": 1,
+       "tag": "Inventory.Item.Plans08"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Food Tin",
+       "qty": 8,
+       "tag": "Inventory.Item.FoodTin"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Food_WaterCanteen",
+     "name": "Water Canteen",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Blood Packs",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_83_BloodPacs"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Water Canteen",
+       "qty": 2,
+       "tag": "Inventory.Item.ChocBar"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "DeployableWeaponry.CRW03",
+   "name": "Railgun Weapon",
+   "subtext": "Parts for a fixed-position Railgun.",
+   "details": "Use components to build Railgun Parts.\r\n\r\nEach Railgun Requires:\r\n\r\n1 Turret Base,\r\n1 Railgun Weapon,\r\n1 Railgun Ammo Supply.\r\n\r\nThese 3 Parts must be carried by\r\n3 different Scavs.\r\n\r\nPlace the Base 1st,\r\nAttach the Weapon 2nd,\r\nAnd then attach the Ammo 3rd.\r\n\r\nOnce assembled, The Railgun is usable\r\nand cannot be disassembled / retrieved.\r\n\r\nRailgun attacks on larger foes may\r\nyield new, valuable loot drops...",
+   "category": "parts",
+   "categoryLabel": "Components & Materials",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponParts",
+   "recipes": [
+    {
+     "key": "Recipe.TurretBase.01",
+     "name": "Universal Fixed Weapon Base",
+     "time": "3h",
+     "inputs": [
+      {
+       "name": "Heavy Joint Assembly",
+       "qty": 4,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Turret Base",
+       "qty": 1,
+       "tag": "Inventory.Dangly.CRWUniversalTurretBase"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Recipe.CRW03.Ammo.01",
+     "name": "Railgun Ammo Housing",
+     "time": "4h",
+     "inputs": [
+      {
+       "name": "Railgun Power Bank",
+       "qty": 2,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.11"
+      },
+      {
+       "name": "Railgun Cooling Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.14"
+      },
+      {
+       "name": "Railgun Assembly Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.08"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Rail Gun Turret Ammo Supply",
+       "qty": 1,
+       "tag": "Inventory.Dangly.CRW03TurretAmmo"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Recipe.CRW03.Barrel.01",
+     "name": "Railgun Main Weapon System",
+     "time": "5h",
+     "inputs": [
+      {
+       "name": "High Durability Rail Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.07"
+      },
+      {
+       "name": "Railgun Breech Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.13"
+      },
+      {
+       "name": "Railgun Body Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.10"
+      },
+      {
+       "name": "Railgun Magazine",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.05"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Rail Gun Turret Weapon",
+       "qty": 1,
+       "tag": "Inventory.Dangly.CRW03TurretBarrel"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "Drone_Components",
+   "name": "Refinery",
+   "subtext": "Combine items to create new materials",
+   "details": "Refine scavenged materials",
+   "category": "parts",
+   "categoryLabel": "Components & Materials",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponParts",
+   "recipes": [
+    {
+     "key": "Refinery_Gunpowder",
+     "name": "Gunpowder",
+     "time": "30s",
+     "inputs": [
+      {
+       "name": "Explosives",
+       "qty": 1,
+       "tag": "Inventory.Dangly.BP_Loot_Explosives_C"
+      },
+      {
+       "name": "Basic Pliers",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_44_BasicPliers"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Gunpowder",
+       "qty": 3,
+       "tag": "Inventory.Item.GunPoweder"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Refinery_Fertilizer",
+     "name": "Gunpowder",
+     "time": "30s",
+     "inputs": [
+      {
+       "name": "Urea",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_112_Alkaline"
+      },
+      {
+       "name": "Food Tin",
+       "qty": 1,
+       "tag": "Inventory.Item.FoodTin"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Fertilizer",
+       "qty": 3,
+       "tag": "Inventory.Item.Poo01"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "DroneComponent_Inventory.Item.RareLoot_9_CPU",
+     "name": "CPU",
+     "time": "1m",
+     "inputs": [
+      {
+       "name": "Screwdriver",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_36_ScrewDriver"
+      },
+      {
+       "name": "Modem",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_13_SSD"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "CPU",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_9_CPU"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "DroneComponent_Inventory.Item.RareLoot_18_Processorboard",
+     "name": "Processor Board",
+     "time": "1m",
+     "inputs": [
+      {
+       "name": "Screwdriver",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_36_ScrewDriver"
+      },
+      {
+       "name": "Military PDA",
+       "qty": 1,
+       "tag": "Inventory.Item.PDA"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Processor Board",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_18_Processorboard"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "DroneComponent_Inventory.Item.RareLoot_20_MilitaryComputer",
+     "name": "Military Computer",
+     "time": "2m",
+     "inputs": [
+      {
+       "name": "Organoid Memory Board",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_16_GPC"
+      },
+      {
+       "name": "Modem",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_13_SSD"
+      },
+      {
+       "name": "Computer Fan",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_17_ComputerFan"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Advanced Navigation Device",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_20_MilitaryComputer"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "DroneComponent_Inventory.Item.RareLoot_28_MilitaryCables",
+     "name": "Military Cables",
+     "time": "30s",
+     "inputs": [
+      {
+       "name": "Wires",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_27_Wires"
+      },
+      {
+       "name": "Military Tape",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_5_MilitaryTape"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Military Cables",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_28_MilitaryCables"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "DroneComponent_Inventory.Item.RareLoot_31_ElectricMotor",
+     "name": "Electric Motor",
+     "time": "2m",
+     "inputs": [
+      {
+       "name": "Relay",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_30_Relay"
+      },
+      {
+       "name": "Nuts",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_34_Nuts"
+      },
+      {
+       "name": "Bolts",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_33_Bolts"
+      },
+      {
+       "name": "Machine Parts",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_74_MachineParts"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Electric Motor",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_31_ElectricMotor"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "DroneComponent_Inventory.Item.RareLoot_47_SentientDrill",
+     "name": "Sentient Drill",
+     "time": "1m 30s",
+     "inputs": [
+      {
+       "name": "Organoid Outlet",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_29_OutletPort"
+      },
+      {
+       "name": "Organoid Plug",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_78_Plugcord"
+      },
+      {
+       "name": "Wetware Processor",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_26_AdvancedProcessor"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Sentient Drill",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_47_SentientDrill"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "DroneComponent_Inventory.Item.RareLoot_85_AdvancedMedicalTools",
+     "name": "Advanced Medical Tools",
+     "time": "2m 30s",
+     "inputs": [
+      {
+       "name": "Assorted Medicine",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_88_MiscMedication"
+      },
+      {
+       "name": "Medical Alcohol",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_80_MedicalAlchohol"
+      },
+      {
+       "name": "Medical Tools",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_84_MedicalTools"
+      },
+      {
+       "name": "Bandages",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_89_Bandages"
+      },
+      {
+       "name": "Tourniquet",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_90_Tourniquets"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Heavy-Duty Trauma Kit",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_85_AdvancedMedicalTools"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "DroneComponent_Inventory.Item.RareLoot_97_AdvancedNetworkboard",
+     "name": "Advanced Network Board",
+     "time": "2m 30s",
+     "inputs": [
+      {
+       "name": "Neuro Uplink Board",
+       "qty": 1,
+       "tag": "Inventory.Item.Quest_Neuro_Uplink"
+      },
+      {
+       "name": "Organoid Memory Board",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_16_GPC"
+      },
+      {
+       "name": "Motherboard",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_19_MotherBoard"
+      },
+      {
+       "name": "Military Power Cell",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_132_MCCMilitaryComputerPowerCell"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Organoid Networking Board",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_97_AdvancedNetworkboard"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "DroneComponent_Inventory.Item.RareLoot_98_Militarycodebreaker",
+     "name": "Military Code Breaker",
+     "time": "2m 30s",
+     "inputs": [
+      {
+       "name": "Military PDA",
+       "qty": 1,
+       "tag": "Inventory.Item.PDA"
+      },
+      {
+       "name": "Telemetry Unit",
+       "qty": 1,
+       "tag": "Inventory.Item.Plans06"
+      },
+      {
+       "name": "Military Hard Drive",
+       "qty": 1,
+       "tag": "Inventory.Item.Plans03"
+      },
+      {
+       "name": "Intelligence Disk",
+       "qty": 1,
+       "tag": "Inventory.Item.Plans02"
+      },
+      {
+       "name": "Motherboard",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_19_MotherBoard"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Military Codebreaker",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_98_Militarycodebreaker"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "DroneComponent_Inventory.Item.RareLoot_133_PowerCell",
+     "name": "Power Cell",
+     "time": "1m 30s",
+     "inputs": [
+      {
+       "name": "Rechargeable Battery",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_135_RechargeableBattery"
+      },
+      {
+       "name": "Battery Charger",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_138_RechargeableBatteryCharger"
+      },
+      {
+       "name": "Machine Parts",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_74_MachineParts"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Power Cell",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_133_PowerCell"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "RigEquipment",
+   "name": "Rig Equipment",
+   "subtext": "Use components to build rig equipment",
+   "details": "Use components to build rig equipment",
+   "category": "parts",
+   "categoryLabel": "Components & Materials",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponParts",
+   "recipes": [
+    {
+     "key": "Rig_Light",
+     "name": "Rig Light",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Car Battery",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_136_CarBattery"
+      },
+      {
+       "name": "Wires",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_27_Wires"
+      },
+      {
+       "name": "Light Bulb",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_64_LightBulb"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Rig Light",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RIG_EQUIPMENT_RigLight"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Rig_IED",
+     "name": "Improvised Explosive",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Explosives",
+       "qty": 1,
+       "tag": "Inventory.Dangly.BP_Loot_Explosives_C"
+      },
+      {
+       "name": "Wires",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_27_Wires"
+      },
+      {
+       "name": "Printed Circuit Board",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_11_GPUCaps"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "IED",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RIG_EQUIPMENT_IED"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Rig_Jumpkit",
+     "name": "Pneumatic Jump",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": "Power Cell",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_133_PowerCell"
+      },
+      {
+       "name": "Heavy Joint Assembly",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.02"
+      },
+      {
+       "name": "Military Circuitry",
+       "qty": 1,
+       "tag": "Inventory.Item.RareComputerBits"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Pneumatic Jump",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RIG_EQUIPMENT_SuperJump"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Rig_TacticalCamera",
+     "name": "Tactical Camera",
+     "time": "Instant",
+     "inputs": [
+      {
+       "name": "Laser Rangefinder",
+       "qty": 1,
+       "tag": "Inventory.Item.EM_LootObject_01"
+      },
+      {
+       "name": "Military Cables",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_28_MilitaryCables"
+      },
+      {
+       "name": "Cyborg's Head",
+       "qty": 1,
+       "tag": "Inventory.Item.Cyborg_Loot_Eurasia"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Tactical Camera",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RIG_EQUIPMENT_TacCam"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Rig_Turret",
+     "name": "20mm Turret",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": "Turret Component",
+       "qty": 1,
+       "tag": "Inventory.Item.Turret_Debris_Loot"
+      },
+      {
+       "name": "Camera Lens",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_99_CameraLens"
+      },
+      {
+       "name": "Electric Motor",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_31_ElectricMotor"
+      },
+      {
+       "name": "Power Cell",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_133_PowerCell"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "20mm Turret",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RIG_EQUIPMENT_20mmTurret"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "ExoLegs",
+     "name": "Exo Legs",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": "Exo Component",
+       "qty": 1,
+       "tag": "Inventory.Item.ExoDebrisLoot"
+      },
+      {
+       "name": "Advanced Joint",
+       "qty": 1,
+       "tag": "Inventory.Item.Quest_AdvancedJoint"
+      },
+      {
+       "name": "Heavy-Duty Battery",
+       "qty": 1,
+       "tag": "Inventory.Item.Tools11"
+      },
+      {
+       "name": "Military Cables",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_28_MilitaryCables"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Exo Stamina Equipment",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RIG_EQUIPMENT_ExoLegs"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "UID",
+   "name": "U.I.D.",
+   "subtext": "Upgrade U.I.D. chips",
+   "details": "Increase the level of scavenged chips",
+   "category": "parts",
+   "categoryLabel": "Components & Materials",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponParts",
+   "recipes": [
+    {
+     "key": "EurasiaIFF_LVL2",
+     "name": "Eurasian IFF Chip LVL2",
+     "time": "5m",
+     "inputs": [
+      {
+       "name": "Eurasian IFF Chip LVL1",
+       "qty": 5,
+       "tag": "Inventory.Item.IFF_Eurasia_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Eurasian IFF Chip LVL2",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Eurasia_02"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "EurasiaIFF_LVL3",
+     "name": "Eurasia IFF Chip LVL3",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": "Eurasian IFF Chip LVL2",
+       "qty": 3,
+       "tag": "Inventory.Item.IFF_Eurasia_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Eurasian IFF Chip LVL3",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Eurasia_03"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "EuropaIFF_LVL2",
+     "name": "Europa IFF Chip LVL2",
+     "time": "5m",
+     "inputs": [
+      {
+       "name": "Europan IFF Chip LVL1",
+       "qty": 5,
+       "tag": "Inventory.Item.IFF_Europa_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "EuropaIFF_LVL3",
+     "name": "Europa IFF Chip LVL3",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 3,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Europan IFF Chip LVL3",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_03"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "EuruskaIFF_LVL2",
+     "name": "Euruskan IFF Chip LVL2",
+     "time": "5m",
+     "inputs": [
+      {
+       "name": "Euruskan IFF Chip LVL1",
+       "qty": 5,
+       "tag": "Inventory.Item.IFF_Euruskan_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Euruskan IFF Chip LVL2",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Euruskan_02"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "EuruskaIFF_LVL3",
+     "name": "Food Tin",
+     "time": "10m",
+     "inputs": [
+      {
+       "name": "Euruskan IFF Chip LVL2",
+       "qty": 3,
+       "tag": "Inventory.Item.IFF_Euruskan_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Euruskan IFF Chip LVL3",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Euruskan_03"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "Drones",
+   "name": "Utility Drones",
+   "subtext": "Use components to build various utility drones",
+   "details": "Use components to build\r\nUtility Drones.\r\n\r\nConstruction Drones: \r\nHelp build various Innards projects.\r\n\r\nFast Travel  Drones:\r\nFast travel to regions and tunnels.\r\n\r\nRecovery  Drones:\r\nRecover lost tombstones.",
+   "category": "parts",
+   "categoryLabel": "Components & Materials",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponParts",
+   "recipes": [
+    {
+     "key": "Drone_Construction",
+     "name": "Construction Drone",
+     "time": "15m",
+     "inputs": [
+      {
+       "name": "CPU",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_9_CPU"
+      },
+      {
+       "name": "Precision Tool Set",
+       "qty": 1,
+       "tag": "Inventory.Item.Tools10"
+      },
+      {
+       "name": "Electric Motor",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_31_ElectricMotor"
+      },
+      {
+       "name": "Military Power Cell",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_132_MCCMilitaryComputerPowerCell"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Construction Drone",
+       "qty": 1,
+       "tag": "Inventory.Item.Drone_Construction"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Drone_Recovery",
+     "name": "Recovery Drone",
+     "time": "15m",
+     "inputs": [
+      {
+       "name": "Camera Lens",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_99_CameraLens"
+      },
+      {
+       "name": "Repair Dronelet",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_121_ArmorRepairKit"
+      },
+      {
+       "name": "Electric Motor",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_31_ElectricMotor"
+      },
+      {
+       "name": "Military Battery",
+       "qty": 1,
+       "tag": "Inventory.Item.RareLoot_139_MilitaryBattery"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Recovery Drone",
+       "qty": 1,
+       "tag": "Inventory.Item.Drone_Recovery"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Drone_FastTravel",
+     "name": "Fast Travel Drone",
+     "time": "15m",
+     "inputs": [
+      {
+       "name": "Electric Motor",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_31_ElectricMotor"
+      },
+      {
+       "name": "Sheet Metal",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_128_sheetmetal"
+      },
+      {
+       "name": "LCD",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_24_LCD"
+      },
+      {
+       "name": "Power Cell",
+       "qty": 2,
+       "tag": "Inventory.Item.RareLoot_133_PowerCell"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Fast Travel  Drone",
+       "qty": 2,
+       "tag": "Inventory.Item.Drone_FastTravel"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "HRF02Repair",
+   "name": "36M AntiTank Repair",
+   "subtext": "",
+   "details": "Massive (HRF). Uses 20mm",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "HRF02Repair",
+     "name": "36M AntiTank Repair",
+     "time": "1h",
+     "inputs": [
+      {
+       "name": "36M AntiTank (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.HRF02_REAL_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "36M AntiTank",
+       "qty": 1,
+       "tag": "Inventory.Weapon.HRF02"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "PST03Repair",
+   "name": "87 Target Pistol Repair",
+   "subtext": "",
+   "details": "High tech pistol. Uses 919",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "PST03Repair",
+     "name": "87 Target Pistol Repair",
+     "time": "15m",
+     "inputs": [
+      {
+       "name": "87 Target (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.PST03_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL1",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Europa_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "87 Target",
+       "qty": 1,
+       "tag": "Inventory.Weapon.PST03"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "SHG05Repair",
+   "name": "AA12 Repair",
+   "subtext": "",
+   "details": "Automatic shotgun. Uses 12-gauge",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "SHG05Repair",
+     "name": "AA12 Repair",
+     "time": "45m",
+     "inputs": [
+      {
+       "name": "AA12 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.SHG05_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL3",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Europa_03"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "AA12",
+       "qty": 1,
+       "tag": "Inventory.Weapon.SHG05"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "RFL01Repair",
+   "name": "AK Repair",
+   "subtext": "",
+   "details": "Common rifle. Uses 5.45mm",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "RFL01Repair",
+     "name": "AK Repair",
+     "time": "15m",
+     "inputs": [
+      {
+       "name": "AK (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RFL01_Broken"
+      },
+      {
+       "name": "Euruskan IFF Chip LVL1",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Euruskan_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "AK",
+       "qty": 1,
+       "tag": "Inventory.Weapon.RFL01"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "SMG05Repair",
+   "name": "APC9 Pro Repair",
+   "subtext": "",
+   "details": "Submachine gun. Uses 919",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "SMG05Repair",
+     "name": "APC9 Pro Repair",
+     "time": "20m",
+     "inputs": [
+      {
+       "name": "APC9 Pro (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.SMG05_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "APC9 Pro",
+       "qty": 1,
+       "tag": "Inventory.Weapon.SMG05"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "PST04Repair",
+   "name": "C96 Pistol Repair",
+   "subtext": "",
+   "details": "Machine pistol. Uses 919",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "PST04Repair",
+     "name": "C96 Pistol Repair",
+     "time": "15m",
+     "inputs": [
+      {
+       "name": "C96 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.PST04_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL1",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "C96",
+       "qty": 1,
+       "tag": "Inventory.Weapon.PST04"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "RFL16Repair",
+   "name": "G36 Repair",
+   "subtext": "",
+   "details": "Europan rifle. Uses 5.56mm",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "RFL16Repair",
+     "name": "G36 Repair",
+     "time": "30m",
+     "inputs": [
+      {
+       "name": "G36 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RFL16_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL1",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Europa_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "G36",
+       "qty": 1,
+       "tag": "Inventory.Weapon.RFL16"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "HRF04Repair",
+   "name": "GM6 Repair",
+   "subtext": "",
+   "details": "Kenetic (HRF), Uses .50 Cal",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "HRF04Repair",
+     "name": "GM6 Repair",
+     "time": "1h",
+     "inputs": [
+      {
+       "name": "GM6 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.HRF04_Broken"
+      },
+      {
+       "name": "Eurasian IFF Chip LVL2",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Eurasia_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "GM6",
+       "qty": 1,
+       "tag": "Inventory.Weapon.HRF04"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "PST10Repair",
+   "name": "Glock 19 Repair",
+   "subtext": "",
+   "details": "Pistol. Uses 919",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "PST10Repair",
+     "name": "Glock 19 Repair",
+     "time": "15m",
+     "inputs": [
+      {
+       "name": "G-L 19 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.PST10_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL1",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "G-L 19",
+       "qty": 1,
+       "tag": "Inventory.Weapon.PST10"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "GRL01Repair",
+   "name": "Grenade Launcher Repair",
+   "subtext": "",
+   "details": "Grenade Launcher. Uses 40mm HE",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "GRL01Repair",
+     "name": "Grenade Launcher Repair",
+     "time": "2h",
+     "inputs": [
+      {
+       "name": "Grenade Launcher (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.GRL01_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL3",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Europa_03"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Grenade Launcher",
+       "qty": 1,
+       "tag": "Inventory.Weapon.GRL01"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "HMG01Repair",
+   "name": "Heavy Machinegun Repair",
+   "subtext": "",
+   "details": "A massive (HMG) that uses Nitro Express",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "HMG01Repair",
+     "name": "Heavy Machinegun Repair",
+     "time": "3h",
+     "inputs": [
+      {
+       "name": "Painless (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.HMG01_Broken"
+      },
+      {
+       "name": "Eurasian IFF Chip LVL3",
+       "qty": 3,
+       "tag": "Inventory.Item.IFF_Eurasia_03"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Painless",
+       "qty": 1,
+       "tag": "Inventory.Weapon.HMG01"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "SMG01Repair",
+   "name": "Kriss Vector 45 Repair",
+   "subtext": "",
+   "details": "Submachine gun. Uses .45ACP",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "SMG01Repair",
+     "name": "Kriss Vector 45 Repair",
+     "time": "20m",
+     "inputs": [
+      {
+       "name": "Kriss Vector 45 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.SMG01_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Kriss Vector 45",
+       "qty": 1,
+       "tag": "Inventory.Weapon.SMG01"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "RFL23Repair",
+   "name": "M16 Repair",
+   "subtext": "",
+   "details": "Infantry rifle. Uses 5.56mm",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "RFL23Repair",
+     "name": "M16 Repair",
+     "time": "30m",
+     "inputs": [
+      {
+       "name": "M16 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RFL23_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL1",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "M16",
+       "qty": 1,
+       "tag": "Inventory.Weapon.RFL23"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "RFL12Repair",
+   "name": "M4A1 Repair",
+   "subtext": "",
+   "details": "Europan rifle. Uses 5.56mm",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "RFL12Repair",
+     "name": "M4A1 Repair",
+     "time": "30m",
+     "inputs": [
+      {
+       "name": "M4A1 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RFL12_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL1",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "M4A1",
+       "qty": 1,
+       "tag": "Inventory.Weapon.RFL12"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "LMG03Repair",
+   "name": "M60 Repair",
+   "subtext": "",
+   "details": "Light machinegun. Uses .308",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "LMG03Repair",
+     "name": "M60 Repair",
+     "time": "45m",
+     "inputs": [
+      {
+       "name": "M60 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.LMG03_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "M60",
+       "qty": 1,
+       "tag": "Inventory.Weapon.LMG03"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "PST07Repair",
+   "name": "M79 Pistol Repair",
+   "subtext": "",
+   "details": "M79 in pistol form. Single Shot 40mm HE",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "PST07Repair",
+     "name": "M79 Pistol Repair",
+     "time": "1h",
+     "inputs": [
+      {
+       "name": "M79 Sawed-off (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.PST07_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL3",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_03"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "M79 Sawed-off",
+       "qty": 1,
+       "tag": "Inventory.Weapon.PST07"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "LMG01Repair",
+   "name": "MG34 Repair",
+   "subtext": "",
+   "details": "Light machinegun. Uses .308",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "LMG01Repair",
+     "name": "MG34 Repair",
+     "time": "45m",
+     "inputs": [
+      {
+       "name": "MG34 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.LMG01_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "MG34",
+       "qty": 1,
+       "tag": "Inventory.Weapon.LMG01"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "HRF03Repair",
+   "name": "NTW-20 Repair",
+   "subtext": "",
+   "details": "Massive (HRF). Uses .50 Cal",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "HRF03Repair",
+     "name": "NTW-20 Repair",
+     "time": "1h",
+     "inputs": [
+      {
+       "name": "NTW-20 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.HRF03_Broken"
+      },
+      {
+       "name": "Eurasian IFF Chip LVL2",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Eurasia_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "NTW-20",
+       "qty": 1,
+       "tag": "Inventory.Weapon.HRF03"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "SMG06Repair",
+   "name": "P90 Repair",
+   "subtext": "",
+   "details": "Submachine gun. Uses 5.7x28",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "SMG06Repair",
+     "name": "P90 Repair",
+     "time": "20m",
+     "inputs": [
+      {
+       "name": "P90 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.SMG06_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "P90",
+       "qty": 1,
+       "tag": "Inventory.Weapon.SMG06"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "SMG03Repair",
+   "name": "PM-9 Repair",
+   "subtext": "",
+   "details": "Submachine gun. Uses 919",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "SMG03Repair",
+     "name": "PM-9 Repair",
+     "time": "20m",
+     "inputs": [
+      {
+       "name": "PM-9 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.SMG03_Broken"
+      },
+      {
+       "name": "Eurasian IFF Chip LVL2",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Eurasia_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "PM-9",
+       "qty": 1,
+       "tag": "Inventory.Weapon.SMG03"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "SMG07Repair",
+   "name": "PP-19 Vityaz Repair",
+   "subtext": "",
+   "details": "Submachine gun. Uses 919",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "SMG07Repair",
+     "name": "PP-19 Vityaz Repair",
+     "time": "20m",
+     "inputs": [
+      {
+       "name": "PP-19 Vityaz (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.SMG07_Broken"
+      },
+      {
+       "name": "Euruskan IFF Chip LVL1",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Euruskan_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "PP-19 Vityaz",
+       "qty": 1,
+       "tag": "Inventory.Weapon.SMG07"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "SMG02Repair",
+   "name": "PPSH-41 Repair",
+   "subtext": "",
+   "details": "Submachine gun. Uses 919",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "SMG02Repair",
+     "name": "PPSH-41 Repair",
+     "time": "20m",
+     "inputs": [
+      {
+       "name": "PPSH-41 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.SMG02_Broken"
+      },
+      {
+       "name": "Euruskan IFF Chip LVL1",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Euruskan_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "PPSH-41",
+       "qty": 1,
+       "tag": "Inventory.Weapon.SMG02"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "RFL19Repair",
+   "name": "R11 RSASS Repair",
+   "subtext": "",
+   "details": "Marksman rifle. Uses .308",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "RFL19Repair",
+     "name": "R11 RSASS Repair",
+     "time": "30m",
+     "inputs": [
+      {
+       "name": "R11 RSASS (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RFL19_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL1",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "R11 RSASS",
+       "qty": 1,
+       "tag": "Inventory.Weapon.RFL19"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "PST05Repair",
+   "name": "R8 Pistol Repair",
+   "subtext": "",
+   "details": "Revolver. Uses 357 Magnum",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "PST05Repair",
+     "name": "R8 Pistol Repair",
+     "time": "15m",
+     "inputs": [
+      {
+       "name": "R8 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.PST05_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL1",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Europa_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "R8",
+       "qty": 1,
+       "tag": "Inventory.Weapon.PST05"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "LMG04Repair",
+   "name": "RPD Repair",
+   "subtext": "",
+   "details": "Light machinegun. Uses 7.62mm",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "LMG04Repair",
+     "name": "RPD Repair",
+     "time": "45m",
+     "inputs": [
+      {
+       "name": "RPD (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.LMG04_Broken"
+      },
+      {
+       "name": "Euruskan IFF Chip LVL3",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Euruskan_03"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "RPD",
+       "qty": 1,
+       "tag": "Inventory.Weapon.LMG04"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "RFL01bRepair",
+   "name": "RPK Repair",
+   "subtext": "",
+   "details": "Rifle variant. Uses 7.62mm",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "RFL01bRepair",
+     "name": "RPK Repair",
+     "time": "45m",
+     "inputs": [
+      {
+       "name": "RPK (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RFL01B_Broken"
+      },
+      {
+       "name": "Euruskan IFF Chip LVL2",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Euruskan_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "RPK",
+       "qty": 1,
+       "tag": "Inventory.Weapon.RFL01B"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "RFL15Repair",
+   "name": "SA58 Repair",
+   "subtext": "",
+   "details": "Europan rifle. Uses .308",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "RFL15Repair",
+     "name": "SA58 Repair",
+     "time": "30m",
+     "inputs": [
+      {
+       "name": "SA58 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RFL15_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL1",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "SA58",
+       "qty": 1,
+       "tag": "Inventory.Weapon.RFL15"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "LMG02Repair",
+   "name": "SAW Repair",
+   "subtext": "",
+   "details": "Light machinegun. Uses 5.56mm",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "LMG02Repair",
+     "name": "SAW Repair",
+     "time": "45m",
+     "inputs": [
+      {
+       "name": "SAW (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.LMG02_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL3",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_03"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "SAW",
+       "qty": 1,
+       "tag": "Inventory.Weapon.LMG02"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "HRF01Repair",
+   "name": "SCAR Repair",
+   "subtext": "",
+   "details": "(HRF). Uses .50 Cal",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "HRF01Repair",
+     "name": "SCAR Repair",
+     "time": "30m",
+     "inputs": [
+      {
+       "name": "SCAR (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.HRF01_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "SCAR",
+       "qty": 1,
+       "tag": "Inventory.Weapon.HRF01"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "PST02Repair",
+   "name": "SOG Pistol Repair",
+   "subtext": "",
+   "details": "Military pistol. Uses .45ACP",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "PST02Repair",
+     "name": "SOG Pistol Repair",
+     "time": "15m",
+     "inputs": [
+      {
+       "name": "SOG (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.PST02_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "SOG",
+       "qty": 1,
+       "tag": "Inventory.Weapon.PST02"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "RFL20Repair",
+   "name": "SVD Repair",
+   "subtext": "",
+   "details": "Rifle that uses 54R",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "RFL20Repair",
+     "name": "SVD Repair",
+     "time": "30m",
+     "inputs": [
+      {
+       "name": "SVD (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RFL20_Broken"
+      },
+      {
+       "name": "Euruskan IFF Chip LVL2",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Euruskan_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "SVD",
+       "qty": 1,
+       "tag": "Inventory.Weapon.RFL20"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "SHG01Repair",
+   "name": "Shotgun Repair",
+   "subtext": "",
+   "details": "Semiauto shotgun. Uses 12-gauge",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "SHG01Repair",
+     "name": "Shotgun Repair",
+     "time": "15m",
+     "inputs": [
+      {
+       "name": "S12 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.SHG01_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL1",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "S12",
+       "qty": 1,
+       "tag": "Inventory.Weapon.SHG01"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "SMG08Repair",
+   "name": "Spectre M4 Repair",
+   "subtext": "",
+   "details": "Submachine gun. Uses .45ACP",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "SMG08Repair",
+     "name": "Spectre M4 Repair",
+     "time": "20m",
+     "inputs": [
+      {
+       "name": "Spectre M4 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.SMG08_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Spectre M4",
+       "qty": 1,
+       "tag": "Inventory.Weapon.SMG08"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "RFL30Repair",
+   "name": "TKB-0146 Repair",
+   "subtext": "",
+   "details": "Rifle that uses 5.45mm",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "RFL30Repair",
+     "name": "TKB-0146 Repair",
+     "time": "30m",
+     "inputs": [
+      {
+       "name": "TKB-0146 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RFL30_Broken"
+      },
+      {
+       "name": "Euruskan IFF Chip LVL1",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Euruskan_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "TKB-0146",
+       "qty": 1,
+       "tag": "Inventory.Weapon.RFL30"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "SHG03Repair",
+   "name": "USAS-12 Repair",
+   "subtext": "",
+   "details": "Automatic shotgun. Uses 12-gauge",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "SHG03Repair",
+     "name": "USAS-12 Repair",
+     "time": "45m",
+     "inputs": [
+      {
+       "name": "USAS-12 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.SHG03_Broken"
+      },
+      {
+       "name": "Eurasian IFF Chip LVL3",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Eurasia_03"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "USAS-12",
+       "qty": 1,
+       "tag": "Inventory.Weapon.SHG03"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "PST01Repair",
+   "name": "USP Pistol Repair",
+   "subtext": "",
+   "details": "Trusty pistol. Uses .45ACP",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "PST01Repair",
+     "name": "USP Pistol Repair",
+     "time": "15m",
+     "inputs": [
+      {
+       "name": "USP (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.PST01_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "USP",
+       "qty": 1,
+       "tag": "Inventory.Weapon.PST01"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "RFL29Repair",
+   "name": "VKS Vykhlop Repair",
+   "subtext": "",
+   "details": "Rifle that uses 12.7 Subsonic",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "RFL29Repair",
+     "name": "VKS Vykhlop Repair",
+     "time": "30m",
+     "inputs": [
+      {
+       "name": "VKS Vykhlop (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.RFL29_Broken"
+      },
+      {
+       "name": "Euruskan IFF Chip LVL1",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Euruskan_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "VKS Vykhlop",
+       "qty": 1,
+       "tag": "Inventory.Weapon.RFL29"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "PST06Repair",
+   "name": "Viper Pistol Repair",
+   "subtext": "",
+   "details": "Baba Yaga. Uses 919",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "PST06Repair",
+     "name": "Viper Pistol Repair",
+     "time": "15m",
+     "inputs": [
+      {
+       "name": "Viper (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.PST06_Broken"
+      },
+      {
+       "name": "Europan IFF Chip LVL2",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Europa_02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Viper",
+       "qty": 1,
+       "tag": "Inventory.Weapon.PST06"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "SHG04Repair",
+   "name": "Vspr-12 Repair",
+   "subtext": "",
+   "details": "Automatic shotgun. Uses 12-gauge",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "SHG04Repair",
+     "name": "Vspr-12 Repair",
+     "time": "45m",
+     "inputs": [
+      {
+       "name": "Vepr-12 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.SHG04_Broken"
+      },
+      {
+       "name": "Eurasian IFF Chip LVL3",
+       "qty": 2,
+       "tag": "Inventory.Item.IFF_Eurasia_03"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Vepr-12",
+       "qty": 1,
+       "tag": "Inventory.Weapon.SHG04"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "SMG04Repair",
+   "name": "Walther MPL Repair",
+   "subtext": "",
+   "details": "Submachine gun. Uses 919",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "SMG04Repair",
+     "name": "Walther MPL Repair",
+     "time": "20m",
+     "inputs": [
+      {
+       "name": "Wlt MPL (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.SMG04_Broken"
+      },
+      {
+       "name": "Eurasian IFF Chip LVL1",
+       "qty": 1,
+       "tag": "Inventory.Item.IFF_Eurasia_01"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Wlt MPL",
+       "qty": 1,
+       "tag": "Inventory.Weapon.SMG04"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "GRL02Repair",
+   "name": "XM25 Repair",
+   "subtext": "",
+   "details": "Grenade Launcher. Uses 40mm HE",
+   "category": "repairs",
+   "categoryLabel": "Weapon Repairs",
+   "filterTag": "Hub.Upgrade.Category.Crafting.WeaponRepairs",
+   "recipes": [
+    {
+     "key": "GRL02Repair",
+     "name": "XM25 Repair",
+     "time": "2h",
+     "inputs": [
+      {
+       "name": "XM25 (Broken)",
+       "qty": 1,
+       "tag": "Inventory.Dangly.GRL02_Broken"
+      },
+      {
+       "name": "Eurasian IFF Chip LVL3",
+       "qty": 3,
+       "tag": "Inventory.Item.IFF_Eurasia_03"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "XM25",
+       "qty": 1,
+       "tag": "Inventory.Weapon.GRL02"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "DeployableWeaponry.CRW01",
+   "name": "Machinegun System",
+   "subtext": "Manufacture of fixed machinegun weapon parts",
+   "details": "",
+   "category": "other",
+   "categoryLabel": "Other",
+   "filterTag": "None",
+   "recipes": [
+    {
+     "key": "Recipe.TurretBase.01",
+     "name": "Universal Fixed Weapon Base",
+     "time": "3h",
+     "inputs": [
+      {
+       "name": "Heavy Joint Assembly",
+       "qty": 4,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Turret Base",
+       "qty": 1,
+       "tag": "Inventory.Dangly.CRWUniversalTurretBase"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Recipe.CRW01.Ammo.01",
+     "name": "Fixed Machinegun Ammo Housing",
+     "time": "1h",
+     "inputs": [
+      {
+       "name": "Railgun Magazine",
+       "qty": 6,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.05"
+      },
+      {
+       "name": "Ammo Feed Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.06"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Fixed Machinegun Ammo Housing",
+       "qty": 1,
+       "tag": "Inventory.Dangly.CRW01TurretAmmo"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Recipe.CRW01.Barrel.01",
+     "name": "Fixed Machinegun Main Weapon System",
+     "time": "2h",
+     "inputs": [
+      {
+       "name": "High Durability Rail Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.07"
+      },
+      {
+       "name": "Railgun Assembly Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.08"
+      },
+      {
+       "name": "Universal Aiming Interface Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.09"
+      },
+      {
+       "name": "Railgun Body Component",
+       "qty": 2,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.10"
+      },
+      {
+       "name": "Railgun Power Bank",
+       "qty": 2,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.11"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "CRW 01 Turret Barrel",
+       "qty": 1,
+       "tag": "Inventory.Dangly.CRW01TurretBarrel"
+      }
+     ],
+     "required": []
+    }
+   ]
+  },
+  {
+   "key": "DeployableWeaponry.CRW02",
+   "name": "Mk19a Grenade Launcher System",
+   "subtext": "Manufacture of fixed grenade launcher weapon parts",
+   "details": "",
+   "category": "other",
+   "categoryLabel": "Other",
+   "filterTag": "None",
+   "recipes": [
+    {
+     "key": "Recipe.TurretBase.01",
+     "name": "Universal Fixed Weapon Base",
+     "time": "3h",
+     "inputs": [
+      {
+       "name": "Heavy Joint Assembly",
+       "qty": 4,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.02"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "Turret Base",
+       "qty": 1,
+       "tag": "Inventory.Dangly.CRWUniversalTurretBase"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Recipe.CRW02.Ammo.01",
+     "name": "Fixed Grenade Launcher Ammo Housing",
+     "time": "2h",
+     "inputs": [
+      {
+       "name": "Railgun Magazine",
+       "qty": 4,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.05"
+      },
+      {
+       "name": "Ammo Feed Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.06"
+      },
+      {
+       "name": "CASE Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.12"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "CRW 02 Turret Ammo Container",
+       "qty": 1,
+       "tag": "Inventory.Dangly.CRW02TurretAmmo"
+      }
+     ],
+     "required": []
+    },
+    {
+     "key": "Recipe.CRW02.Barrel.01",
+     "name": "Fixed Grenade Launcher Main Weapon System",
+     "time": "6h",
+     "inputs": [
+      {
+       "name": "High Durability Rail Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.07"
+      },
+      {
+       "name": "Railgun Assembly Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.08"
+      },
+      {
+       "name": "Universal Aiming Interface Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.09"
+      },
+      {
+       "name": "Railgun Power Bank",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.11"
+      },
+      {
+       "name": "Railgun Breech Component",
+       "qty": 1,
+       "tag": "Inventory.Item.recipe.ingredient.fixedweapons.13"
+      }
+     ],
+     "outputs": [
+      {
+       "name": "CRW 02 Turret Barrel",
+       "qty": 1,
+       "tag": "Inventory.Dangly.CRW02TurretBarrel"
+      }
+     ],
+     "required": []
+    }
+   ]
+  }
+ ]
+}
