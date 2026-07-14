@@ -3388,7 +3388,7 @@
     {
      "name": "Orgamech Nervous System",
      "cr": 8200,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "valuable",
      "byTier": {
       "T2": {
@@ -3411,7 +3411,7 @@
     {
      "name": "Advanced Joint",
      "cr": 7687,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "valuable",
      "byTier": {
       "T1": {
@@ -3538,7 +3538,7 @@
     {
      "name": "Neuro Uplink Board",
      "cr": 6662,
-     "cat": "Rare Loot",
+     "cat": "Quest Items",
      "tier": "valuable",
      "byTier": {
       "T1": {
@@ -5499,7 +5499,7 @@
     {
      "name": "Neuro Uplink Board",
      "cr": 6662,
-     "cat": "Rare Loot",
+     "cat": "Quest Items",
      "tier": "valuable",
      "byTier": {
       "T1": {
@@ -6548,7 +6548,7 @@
     {
      "name": "HIND Navigation Computer",
      "cr": 16912,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "prime",
      "rarity": 2,
      "rarityLabel": "Very Rare",
@@ -6566,7 +6566,7 @@
     {
      "name": "Gyroscopic Stabilizer",
      "cr": 16400,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "prime",
      "rarity": 2,
      "rarityLabel": "Very Rare",
@@ -6728,7 +6728,7 @@
     {
      "name": "Targeting Computer",
      "cr": 13325,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "prime",
      "rarity": 2,
      "rarityLabel": "Very Rare",
@@ -6863,7 +6863,7 @@
     {
      "name": "Exo Hard Drive",
      "cr": 11275,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "valuable",
      "rarity": 2,
      "rarityLabel": "Very Rare",
@@ -7115,7 +7115,7 @@
     {
      "name": "Orgamech Nervous System",
      "cr": 8200,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "valuable",
      "rarity": 2,
      "rarityLabel": "Very Rare",
@@ -7133,7 +7133,7 @@
     {
      "name": "Advanced Joint",
      "cr": 7687,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "valuable",
      "rarity": 2,
      "rarityLabel": "Very Rare",
@@ -7178,7 +7178,7 @@
     {
      "name": "Cybernetic Lungs",
      "cr": 7175,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "valuable",
      "rarity": 2,
      "rarityLabel": "Very Rare",
@@ -7313,7 +7313,7 @@
     {
      "name": "Neuro Uplink Board",
      "cr": 6662,
-     "cat": "Rare Loot",
+     "cat": "Quest Items",
      "tier": "valuable",
      "rarity": 2,
      "rarityLabel": "Very Rare",
@@ -7358,7 +7358,7 @@
     {
      "name": "Brawler Spinal Joint",
      "cr": 6150,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "valuable",
      "rarity": 2,
      "rarityLabel": "Very Rare",
@@ -7502,7 +7502,7 @@
     {
      "name": "EOD Armor Plate",
      "cr": 4869,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "good",
      "rarity": 2,
      "rarityLabel": "Very Rare",
@@ -11957,7 +11957,7 @@
     {
      "name": "HIND Navigation Computer",
      "cr": 16912,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "prime",
      "rarity": 5,
      "rarityLabel": "Common",
@@ -11966,7 +11966,7 @@
     {
      "name": "Gyroscopic Stabilizer",
      "cr": 16400,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "prime",
      "rarity": 5,
      "rarityLabel": "Common",
@@ -13155,7 +13155,7 @@
     {
      "name": "Brawler Spinal Joint",
      "cr": 6150,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "valuable",
      "rarity": 5,
      "rarityLabel": "Common",
@@ -13173,7 +13173,7 @@
     {
      "name": "Advanced Joint",
      "cr": 7687,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "valuable",
      "rarity": 4,
      "rarityLabel": "Uncommon",
@@ -14861,7 +14861,7 @@
     {
      "name": "Cybernetic Lungs",
      "cr": 7175,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "valuable",
      "rarity": 4,
      "rarityLabel": "Uncommon",
@@ -16170,7 +16170,7 @@
     {
      "name": "Water Map",
      "cr": 4100,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "good",
      "rarity": 4,
      "rarityLabel": "Uncommon",
@@ -16261,7 +16261,7 @@
     {
      "name": "Water Map",
      "cr": 4100,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "good",
      "rarity": 5,
      "rarityLabel": "Common",
@@ -16442,7 +16442,7 @@
     {
      "name": "Water Map",
      "cr": 4100,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "good",
      "rarity": 5,
      "rarityLabel": "Common",
@@ -16713,7 +16713,7 @@
     {
      "name": "Water Map",
      "cr": 4100,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "good",
      "rarity": 4,
      "rarityLabel": "Uncommon",
