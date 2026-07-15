@@ -3180,7 +3180,7 @@
     {
      "name": "Frequency Tap",
      "cr": 12300,
-     "cat": "Salvage",
+     "cat": "Quest Items",
      "tier": "prime",
      "byTier": {
       "T1": {
@@ -10461,6 +10461,556 @@
    ]
   },
   {
+   "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+   "label": "Vehicle Debris (core Merkava Body Boss)",
+   "kind": "vehicle",
+   "tiered": false,
+   "tiers": [],
+   "count": 60,
+   "items": [
+    {
+     "name": "Merkava Suspension Component",
+     "cr": 16400,
+     "cat": "Salvage",
+     "tier": "prime",
+     "rarity": 5,
+     "rarityLabel": "Common",
+     "share": 10.86
+    },
+    {
+     "name": "Corpse Tank Control Panel",
+     "cr": 6150,
+     "cat": "Quest Items",
+     "tier": "valuable",
+     "rarity": 5,
+     "rarityLabel": "Common",
+     "share": 16.8
+    },
+    {
+     "name": "Railgun Cooling Component",
+     "cr": 15950,
+     "cat": "Ingredients",
+     "tier": "prime",
+     "rarity": 4,
+     "rarityLabel": "Uncommon",
+     "share": 3.62
+    },
+    {
+     "name": "Railgun Breech Component",
+     "cr": 14766,
+     "cat": "Ingredients",
+     "tier": "prime",
+     "rarity": 4,
+     "rarityLabel": "Uncommon",
+     "share": 3.62
+    },
+    {
+     "name": "Railgun Body Component",
+     "cr": 13069,
+     "cat": "Ingredients",
+     "tier": "prime",
+     "rarity": 4,
+     "rarityLabel": "Uncommon",
+     "share": 3.62
+    },
+    {
+     "name": "Railgun Assembly Component",
+     "cr": 10836,
+     "cat": "Ingredients",
+     "tier": "valuable",
+     "rarity": 4,
+     "rarityLabel": "Uncommon",
+     "share": 3.62
+    },
+    {
+     "name": "High Durability Rail Component",
+     "cr": 7471,
+     "cat": "Ingredients",
+     "tier": "valuable",
+     "rarity": 4,
+     "rarityLabel": "Uncommon",
+     "share": 3.62
+    },
+    {
+     "name": "Railgun Power Bank",
+     "cr": 4670,
+     "cat": "Ingredients",
+     "tier": "good",
+     "rarity": 4,
+     "rarityLabel": "Uncommon",
+     "share": 3.62
+    },
+    {
+     "name": "Heavy Joint Assembly",
+     "cr": 3844,
+     "cat": "Ingredients",
+     "tier": "good",
+     "rarity": 4,
+     "rarityLabel": "Uncommon",
+     "share": 3.62
+    },
+    {
+     "name": "Railgun Magazine",
+     "cr": 2693,
+     "cat": "Ingredients",
+     "tier": "worth",
+     "rarity": 4,
+     "rarityLabel": "Uncommon",
+     "share": 3.62
+    },
+    {
+     "name": "Europan IFF Chip LVL1",
+     "cr": 1025,
+     "cat": "IFFs",
+     "tier": "cheap",
+     "rarity": 4,
+     "rarityLabel": "Uncommon",
+     "share": 3.62
+    },
+    {
+     "name": "Europan IFF Chip LVL2",
+     "cr": 3075,
+     "cat": "IFFs",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.39
+    },
+    {
+     "name": "40mm Grenade",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.24
+    },
+    {
+     "name": "TrueAimer 4x",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.03
+    },
+    {
+     "name": "Europan IFF Chip LVL3",
+     "cr": 8200,
+     "cat": "IFFs",
+     "tier": "valuable",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "Standard First Aid Kit",
+     "cr": 7175,
+     "cat": "Consumables",
+     "tier": "valuable",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "Small First Aid Kit",
+     "cr": 1614,
+     "cat": "Consumables",
+     "tier": "worth",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.8
+    },
+    {
+     "name": "12-Gauge Buckshot",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.8
+    },
+    {
+     "name": "5.45x39mm",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "5.56x45mm",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "Aimp H2 Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.8
+    },
+    {
+     "name": "Aimp Micro Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.8
+    },
+    {
+     "name": "E-TECH XP Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "ET EFX Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "ET HWS EXP Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "ET XP2 Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "H-sun Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "M4A1 Barrel A",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.8
+    },
+    {
+     "name": "M4A1 Barrel B",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.8
+    },
+    {
+     "name": "M4A1 Barrel C",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "M4A1 Charging Handle A",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.8
+    },
+    {
+     "name": "M4A1 Charging Handle B",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "M4A1 Charging Handle C",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "M4A1 Gas Tube A",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "M4A1 Gas Tube B",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "M4A1 Gas Tube C",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "M4A1 Magazine A",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "M4A1 Magazine B",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.8
+    },
+    {
+     "name": "M4A1 Receiver A",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "M4A1 Receiver B",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.8
+    },
+    {
+     "name": "M4A1 Receiver C",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "NSN Grip A",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.8
+    },
+    {
+     "name": "NSN Grip B",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "NSN Grip C",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "NSN Handguard A",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "NSN Handguard B",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "NSN Handguard C",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "NSN Stock A",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "NSN Stock B",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "NSN Stock C",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "P Arms 3P Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "Sfox QueenKiller Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "Spook Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "Stein R Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "Tri M Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "Vtex Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "Vtex Raz Gen 2 Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    },
+    {
+     "name": "Vtex Strike Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.65
+    },
+    {
+     "name": "Vtex V Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.8
+    },
+    {
+     "name": "Zeni-B P6 Optic",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.72
+    }
+   ]
+  },
+  {
    "key": "vehicle-vehicle-debris-core",
    "label": "Vehicle Debris (core)",
    "kind": "vehicle",
@@ -11362,8 +11912,8 @@
    ]
   },
   {
-   "key": "vehicle-vehicle-debris-debris",
-   "label": "Vehicle Debris (debris)",
+   "key": "vehicle-vehicle-debris-standard",
+   "label": "Vehicle Debris (standard)",
    "kind": "vehicle",
    "tiered": false,
    "tiers": [],
@@ -11530,556 +12080,6 @@
      "rarity": 3,
      "rarityLabel": "Rare",
      "share": 2.82
-    }
-   ]
-  },
-  {
-   "key": "vehicle-vehicle-merkava-body-boss",
-   "label": "Vehicle Merkava Body Boss",
-   "kind": "vehicle",
-   "tiered": false,
-   "tiers": [],
-   "count": 60,
-   "items": [
-    {
-     "name": "Merkava Suspension Component",
-     "cr": 16400,
-     "cat": "Salvage",
-     "tier": "prime",
-     "rarity": 5,
-     "rarityLabel": "Common",
-     "share": 10.86
-    },
-    {
-     "name": "Corpse Tank Control Panel",
-     "cr": 6150,
-     "cat": "Quest Items",
-     "tier": "valuable",
-     "rarity": 5,
-     "rarityLabel": "Common",
-     "share": 16.8
-    },
-    {
-     "name": "Railgun Cooling Component",
-     "cr": 15950,
-     "cat": "Ingredients",
-     "tier": "prime",
-     "rarity": 4,
-     "rarityLabel": "Uncommon",
-     "share": 3.62
-    },
-    {
-     "name": "Railgun Breech Component",
-     "cr": 14766,
-     "cat": "Ingredients",
-     "tier": "prime",
-     "rarity": 4,
-     "rarityLabel": "Uncommon",
-     "share": 3.62
-    },
-    {
-     "name": "Railgun Body Component",
-     "cr": 13069,
-     "cat": "Ingredients",
-     "tier": "prime",
-     "rarity": 4,
-     "rarityLabel": "Uncommon",
-     "share": 3.62
-    },
-    {
-     "name": "Railgun Assembly Component",
-     "cr": 10836,
-     "cat": "Ingredients",
-     "tier": "valuable",
-     "rarity": 4,
-     "rarityLabel": "Uncommon",
-     "share": 3.62
-    },
-    {
-     "name": "High Durability Rail Component",
-     "cr": 7471,
-     "cat": "Ingredients",
-     "tier": "valuable",
-     "rarity": 4,
-     "rarityLabel": "Uncommon",
-     "share": 3.62
-    },
-    {
-     "name": "Railgun Power Bank",
-     "cr": 4670,
-     "cat": "Ingredients",
-     "tier": "good",
-     "rarity": 4,
-     "rarityLabel": "Uncommon",
-     "share": 3.62
-    },
-    {
-     "name": "Heavy Joint Assembly",
-     "cr": 3844,
-     "cat": "Ingredients",
-     "tier": "good",
-     "rarity": 4,
-     "rarityLabel": "Uncommon",
-     "share": 3.62
-    },
-    {
-     "name": "Railgun Magazine",
-     "cr": 2693,
-     "cat": "Ingredients",
-     "tier": "worth",
-     "rarity": 4,
-     "rarityLabel": "Uncommon",
-     "share": 3.62
-    },
-    {
-     "name": "Europan IFF Chip LVL1",
-     "cr": 1025,
-     "cat": "IFFs",
-     "tier": "cheap",
-     "rarity": 4,
-     "rarityLabel": "Uncommon",
-     "share": 3.62
-    },
-    {
-     "name": "Europan IFF Chip LVL2",
-     "cr": 3075,
-     "cat": "IFFs",
-     "tier": "good",
-     "rarity": 3,
-     "rarityLabel": "Rare",
-     "share": 2.39
-    },
-    {
-     "name": "40mm Grenade",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 3,
-     "rarityLabel": "Rare",
-     "share": 2.24
-    },
-    {
-     "name": "TrueAimer 4x",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 3,
-     "rarityLabel": "Rare",
-     "share": 2.03
-    },
-    {
-     "name": "Europan IFF Chip LVL3",
-     "cr": 8200,
-     "cat": "IFFs",
-     "tier": "valuable",
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "Standard First Aid Kit",
-     "cr": 7175,
-     "cat": "Consumables",
-     "tier": "valuable",
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "Small First Aid Kit",
-     "cr": 1614,
-     "cat": "Consumables",
-     "tier": "worth",
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.8
-    },
-    {
-     "name": "12-Gauge Buckshot",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.8
-    },
-    {
-     "name": "5.45x39mm",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "5.56x45mm",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "Aimp H2 Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.8
-    },
-    {
-     "name": "Aimp Micro Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.8
-    },
-    {
-     "name": "E-TECH XP Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "ET EFX Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "ET HWS EXP Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "ET XP2 Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "H-sun Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "M4A1 Barrel A",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.8
-    },
-    {
-     "name": "M4A1 Barrel B",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.8
-    },
-    {
-     "name": "M4A1 Barrel C",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "M4A1 Charging Handle A",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.8
-    },
-    {
-     "name": "M4A1 Charging Handle B",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "M4A1 Charging Handle C",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "M4A1 Gas Tube A",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "M4A1 Gas Tube B",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "M4A1 Gas Tube C",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "M4A1 Magazine A",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "M4A1 Magazine B",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.8
-    },
-    {
-     "name": "M4A1 Receiver A",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "M4A1 Receiver B",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.8
-    },
-    {
-     "name": "M4A1 Receiver C",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "NSN Grip A",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.8
-    },
-    {
-     "name": "NSN Grip B",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "NSN Grip C",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "NSN Handguard A",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "NSN Handguard B",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "NSN Handguard C",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "NSN Stock A",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "NSN Stock B",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "NSN Stock C",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "P Arms 3P Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "Sfox QueenKiller Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "Spook Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "Stein R Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "Tri M Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "Vtex Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "Vtex Raz Gen 2 Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
-    },
-    {
-     "name": "Vtex Strike Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.65
-    },
-    {
-     "name": "Vtex V Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.8
-    },
-    {
-     "name": "Zeni-B P6 Optic",
-     "cr": null,
-     "cat": null,
-     "tier": null,
-     "rarity": 2,
-     "rarityLabel": "Very Rare",
-     "share": 0.72
     }
    ]
   },
@@ -13919,8 +13919,8 @@
    ]
   },
   {
-   "key": "corpse-brawler-s-bag",
-   "label": "Brawler's Bag",
+   "key": "corpse-brawler-s-bag-762",
+   "label": "Brawler's Bag (762)",
    "kind": "corpse",
    "tiered": false,
    "tiers": [],
@@ -13933,7 +13933,7 @@
      "tier": "valuable",
      "rarity": 4,
      "rarityLabel": "Uncommon",
-     "share": 5.71
+     "share": 5.64
     },
     {
      "name": "Eurasian Brawler Components",
@@ -13942,7 +13942,7 @@
      "tier": "good",
      "rarity": 4,
      "rarityLabel": "Uncommon",
-     "share": 5.71
+     "share": 5.64
     },
     {
      "name": "Brawler Insignia",
@@ -13951,7 +13951,7 @@
      "tier": "worth",
      "rarity": 4,
      "rarityLabel": "Uncommon",
-     "share": 5.71
+     "share": 5.64
     },
     {
      "name": "Gin",
@@ -13960,7 +13960,7 @@
      "tier": "valuable",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Standard First Aid Kit",
@@ -13969,7 +13969,7 @@
      "tier": "valuable",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Hinoko Cigarettes",
@@ -13978,7 +13978,7 @@
      "tier": "valuable",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Military Grade Lubricant",
@@ -13987,7 +13987,7 @@
      "tier": "valuable",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Military PDA",
@@ -13996,7 +13996,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Thermal Matches",
@@ -14005,7 +14005,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Intelligence Disk",
@@ -14014,7 +14014,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Assorted Medicine",
@@ -14023,7 +14023,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Adrenaline Stim",
@@ -14032,7 +14032,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Happy Cookies",
@@ -14041,7 +14041,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Tourniquet",
@@ -14050,7 +14050,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Vodka",
@@ -14059,7 +14059,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Energy Bar",
@@ -14068,7 +14068,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Rum",
@@ -14077,7 +14077,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Beer",
@@ -14086,7 +14086,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Intelligence Cassette",
@@ -14095,7 +14095,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Survival Lighter",
@@ -14104,7 +14104,7 @@
      "tier": "good",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Absinthe",
@@ -14113,7 +14113,7 @@
      "tier": "worth",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Boinco Candy Bar",
@@ -14122,7 +14122,7 @@
      "tier": "worth",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "E-Nuggets",
@@ -14131,7 +14131,7 @@
      "tier": "worth",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Bandages",
@@ -14140,7 +14140,7 @@
      "tier": "worth",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Dossier",
@@ -14149,7 +14149,7 @@
      "tier": "worth",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Ethyl Alcohol",
@@ -14158,7 +14158,7 @@
      "tier": "worth",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Goodies",
@@ -14167,7 +14167,7 @@
      "tier": "worth",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Mead",
@@ -14176,7 +14176,7 @@
      "tier": "worth",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Zippo Lighter",
@@ -14185,7 +14185,7 @@
      "tier": "worth",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
     },
     {
      "name": "Lighter",
@@ -14194,7 +14194,7 @@
      "tier": "worth",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Pretzels",
@@ -14203,7 +14203,7 @@
      "tier": "worth",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Small First Aid Kit",
@@ -14212,7 +14212,7 @@
      "tier": "worth",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Dogboro Cigarettes",
@@ -14221,7 +14221,7 @@
      "tier": "cheap",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Eurasian IFF Chip LVL1",
@@ -14230,7 +14230,7 @@
      "tier": "cheap",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Food Tin",
@@ -14239,7 +14239,7 @@
      "tier": "cheap",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "U-STIK+ USB Drive",
@@ -14248,7 +14248,7 @@
      "tier": "cheap",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Potato Chips",
@@ -14257,7 +14257,7 @@
      "tier": "cheap",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "Matches",
@@ -14266,7 +14266,7 @@
      "tier": "cheap",
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 2.28
+     "share": 2.26
     },
     {
      "name": "7.62x39mm",
@@ -14275,7 +14275,7 @@
      "tier": null,
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.14
+     "share": 2.26
     },
     {
      "name": "Frag Grenade",
@@ -14284,7 +14284,629 @@
      "tier": null,
      "rarity": 3,
      "rarityLabel": "Rare",
-     "share": 1.71
+     "share": 1.69
+    },
+    {
+     "name": "EDC Multi-tool",
+     "cr": 19987,
+     "cat": "Power Tools",
+     "tier": "prime",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Advanced First Aid Kit",
+     "cr": 18450,
+     "cat": "Consumables",
+     "tier": "prime",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Heavy-Duty Trauma Kit",
+     "cr": 18450,
+     "cat": "Medical",
+     "tier": "prime",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Soap",
+     "cr": 17425,
+     "cat": "Rare Loot",
+     "tier": "prime",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Laser Rangefinder",
+     "cr": 16400,
+     "cat": "Salvage",
+     "tier": "prime",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Cyborg Immunosuppressant",
+     "cr": 14350,
+     "cat": "Medical",
+     "tier": "prime",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Brandy",
+     "cr": 9737,
+     "cat": "Bar & Alcohol",
+     "tier": "valuable",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "MRE",
+     "cr": 9225,
+     "cat": "Consumables",
+     "tier": "valuable",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Nucky Gold Cigarettes",
+     "cr": 9225,
+     "cat": "Salvage",
+     "tier": "valuable",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Tequila",
+     "cr": 9225,
+     "cat": "Bar & Alcohol",
+     "tier": "valuable",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Manpack Radio",
+     "cr": 7431,
+     "cat": "Salvage",
+     "tier": "valuable",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Deep Fried Coffee",
+     "cr": 7175,
+     "cat": "Rare Loot",
+     "tier": "valuable",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Mezcal",
+     "cr": 7175,
+     "cat": "Bar & Alcohol",
+     "tier": "valuable",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Rare Metals",
+     "cr": 6150,
+     "cat": "Salvage",
+     "tier": "valuable",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Medical Tools",
+     "cr": 5637,
+     "cat": "Medical",
+     "tier": "good",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Water Canteen",
+     "cr": 4612,
+     "cat": "Consumables",
+     "tier": "good",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Eurasian IFF Chip LVL2",
+     "cr": 3075,
+     "cat": "IFFs",
+     "tier": "good",
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Cluster Grenade",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Signal Scrambler Grenade",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 2,
+     "rarityLabel": "Very Rare",
+     "share": 0.45
+    },
+    {
+     "name": "Occulomide Auto-Surgeon",
+     "cr": 91225,
+     "cat": "Medical",
+     "tier": "jackpot",
+     "rarity": 1,
+     "rarityLabel": "Ultra Rare",
+     "share": 0.05
+    },
+    {
+     "name": "Advanced Navigation Device",
+     "cr": 45612,
+     "cat": "Computer Parts",
+     "tier": "jackpot",
+     "rarity": 1,
+     "rarityLabel": "Ultra Rare",
+     "share": 0.05
+    },
+    {
+     "name": "Diagnostic Scanner",
+     "cr": 34850,
+     "cat": "Medical",
+     "tier": "jackpot",
+     "rarity": 1,
+     "rarityLabel": "Ultra Rare",
+     "share": 0.11
+    },
+    {
+     "name": "Hard Shell Laptop",
+     "cr": 32800,
+     "cat": "Salvage",
+     "tier": "jackpot",
+     "rarity": 1,
+     "rarityLabel": "Ultra Rare",
+     "share": 0.23
+    },
+    {
+     "name": "Toilet Paper",
+     "cr": 28700,
+     "cat": "Rare Loot",
+     "tier": "jackpot",
+     "rarity": 1,
+     "rarityLabel": "Ultra Rare",
+     "share": 0.23
+    },
+    {
+     "name": "Scotch",
+     "cr": 24600,
+     "cat": "Bar & Alcohol",
+     "tier": "prime",
+     "rarity": 1,
+     "rarityLabel": "Ultra Rare",
+     "share": 0.23
+    },
+    {
+     "name": "Zonophor Tablets",
+     "cr": 21525,
+     "cat": "Medical",
+     "tier": "prime",
+     "rarity": 1,
+     "rarityLabel": "Ultra Rare",
+     "share": 0.23
+    },
+    {
+     "name": "Preserved Cryo Coffee",
+     "cr": 19475,
+     "cat": "Rare Loot",
+     "tier": "prime",
+     "rarity": 1,
+     "rarityLabel": "Ultra Rare",
+     "share": 0.11
+    },
+    {
+     "name": "Whiskey",
+     "cr": 16400,
+     "cat": "Bar & Alcohol",
+     "tier": "prime",
+     "rarity": 1,
+     "rarityLabel": "Ultra Rare",
+     "share": 0.23
+    },
+    {
+     "name": "Eurasian IFF Chip LVL3",
+     "cr": 8200,
+     "cat": "IFFs",
+     "tier": "valuable",
+     "rarity": 1,
+     "rarityLabel": "Ultra Rare",
+     "share": 0.23
+    }
+   ]
+  },
+  {
+   "key": "corpse-brawler-s-bag-standard",
+   "label": "Brawler's Bag (standard)",
+   "kind": "corpse",
+   "tiered": false,
+   "tiers": [],
+   "count": 68,
+   "items": [
+    {
+     "name": "Brawler Spinal Joint",
+     "cr": 6150,
+     "cat": "Quest Items",
+     "tier": "valuable",
+     "rarity": 4,
+     "rarityLabel": "Uncommon",
+     "share": 5.78
+    },
+    {
+     "name": "Eurasian Brawler Components",
+     "cr": 4100,
+     "cat": "Salvage",
+     "tier": "good",
+     "rarity": 4,
+     "rarityLabel": "Uncommon",
+     "share": 5.78
+    },
+    {
+     "name": "Brawler Insignia",
+     "cr": 2562,
+     "cat": "Quest Items",
+     "tier": "worth",
+     "rarity": 4,
+     "rarityLabel": "Uncommon",
+     "share": 5.78
+    },
+    {
+     "name": "Gin",
+     "cr": 11787,
+     "cat": "Bar & Alcohol",
+     "tier": "valuable",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Standard First Aid Kit",
+     "cr": 7175,
+     "cat": "Consumables",
+     "tier": "valuable",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Hinoko Cigarettes",
+     "cr": 6662,
+     "cat": "Salvage",
+     "tier": "valuable",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Military Grade Lubricant",
+     "cr": 6150,
+     "cat": "Maintenance Supplies",
+     "tier": "valuable",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Military PDA",
+     "cr": 5637,
+     "cat": "Salvage",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Thermal Matches",
+     "cr": 5637,
+     "cat": "Rare Loot",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Intelligence Disk",
+     "cr": 4869,
+     "cat": "Salvage",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Assorted Medicine",
+     "cr": 4612,
+     "cat": "Medical",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Adrenaline Stim",
+     "cr": 4100,
+     "cat": "Consumables",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Happy Cookies",
+     "cr": 4100,
+     "cat": "Consumables",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Tourniquet",
+     "cr": 4100,
+     "cat": "Medical",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Vodka",
+     "cr": 4100,
+     "cat": "Bar & Alcohol",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Energy Bar",
+     "cr": 3331,
+     "cat": "Consumables",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Rum",
+     "cr": 3331,
+     "cat": "Bar & Alcohol",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Beer",
+     "cr": 3075,
+     "cat": "Bar & Alcohol",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Intelligence Cassette",
+     "cr": 3075,
+     "cat": "Salvage",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Survival Lighter",
+     "cr": 3075,
+     "cat": "Lighting",
+     "tier": "good",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Absinthe",
+     "cr": 2819,
+     "cat": "Bar & Alcohol",
+     "tier": "worth",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Boinco Candy Bar",
+     "cr": 2562,
+     "cat": "Consumables",
+     "tier": "worth",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "E-Nuggets",
+     "cr": 2562,
+     "cat": "Consumables",
+     "tier": "worth",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Bandages",
+     "cr": 2050,
+     "cat": "Medical",
+     "tier": "worth",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Dossier",
+     "cr": 2050,
+     "cat": "Salvage",
+     "tier": "worth",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Ethyl Alcohol",
+     "cr": 2050,
+     "cat": "Bar & Alcohol",
+     "tier": "worth",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Goodies",
+     "cr": 2050,
+     "cat": "Rare Loot",
+     "tier": "worth",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Mead",
+     "cr": 2050,
+     "cat": "Bar & Alcohol",
+     "tier": "worth",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Zippo Lighter",
+     "cr": 2050,
+     "cat": "Rare Loot",
+     "tier": "worth",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
+    },
+    {
+     "name": "Lighter",
+     "cr": 1794,
+     "cat": "Lighting",
+     "tier": "worth",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Pretzels",
+     "cr": 1794,
+     "cat": "Consumables",
+     "tier": "worth",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Small First Aid Kit",
+     "cr": 1614,
+     "cat": "Consumables",
+     "tier": "worth",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Dogboro Cigarettes",
+     "cr": 1025,
+     "cat": "Salvage",
+     "tier": "cheap",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Eurasian IFF Chip LVL1",
+     "cr": 1025,
+     "cat": "IFFs",
+     "tier": "cheap",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Food Tin",
+     "cr": 1025,
+     "cat": "Consumables",
+     "tier": "cheap",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "U-STIK+ USB Drive",
+     "cr": 1025,
+     "cat": "Computer Parts",
+     "tier": "cheap",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Potato Chips",
+     "cr": 769,
+     "cat": "Consumables",
+     "tier": "cheap",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Matches",
+     "cr": 512,
+     "cat": "Rare Loot",
+     "tier": "cheap",
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 2.31
+    },
+    {
+     "name": "Frag Grenade",
+     "cr": null,
+     "cat": null,
+     "tier": null,
+     "rarity": 3,
+     "rarityLabel": "Rare",
+     "share": 1.73
     },
     {
      "name": "EDC Multi-tool",
@@ -14482,7 +15104,7 @@
      "tier": "jackpot",
      "rarity": 1,
      "rarityLabel": "Ultra Rare",
-     "share": 0.11
+     "share": 0.12
     },
     {
      "name": "Hard Shell Laptop",
@@ -14527,7 +15149,7 @@
      "tier": "prime",
      "rarity": 1,
      "rarityLabel": "Ultra Rare",
-     "share": 0.11
+     "share": 0.12
     },
     {
      "name": "Whiskey",
@@ -31452,8 +32074,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -31646,8 +32274,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -31780,8 +32414,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -32010,8 +32650,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -32144,8 +32790,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -32374,8 +33026,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -32508,8 +33166,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -32696,8 +33360,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -32890,8 +33560,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -33072,8 +33748,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -33326,8 +34008,14 @@
     "rarity": 2
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 1
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 1
    },
@@ -33526,8 +34214,14 @@
     "rarity": 2
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 1
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 1
    },
@@ -33886,8 +34580,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -34210,8 +34910,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -34406,8 +35112,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -34548,8 +35260,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -34724,8 +35442,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -35190,8 +35914,14 @@
   ],
   "Thermal Matches": [
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -35530,8 +36260,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -35720,8 +36456,14 @@
   ],
   "Zippo Lighter": [
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -36024,8 +36766,14 @@
     "rarity": 2
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 1
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 1
    },
@@ -36246,8 +36994,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -36414,8 +37168,8 @@
     "rarity": 3
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -36442,8 +37196,14 @@
     "rarity": 5
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -36680,8 +37440,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -36910,8 +37676,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -37100,8 +37872,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -37294,8 +38072,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -37390,8 +38174,8 @@
     "rarity": 3
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 3
    },
@@ -37414,8 +38198,8 @@
     "rarity": 3
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -37488,8 +38272,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -37658,8 +38448,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -37854,8 +38650,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -38036,8 +38838,14 @@
     "rarity": 2
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 1
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 1
    },
@@ -38218,8 +39026,14 @@
     "rarity": 2
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 1
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 1
    },
@@ -38468,8 +39282,14 @@
     "rarity": 2
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 1
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 1
    },
@@ -38784,8 +39604,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -38980,8 +39806,8 @@
     "rarity": 5
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 5
    },
@@ -38992,8 +39818,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -39234,8 +40066,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 4
    },
@@ -39246,8 +40078,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 3
    },
@@ -39292,8 +40124,14 @@
     "rarity": 2
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 1
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 1
    },
@@ -39498,8 +40336,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -39730,8 +40574,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 4
    },
@@ -39742,8 +40586,8 @@
     "rarity": 3
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 3
    },
@@ -39774,8 +40618,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 4
    },
@@ -39786,8 +40630,8 @@
     "rarity": 3
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 3
    },
@@ -39838,8 +40682,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 4
    },
@@ -39850,8 +40694,8 @@
     "rarity": 3
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 3
    },
@@ -40066,8 +40910,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 4
    },
@@ -40078,8 +40922,8 @@
     "rarity": 3
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 3
    },
@@ -40280,8 +41124,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 4
    },
@@ -40292,8 +41136,8 @@
     "rarity": 3
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 3
    },
@@ -40318,8 +41162,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -40542,8 +41392,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 4
    },
@@ -40554,8 +41404,8 @@
     "rarity": 3
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 3
    },
@@ -40656,8 +41506,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 4
    },
@@ -40668,8 +41518,8 @@
     "rarity": 3
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 3
    },
@@ -40748,8 +41598,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -40954,8 +41810,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -41100,8 +41962,8 @@
     "rarity": 5
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 5
    },
@@ -41154,8 +42016,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -41348,8 +42216,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -41526,8 +42400,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -41768,8 +42648,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -41914,8 +42800,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -42108,8 +43000,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -42296,8 +43194,8 @@
     "rarity": 5
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 5
    },
@@ -42308,8 +43206,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -42502,8 +43406,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -42690,8 +43600,14 @@
     "rarity": 2
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 1
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 1
    },
@@ -42860,8 +43776,8 @@
     "rarity": 5
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 5
    },
@@ -42872,8 +43788,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -43078,8 +44000,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -43266,8 +44194,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -43448,8 +44382,8 @@
     "rarity": 5
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 5
    },
@@ -43478,8 +44412,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -45468,8 +46408,14 @@
     "rarity": 2
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 1
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 1
    },
@@ -45696,8 +46642,8 @@
   ],
   "Merkava Suspension Component": [
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 5
    },
@@ -45722,8 +46668,14 @@
     "rarity": 5
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -45950,8 +46902,14 @@
     "rarity": 2
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 1
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 1
    },
@@ -46012,8 +46970,8 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
@@ -46216,8 +47174,14 @@
   ],
   "Brawler Spinal Joint": [
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 4
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 4
    },
@@ -46302,8 +47266,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -46374,8 +47344,14 @@
   ],
   "Intelligence Disk": [
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -46556,8 +47532,14 @@
   ],
   "Eurasian Brawler Components": [
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 4
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 4
    },
@@ -46602,8 +47584,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -46664,8 +47652,8 @@
     "rarity": 3
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 3
    },
@@ -46838,8 +47826,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -46972,8 +47966,14 @@
   ],
   "Brawler Insignia": [
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 4
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 4
    },
@@ -47048,8 +48048,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -47216,8 +48222,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -47278,8 +48290,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 4
    },
@@ -47482,6 +48494,174 @@
     "rarity": 5
    }
   ],
+  "Corpse Tank Control Panel": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 5
+   }
+  ],
+  "40mm Grenade": [
+   {
+    "key": "corpse-jack-s-bag",
+    "label": "Jack's Bag",
+    "kind": "corpse",
+    "rarity": 5
+   },
+   {
+    "key": "corpse-pyro-s-bag",
+    "label": "Pyro's Bag",
+    "kind": "corpse",
+    "rarity": 5
+   },
+   {
+    "key": "corpse-grenadier-s-bag",
+    "label": "Grenadier's Bag",
+    "kind": "corpse",
+    "rarity": 4
+   },
+   {
+    "key": "corpse-corpse",
+    "label": "Corpse",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 3
+   }
+  ],
+  "TrueAimer 4x": [
+   {
+    "key": "corpse-europan-eod-s-bag-officer-quest",
+    "label": "Europan EOD's Bag (Officer quest)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-infected-euruskan-s-bag",
+    "label": "Infected Euruskan's Bag",
+    "kind": "corpse",
+    "rarity": 2
+   }
+  ],
+  "12-Gauge Buckshot": [
+   {
+    "key": "corpse-cultist-pursuer-s-bag",
+    "label": "Cultist Pursuer's Bag",
+    "kind": "corpse",
+    "rarity": 4
+   },
+   {
+    "key": "corpse-corpse",
+    "label": "Corpse",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-eurasian-shotgunner-s-bag",
+    "label": "Eurasian Shotgunner's Bag",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-europan-eod-s-bag-12g",
+    "label": "Europan EOD's Bag (12g)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-europan-grinn-s-bag-12g",
+    "label": "Europan GRINN's Bag (12g)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-euruskan-heavy-s-bag-12g",
+    "label": "Euruskan Heavy's Bag (12g)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-water-thief-berserker-s-bag",
+    "label": "Water Thief Berserker's Bag",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   }
+  ],
+  "5.45x39mm": [
+   {
+    "key": "corpse-euruskan-infantry-s-bag",
+    "label": "Euruskan Infantry's Bag",
+    "kind": "corpse",
+    "rarity": 4
+   },
+   {
+    "key": "corpse-corpse",
+    "label": "Corpse",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-eurasian-soldier-s-bag-545",
+    "label": "Eurasian Soldier's Bag (545)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   }
+  ],
+  "5.56x45mm": [
+   {
+    "key": "corpse-riptider-s-bag",
+    "label": "Riptider's Bag",
+    "kind": "corpse",
+    "rarity": 5
+   },
+   {
+    "key": "corpse-cultist-heavy-s-bag",
+    "label": "Cultist Heavy's Bag",
+    "kind": "corpse",
+    "rarity": 4
+   },
+   {
+    "key": "corpse-corpse",
+    "label": "Corpse",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-europan-conscript-s-bag",
+    "label": "Europan Conscript's Bag",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   }
+  ],
   "Aimp H2 Optic": [
    {
     "key": "corpse-europan-eod-s-bag-officer-quest",
@@ -47496,14 +48676,14 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47528,14 +48708,14 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47554,14 +48734,14 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47580,14 +48760,14 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47612,28 +48792,28 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
   ],
   "ET XP2 Optic": [
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47658,16 +48838,338 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
+   }
+  ],
+  "M4A1 Barrel A": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Barrel B": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Barrel C": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Charging Handle A": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Charging Handle B": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Charging Handle C": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Gas Tube A": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Gas Tube B": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Gas Tube C": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Magazine A": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Magazine B": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Receiver A": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Receiver B": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "M4A1 Receiver C": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "NSN Grip A": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "NSN Grip B": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "NSN Grip C": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "NSN Handguard A": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "NSN Handguard B": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "NSN Handguard C": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "NSN Stock A": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "NSN Stock B": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
+   }
+  ],
+  "NSN Stock C": [
+   {
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
+    "kind": "vehicle",
+    "rarity": 2
+   },
+   {
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
+    "kind": "vehicle",
+    "rarity": 1
    }
   ],
   "P Arms 3P Optic": [
@@ -47690,14 +49192,14 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47722,14 +49224,14 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47754,14 +49256,14 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47786,28 +49288,28 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
   ],
   "Tri M Optic": [
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47832,14 +49334,14 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47864,14 +49366,14 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47896,14 +49398,14 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47928,14 +49430,14 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -47960,14 +49462,14 @@
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
+    "key": "vehicle-vehicle-debris-core-merkava-body-boss",
+    "label": "Vehicle Debris (core Merkava Body Boss)",
     "kind": "vehicle",
     "rarity": 2
    },
    {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
+    "key": "vehicle-vehicle-debris-core",
+    "label": "Vehicle Debris (core)",
     "kind": "vehicle",
     "rarity": 2
    }
@@ -48332,328 +49834,6 @@
     "rarity": 1
    }
   ],
-  "M4A1 Barrel A": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Barrel B": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Barrel C": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Charging Handle A": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Charging Handle B": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Charging Handle C": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Gas Tube A": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Gas Tube B": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Gas Tube C": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Magazine A": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Magazine B": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Receiver A": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Receiver B": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "M4A1 Receiver C": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "NSN Grip A": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "NSN Grip B": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "NSN Grip C": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "NSN Handguard A": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "NSN Handguard B": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "NSN Handguard C": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "NSN Stock A": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "NSN Stock B": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
-  "NSN Stock C": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   },
-   {
-    "key": "vehicle-vehicle-debris-core",
-    "label": "Vehicle Debris (core)",
-    "kind": "vehicle",
-    "rarity": 1
-   }
-  ],
   "Cluster Grenade": [
    {
     "key": "corpse-pyro-s-bag",
@@ -48680,8 +49860,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 4
    },
@@ -48710,8 +49890,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -48880,8 +50066,8 @@
   ],
   "Decoy Grenade": [
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 4
    }
@@ -48924,8 +50110,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 4
    },
@@ -48936,8 +50122,14 @@
     "rarity": 4
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 3
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -49148,8 +50340,8 @@
     "rarity": 4
    },
    {
-    "key": "vehicle-vehicle-debris-debris",
-    "label": "Vehicle Debris (debris)",
+    "key": "vehicle-vehicle-debris-standard",
+    "label": "Vehicle Debris (standard)",
     "kind": "vehicle",
     "rarity": 4
    },
@@ -49178,8 +50370,14 @@
     "rarity": 3
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
+    "kind": "corpse",
+    "rarity": 2
+   },
+   {
+    "key": "corpse-brawler-s-bag-standard",
+    "label": "Brawler's Bag (standard)",
     "kind": "corpse",
     "rarity": 2
    },
@@ -49346,174 +50544,6 @@
     "rarity": 2
    }
   ],
-  "Corpse Tank Control Panel": [
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 5
-   }
-  ],
-  "40mm Grenade": [
-   {
-    "key": "corpse-jack-s-bag",
-    "label": "Jack's Bag",
-    "kind": "corpse",
-    "rarity": 5
-   },
-   {
-    "key": "corpse-pyro-s-bag",
-    "label": "Pyro's Bag",
-    "kind": "corpse",
-    "rarity": 5
-   },
-   {
-    "key": "corpse-grenadier-s-bag",
-    "label": "Grenadier's Bag",
-    "kind": "corpse",
-    "rarity": 4
-   },
-   {
-    "key": "corpse-corpse",
-    "label": "Corpse",
-    "kind": "corpse",
-    "rarity": 3
-   },
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 3
-   }
-  ],
-  "TrueAimer 4x": [
-   {
-    "key": "corpse-europan-eod-s-bag-officer-quest",
-    "label": "Europan EOD's Bag (Officer quest)",
-    "kind": "corpse",
-    "rarity": 3
-   },
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 3
-   },
-   {
-    "key": "corpse-infected-euruskan-s-bag",
-    "label": "Infected Euruskan's Bag",
-    "kind": "corpse",
-    "rarity": 2
-   }
-  ],
-  "12-Gauge Buckshot": [
-   {
-    "key": "corpse-cultist-pursuer-s-bag",
-    "label": "Cultist Pursuer's Bag",
-    "kind": "corpse",
-    "rarity": 4
-   },
-   {
-    "key": "corpse-corpse",
-    "label": "Corpse",
-    "kind": "corpse",
-    "rarity": 3
-   },
-   {
-    "key": "corpse-eurasian-shotgunner-s-bag",
-    "label": "Eurasian Shotgunner's Bag",
-    "kind": "corpse",
-    "rarity": 3
-   },
-   {
-    "key": "corpse-europan-eod-s-bag-12g",
-    "label": "Europan EOD's Bag (12g)",
-    "kind": "corpse",
-    "rarity": 3
-   },
-   {
-    "key": "corpse-europan-grinn-s-bag-12g",
-    "label": "Europan GRINN's Bag (12g)",
-    "kind": "corpse",
-    "rarity": 3
-   },
-   {
-    "key": "corpse-euruskan-heavy-s-bag-12g",
-    "label": "Euruskan Heavy's Bag (12g)",
-    "kind": "corpse",
-    "rarity": 3
-   },
-   {
-    "key": "corpse-water-thief-berserker-s-bag",
-    "label": "Water Thief Berserker's Bag",
-    "kind": "corpse",
-    "rarity": 3
-   },
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   }
-  ],
-  "5.45x39mm": [
-   {
-    "key": "corpse-euruskan-infantry-s-bag",
-    "label": "Euruskan Infantry's Bag",
-    "kind": "corpse",
-    "rarity": 4
-   },
-   {
-    "key": "corpse-corpse",
-    "label": "Corpse",
-    "kind": "corpse",
-    "rarity": 3
-   },
-   {
-    "key": "corpse-eurasian-soldier-s-bag-545",
-    "label": "Eurasian Soldier's Bag (545)",
-    "kind": "corpse",
-    "rarity": 3
-   },
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   }
-  ],
-  "5.56x45mm": [
-   {
-    "key": "corpse-riptider-s-bag",
-    "label": "Riptider's Bag",
-    "kind": "corpse",
-    "rarity": 5
-   },
-   {
-    "key": "corpse-cultist-heavy-s-bag",
-    "label": "Cultist Heavy's Bag",
-    "kind": "corpse",
-    "rarity": 4
-   },
-   {
-    "key": "corpse-corpse",
-    "label": "Corpse",
-    "kind": "corpse",
-    "rarity": 3
-   },
-   {
-    "key": "corpse-europan-conscript-s-bag",
-    "label": "Europan Conscript's Bag",
-    "kind": "corpse",
-    "rarity": 3
-   },
-   {
-    "key": "vehicle-vehicle-merkava-body-boss",
-    "label": "Vehicle Merkava Body Boss",
-    "kind": "vehicle",
-    "rarity": 2
-   }
-  ],
   "Eurasian HK's Mnemonic Index": [
    {
     "key": "hk-cyborg-remains-assault-hk",
@@ -49554,8 +50584,8 @@
     "rarity": 5
    },
    {
-    "key": "corpse-brawler-s-bag",
-    "label": "Brawler's Bag",
+    "key": "corpse-brawler-s-bag-762",
+    "label": "Brawler's Bag (762)",
     "kind": "corpse",
     "rarity": 3
    },
@@ -49899,5 +50929,5 @@
    }
   ]
  },
- "count": 74
+ "count": 75
 }

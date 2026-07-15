@@ -499,7 +499,17 @@ function dispatch() {
   else if (state.tab === "crafting") return renderCrafting();
   else return renderLoot();
 }
-const match = (name) => !state.q || name.toLowerCase().includes(state.q);
+// Search ignores spacing and punctuation, so the game's own naming can't hide an item:
+// "toolset" has to find "Octogirl's Tool Set", "octogirls" has to find "Octogirl's".
+// Plain substring first (cheap, and the common case), loose compare only as a fallback.
+const squash = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "");
+const match = (name) => {
+  if (!state.q) return true;
+  const n = String(name == null ? "" : name).toLowerCase();
+  if (n.includes(state.q)) return true;
+  const sq = squash(state.q);
+  return !!sq && squash(n).includes(sq);
+};
 
 /* ---------- weapons tab ---------- */
 function renderWeapons() {
@@ -923,9 +933,9 @@ function drawCrafting() {
   const D = CRAFT, q = state.q;
   const craftMods = activeMods().filter((m) => m.crafting && m.crafting.addGroups);
   const rb = craftMods.length > 0;
-  const recMatch = (r) => !q || r.name.toLowerCase().includes(q)
-    || (r.inputs || []).some((i) => i.name.toLowerCase().includes(q))
-    || (r.outputs || []).some((o) => o.name.toLowerCase().includes(q));
+  const recMatch = (r) => !q || match(r.name)
+    || (r.inputs || []).some((i) => match(i.name))
+    || (r.outputs || []).some((o) => match(o.name));
   const cats = D.categoryOrder || [];
   const byCat = {};
   D.groups.forEach((g) => (byCat[g.category] = byCat[g.category] || []).push(g));

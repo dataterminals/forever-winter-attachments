@@ -166,7 +166,7 @@
   {
    "key": "quest-items",
    "label": "Quest Items",
-   "count": 47
+   "count": 50
   },
   {
    "key": "destroyed-weapons",
@@ -176,7 +176,7 @@
   {
    "key": "salvage",
    "label": "Salvage",
-   "count": 53
+   "count": 50
   }
  ],
  "items": [
@@ -1219,15 +1219,15 @@
    "name": "Frequency Tap",
    "cr": 12300,
    "tier": "prime",
-   "cat": "salvage",
-   "catLabel": "Salvage",
+   "cat": "quest-items",
+   "catLabel": "Quest Items",
    "size": "Small",
    "weight": 0.3,
    "volume": 20.0,
    "perVol": 615,
    "perWgt": 41000,
    "xp": 200,
-   "quest": false,
+   "quest": true,
    "loc": null
   },
   {
@@ -3019,15 +3019,15 @@
    "name": "Octogirl's Tool Set",
    "cr": 4251,
    "tier": "good",
-   "cat": "salvage",
-   "catLabel": "Salvage",
+   "cat": "quest-items",
+   "catLabel": "Quest Items",
    "size": "Small",
    "weight": 1.0,
    "volume": 100.0,
    "perVol": 43,
    "perWgt": 4251,
    "xp": 415,
-   "quest": false,
+   "quest": true,
    "loc": null
   },
   {
@@ -3049,15 +3049,15 @@
    "name": "Data Cache",
    "cr": 4100,
    "tier": "good",
-   "cat": "salvage",
-   "catLabel": "Salvage",
+   "cat": "quest-items",
+   "catLabel": "Quest Items",
    "size": "Small",
    "weight": 1.0,
    "volume": 50.0,
    "perVol": 82,
    "perWgt": 4100,
    "xp": 115,
-   "quest": false,
+   "quest": true,
    "loc": null
   },
   {
