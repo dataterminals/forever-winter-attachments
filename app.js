@@ -1480,6 +1480,19 @@ function dropModelPanel() {
       <tbody>${(D.crateTypes || []).map(typeRow).join("")}</tbody></table></div>
     <p class="gnote">Every tier of a type shares one pool; the tier only sets the budget it fills toward. <b>Cap</b> = most items it can hold &middot; <b>Pool</b> = distinct items it can draw.</p></details>`;
 
+  // what a killed unit leaves behind — the debris container, not the enemy's name
+  const entRow = (e) => `<tr>
+    <td><button class="dm-type" data-gosrc="${esc(e.source)}">${esc(e.name)}</button></td>
+    <td class="num">${e.cap}</td><td class="num">${e.pool}</td>
+    <td class="dm-inside">${mdb(e.note || "")}</td></tr>`;
+  const entTable = (D.entityDrops || []).length ? `<details class="loot-src dm-det" data-anchor="entity-drops">
+    <summary class="loot-sum"><span class="loot-src-name">What a kill leaves behind</span>
+      <span class="c">${D.entityDrops.length} debris types</span></summary>
+    <p class="gnote dm-gnote">${mdb(D.entityNote || "")}</p>
+    <div class="gtable-wrap"><table class="gtable dm-type-table">
+      <thead><tr><th>Container</th><th class="num">Cap</th><th class="num">Pool</th><th>Notes</th></tr></thead>
+      <tbody>${D.entityDrops.map(entRow).join("")}</tbody></table></div></details>` : "";
+
   const pctVar = (c) => (c >= 1 ? "--olive" : c >= 0.6 ? "--gold" : "--rust");
   const spawnRow = (q) => `<tr><td>${esc(q.spawner)}</td>
     <td class="num"><b class="dm-pct" style="color:var(${pctVar(q.chance)})">${Math.round(q.chance * 100)}%</b></td>
@@ -1502,7 +1515,7 @@ function dropModelPanel() {
     <div class="section dm-head"><h3>How drops work</h3></div>
     <p class="dm-tldr">${mdb(D.tldr || "")}</p>
     <div class="dm-layers">${layers}</div>
-    ${budgetStrip}${typeTable}${spawnTable}${specialList}
+    ${budgetStrip}${typeTable}${entTable}${spawnTable}${specialList}
   </section>`;
 }
 
