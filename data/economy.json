@@ -1,9 +1,9 @@
 {
- "source": "The Forever Winter shipping game files (build 24045295) — ItemDetailsData + EconV2 value tables, decoded with CUE4Parse",
+ "source": "The Forever Winter shipping game files (build 24097213) — ItemDetailsData + EconV2 value tables, decoded with CUE4Parse",
  "generated_note": "Datamined straight from the game — authoritative and ahead of the wiki. Raiding-loot economy: scavenge-and-sell items, excluding weapons, parts, attachments, ammo, rigs and containers (own tabs); keeps enemy-drop destroyed weapons.",
  "valueBasis": "credits = round(raw Value / 1.9512195122) — the game's Rep-2 / 100%-cost-efficiency reference",
  "divisor": 1.9512195122,
- "build": 24045295,
+ "build": 24097213,
  "tiers": [
   {
    "key": "junk",

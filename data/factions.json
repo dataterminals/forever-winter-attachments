@@ -1,7 +1,7 @@
 {
- "source": "The Forever Winter shipping game files (build 24045295) — FW/TugOfWar/* + FactionAdjustmentsViaBattle DataTables, decoded with CUE4Parse",
+ "source": "The Forever Winter shipping game files (build 24097213) — FW/TugOfWar/* + FactionAdjustmentsViaBattle DataTables, decoded with CUE4Parse",
  "note": "The \"Tug of War\": every surface map is contested by the three armies, and your sabotage/hack actions shift who controls it — for the whole server, for real-world hours. Higher control = more of that faction's units on that map.",
- "build": 24045295,
+ "build": 24097213,
  "factions": [
   {
    "id": "Eurasia",

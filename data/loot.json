@@ -1,7 +1,7 @@
 {
- "source": "The Forever Winter shipping game files (build 24045295) — RandomContainerLootData + DT_GachaLootTable + BP_RareLootManager, decoded with CUE4Parse.",
+ "source": "The Forever Winter shipping game files (build 24097213) — RandomContainerLootData + DT_GachaLootTable + BP_RareLootManager, decoded with CUE4Parse.",
  "generated_note": "Source-first loot index. Rarity is each item's share of that source's loot pool by weight (relative scarcity within one open) — not a per-raid probability. Only named loot items are shown; ammo & weapon mods live on their own tabs.",
- "build": 24045295,
+ "build": 24097213,
  "kinds": [
   {
    "key": "container",

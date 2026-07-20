@@ -1,7 +1,7 @@
 {
- "source": "The Forever Winter shipping game files (build 24045295) — FWAIPawnDefinition enemy defs + BP_AI health components + weapon defs, decoded with CUE4Parse",
+ "source": "The Forever Winter shipping game files (build 24097213) — FWAIPawnDefinition enemy defs + BP_AI health components + weapon defs, decoded with CUE4Parse",
  "note": "Datamined straight from each unit's AI pawn definition: threat class, kill XP, the stagger/stun threshold, the grab (sync-kill) HP threshold & range, melee & dash damage, mounted weapons and (for mechs) layered armour zones. HP for the smaller units is read from the unit's blueprint health component. The 10 bosses keep hand-written tactics; every other unit is a datamined one-liner.",
- "build": 24045295,
+ "build": 24097213,
  "codex": {
   "xp": 62500,
   "cr": 32800,
